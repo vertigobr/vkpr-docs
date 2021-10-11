@@ -33,3 +33,14 @@ $ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+
+### Remote Development
+
+You can use Okteto to setup a remote development container:
+
+```
+okteto up
+```
+
+This will create a node development container in okteto cloud synced to your project.
+Follow the on-screen instructions to start development mode.

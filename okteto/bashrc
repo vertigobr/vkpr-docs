@@ -1,0 +1,26 @@
+RED='\033[31m'
+GREEN='\033[32m'
+BLUE='\033[34m'
+NC='\033[0m' # No Color
+
+cat << EOF
+Welcome to your development container. Happy coding!
+====================================================
+Run the commands below to install dependencies and to start dev mode:
+
+EOF
+
+echo -e "${GREEN}yarn${NC}"
+echo -e "${GREEN}yarn start -p 8080 --host 0.0.0.0${NC}"
+
+cat << EOF
+
+You will be able to browse the application using both the localhost tunnel
+or okteto's auto ingress:
+
+EOF
+
+echo -e "${BLUE}http://localhost:8080/vkpr-docs/${NC}"
+echo -e "${BLUE}https://vkpr-docs-$OKTETO_NAMESPACE.cloud.okteto.net/vkpr-docs/${NC}\n"
+
+export PS1="\[\e[36m\]\${OKTETO_NAMESPACE:-okteto}:\[\e[32m\]\${OKTETO_NAME:-dev} \[\e[m\]\W> "

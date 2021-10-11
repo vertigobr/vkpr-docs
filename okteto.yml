@@ -1,0 +1,11 @@
+name: vkpr-docs
+image: okteto/node:14
+command: [ "bash" ]
+#command: [ "yarn", "start", "-p", "8080", "--host", "0.0.0.0"]
+autocreate: true
+sync:
+- .:/usr/src/app
+secrets:
+- ./okteto/bashrc:/root/.bashrc
+forward:
+- 8080:8080
