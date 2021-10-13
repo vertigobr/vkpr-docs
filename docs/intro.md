@@ -54,10 +54,20 @@ curl whoami.localhost:8000
 curl -H "Host: whoami.localhost" localhost:8000
 ```
 
+## Discard cluster
+
+You may discard the cluster with a simple command:
+
+```shell
+vkpr infra down
+```
+
 ## A brief explanation
 
+Each of VKPR's CLI commands is called a formula (implemented uding Ritchie).
 
+The `vkpr infra up` formula starts a local kubernetes cluster using [k3d](https://k3d.io/).
 
-Your site starts at `http://localhost:3000`.
+The `vkpr ingress install` formula deploys an ingress controller, in this case exposed to localhost in ports 8000 (http) and 8001 (https).
 
-Open `docs/intro.md` and edit some lines: the site **reloads automatically** and display your changes.
+The `vkpr whoami install` formula deploys a sample application with a valid ingress configuration.
