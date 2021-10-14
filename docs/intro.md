@@ -64,7 +64,7 @@ vkpr infra down
 
 ## A brief explanation
 
-Each of VKPR's CLI commands is called a formula (implemented uding Ritchie).
+Each of VKPR's CLI commands is called a formula (implemented using Ritchie).
 
 The `vkpr infra up` formula starts a local kubernetes cluster using [k3d](https://k3d.io/).
 
