@@ -2,6 +2,6 @@
 sidebar_position: 4
 ---
 
-# Operation
+# Operation |WIP|
 
 TODO: describe cluster operation (day 2)

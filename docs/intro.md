@@ -54,7 +54,7 @@ vkpr ingress install
 vkpr whoami install --default
 ```
 
-Now you can test this sample application with a simple `curl` command ():
+Now you can test this sample application with a simple `curl` command:
 
 ```shell
 curl whoami.localhost:8000
