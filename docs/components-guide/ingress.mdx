@@ -1,5 +1,16 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
-# Ingress |WIP|
+# Ingress
+
+In order for users to access the internal applications of a K8S cluster, it is necessary to use Ingress. But for Ingress to work you will need an Ingress-Controller to manage all the load balancing.
+
+VKPR offers two types of Ingress-Controllers:
+
+- [nGINX](https://github.com/kubernetes/ingress-nginx): Ingress controller for Kubernetes using NGINX as a reverse proxy and load balancer.
+- [Traefik](https://doc.traefik.io/traefik/): A modern HTTP reverse proxy and load balancer made to deploy microservices with ease. (Only in local Env)
+
+:::info Formula
+  To see ingress commands, click [here](/docs/commands/vkpr_ingress)
+:::
