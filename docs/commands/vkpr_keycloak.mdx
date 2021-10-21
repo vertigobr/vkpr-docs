@@ -1,0 +1,77 @@
+---
+sidebar_position: 9
+---
+
+# VKPR Keycloak
+
+## VKPR keycloak install
+
+### Description
+
+Install keycloak into cluster. Uses [keycloak](https://artifacthub.io/packages/helm/bitnami/keycloak) Helm chart.
+
+### Commands
+
+Interactive inputs:
+
+```bash
+  vkpr keycloak install
+```
+
+Non-interactive:
+
+```bash
+  vkpr keycloak install --domain="localhost" \
+                        --secure=false \
+                        --admin_user="admin" \
+                        --admin_password="vkpr123"
+```
+
+Non-interactive without setting values:
+
+```bash
+  vkpr keycloak install --default
+```
+
+### Parameters
+
+```bash
+  --domain            Define the domain of keycloak.            Default: keycloak.localhost
+  --secure            Define https on the keycloak.           Default: false
+  --admin_user        Define RBAC Admin user on the keycloak. Default: admin
+  --admin_password    Define RBAC Admin password keycloak.    Default: vkpr123
+  --default           Set all values with default.
+```
+
+:::info Info 
+Require credential of Password Postgres to create the postgres
+:::
+
+### Values File Parameters
+
+```jsx title="vkpr-values.yaml"
+global:
+  domain:               <String>
+  secure:               <Boolean>
+  keycloak:
+    ingressClassName:   <String>
+    admin_user:         <String>
+    admin_password:     <String>
+    resources:          <Object>
+    extraEnv:           <String>
+```
+---
+
+## VKPR keycloak remove
+
+### Description
+
+Uninstall all the content of Keycloak from the cluster.
+
+### Commands
+
+Non-interactive inputs:
+
+```bash
+  vkpr keycloak remove
+```

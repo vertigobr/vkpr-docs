@@ -1,0 +1,50 @@
+---
+sidebar_position: 11
+---
+
+# VKPR Postgres
+
+## VKPR postgres install
+
+### Description
+
+Install postgres into cluster. Uses [postgres](https://artifacthub.io/packages/helm/bitnami/postgresql) Helm chart.
+
+### Commands
+
+Interactive inputs:
+
+```bash
+  vkpr postgres install
+```
+
+Non-interactive:
+
+```bash
+  rit set credential --provider="postgres" --fields="password" --values="<your-postgres-password>"
+  vkpr postgres install
+```
+
+### Values File Parameters
+
+```jsx title="vkpr-values.yaml"
+global:
+  postgres:
+    resources:          <Object>
+    extraEnv:           <String>
+```
+---
+
+## VKPR postgres remove
+
+### Description
+
+Uninstall all the content of postgres from the cluster.
+
+### Commands
+
+Non-interactive inputs:
+
+```bash
+  vkpr postgres remove
+```

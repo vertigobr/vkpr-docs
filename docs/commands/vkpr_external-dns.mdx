@@ -1,0 +1,90 @@
+---
+sidebar_position: 5
+---
+
+# VKPR External-DNS
+
+## VKPR external-dns install
+
+### Description
+
+Install external-dns into cluster. Uses [external-dns](https://artifacthub.io/packages/helm/bitnami/external-dns) Helm chart.
+
+### Commands
+
+Interactive inputs:
+
+```bash
+  vkpr external-dns install
+```
+
+Non-interactive:
+
+```bash
+  vkpr external-dns install --provider="aws"
+```
+
+Non-interactive without setting values:
+
+```bash
+  vkpr external-dns install --default
+```
+
+### Parameters
+
+```bash
+  --provider      Define the provider of external-dns.      Default: aws
+  --default       Set all values with default.
+```
+
+:::info Info
+Avaiable Providers:
+
+- AWS ( --provider="aws" )
+- Digital Ocean ( --provider="digitalocean" )
+- PowerDNS ( --provider="powerDNS" )
+
+:::
+
+### Setting Provider credentials
+
+#### AWS
+```bash
+  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region" --values="your-accesskey,your-secretaccess,your-region"
+```
+
+#### Digital Ocean
+```bash
+  rit set credential --provider="digitalocean" --fields="token" --values="your-api-token"
+```
+
+#### PowerDNS
+```bash
+  rit set credential --provider='powerdns' --fields="apikey" --values="your-key"
+```   
+
+### Values File Parameters
+
+```jsx title="vkpr-values.yaml"
+global:
+  external-dns:
+    provider:           <String>
+    resources:          <Object>
+    extraEnv:           <String>
+```
+
+---
+
+## VKPR external-dns remove
+
+### Description
+
+Uninstall all the content of external-dns from the cluster.
+
+### Commands
+
+Non-interactive inputs:
+
+```bash
+  vkpr external-dns remove
+```
