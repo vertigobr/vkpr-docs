@@ -1,71 +1,31 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 # VKPR Apply
 
-## VKPR apply
-
-### Description
+## Description
 
 VKPR apply is a simpler method of installing all the tools you want with VKPR. With a yaml file informing the values that the applications will use, it will run all the necessary formulas to create the scenario that was specified in the yaml file.
 
-### Commands
+## Commands
 
 Interactive inputs:
 
 ```bash
-  vkpr apply
+  vkpr apply [flags]
 ```
 
 Non-interactive:
 
 ```bash
-  vkpr apply --pathtofile="/path/to/values"
+  vkpr apply --path_to_file="/path/to/values"
 ```
 
 ### Example Values
 
-```jsx title="vkpr-values.yaml"
+```jsx title="vkpr.yaml"
 global:
-  domain:                   <String>
-  secure:                   <Boolean>
-  whoami:
-    enabled:                <Boolean>
-    ingressClassName:       <String>
-    resources:              <Object>
-    extraEnv:               <String>
-  ingress:
-    enabled:                <Boolean>
-  external-dns:
-    enabled:                <Boolean>
-    provider:               <String>
-    provider_token:         <String>
-    resources:              <Object>
-    extraEnv:               <String>
-  cert-manager:
-    enabled:                <Boolean>
-    email:                  <String>
-    issuer:                 <String>
-    provider:
-      digitalocean:
-        digitalocean_token: <String>
-  keycloak:
-    enabled:                <Boolean>
-    ingressClassName:       <String>
-    admin_user:             <String>
-    admin_password:         <String>
-    resources:              <Object>
-    extraEnv:               <String>
-  postgres:
-    enabled:                <Boolean>
-    admin_password:         <String>
-    resources:              <Object>
-    extraEnv:               <String>
-  grafana:
-    enabled:                <Boolean>
-    admin_password:         <String>
-    alertmanager:           <Boolean>
-  loki:
-    enabled:                <Boolean>
+  APP:
+    enabled:    <Boolean>
 ```

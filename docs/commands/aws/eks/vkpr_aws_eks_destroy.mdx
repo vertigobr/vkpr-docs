@@ -20,6 +20,20 @@ Non-interactive:
 ### Parameters
 
 ```txt
-  --gitlab_token                    Specifies your Gitlab Access-Token.
-  --gitlab_username                 Specifies your Gitlab Username.
+  --gitlab_token         Specifies your Gitlab Access-Token
+  --gitlab_username      Specifies your Gitlab Username
 ```
+
+### Setting Credentials manually
+
+#### Gitlab
+
+```bash
+  rit set credential --provider="gitlab" --fields="token,username" --values="your-token,your-username"
+```
+
+---
+
+### See Also
+
+- [VKPR aws eks deploy](/docs/commands/aws/eks/vkpr_aws_eks_deploy) - Execute the pipeline to deploy the EKS Cluster.

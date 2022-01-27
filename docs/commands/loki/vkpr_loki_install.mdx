@@ -1,0 +1,51 @@
+---
+sidebar_position: 1
+version: v1.0.20
+---
+
+## VKPR loki install
+
+### Description
+
+Install Loki into cluster. For more information about Loki, click [here](https://grafana.com/oss/loki/).
+
+### Commands
+
+Interactive inputs:
+
+```bash
+  vkpr loki install [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr loki install --default
+```
+
+### Parameters
+
+```txt
+  --default        Set all values with default.
+```
+
+### Values File Parameters
+
+```jsx title="vkpr.yaml"
+global:
+  loki:
+    metrics:            <Boolean>
+    helmArgs:           <Object>
+```
+
+---
+
+:::info About the Formula
+`Chart Version`: 2.5.0 <br/>
+`Application Version`: v2.1.0 <br/>
+`Helm Chart`: [grafana/loki-stack](https://artifacthub.io/packages/helm/grafana/loki-stack) <br/>
+:::
+
+### See Also
+
+- [VKPR loki remove](/docs/commands/loki/vkpr_loki_remove) - Uninstall loki from the cluster.

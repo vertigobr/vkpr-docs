@@ -1,0 +1,60 @@
+---
+sidebar_position: 1
+version: v1.0.20
+---
+
+## VKPR consul install
+
+### Description
+
+Install Consul into cluster. For more information about Consul, click [here](https://www.consul.io/).
+
+### Commands
+
+Interactive inputs:
+
+```bash
+  vkpr consul install [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr consul install --default
+```
+
+:::caution
+Consul will always be installed in HA (High Availability), it is recommended that the cluster has at least 3 Nodes.
+:::
+
+### Parameters
+
+```txt
+  --default           Set all values with default.
+  --domain            Define the domain used by the Consul UI.   Default: localhost
+  --secure            Specifies if the application will have HTTPS.    Default: false
+```
+
+### Values File Parameters
+
+```jsx title="vkpr.yaml"
+global:
+  domain:               <String>
+  secure:               <Boolean>
+  consul:
+    ingressClassName:   <String>
+    metrics:            <Boolean>
+    helmArgs:           <Object>
+```
+
+---
+
+:::info About the Formula
+`Chart Version`: 0.38.0 <br/>
+`Application Version`: v1.10.4 <br/>
+`Helm Chart`: [hashicorp/consul](https://artifacthub.io/packages/helm/hashicorp/consul) <br/>
+:::
+
+### See Also
+
+- [VKPR consul remove](/docs/commands/consul/vkpr_consul_remove) - Uninstall consul from the cluster.

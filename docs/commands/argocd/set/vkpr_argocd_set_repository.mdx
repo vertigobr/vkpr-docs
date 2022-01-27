@@ -1,0 +1,41 @@
+---
+sidebar_position: 2
+version: v1.0.20
+---
+
+# VKPR argocd set repository
+
+## Description
+
+Sync a repository with the ArgoCD.
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr argocd set repository [flags]
+```
+
+### Parameters
+
+```txt
+  --repo_url            Specifies the Git repository URL to ArgoCD fetch the applications
+    --gitlab_token      Specifies your Gitlab Username
+    --gitlab_username   Specifies your Gitlab Access-Token
+```
+
+### Setting Repository credentials manually
+
+#### Gitlab
+
+```bash
+  rit set credential --provider="gitlab" --fields="token,username" --values="your-token,your-username"
+```
+
+---
+
+### See Also
+
+- [VKPR argocd install](/docs/commands/argocd/vkpr_argocd_install) - Install argocd in the cluster.
+- [VKPR argocd set applicationset](/docs/commands/argocd/set/vkpr_argocd_set_applicationset) - Apply an Applicationset manifest in the cluster.

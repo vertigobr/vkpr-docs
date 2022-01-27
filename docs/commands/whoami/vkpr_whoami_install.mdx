@@ -1,0 +1,55 @@
+---
+sidebar_position: 1
+version: v1.0.20
+---
+
+# VKPR whoami install
+
+## Description
+
+Install whoami into cluster. For more information about whoami, click [here](https://github.com/traefik/whoami).
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr whoami install [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr whoami install --default
+```
+
+### Parameters
+
+```txt
+  --default           Set all values with default.
+  --domain            Define the domain used by the whoami.   Default: localhost
+  --secure            Specifies if the application will have HTTPS.    Default: false
+```
+
+### Values File Parameters
+
+```jsx title="vkpr.yaml"
+global:
+  domain:               <String>
+  secure:               <Boolean>
+  whoami:
+    ingressClassName:   <String>
+    helmArgs:           <Object>
+```
+
+---
+
+:::info About the Formula
+`Chart Version`: 2.5.0 <br/>
+`Application Version`: v1.5.0 <br/>
+`Helm Chart`: [cowboysysop/whoami](https://artifacthub.io/packages/helm/cowboysysop/whoami) <br/>
+:::
+
+### See Also
+
+- [VKPR whoami remove](/docs/commands/whoami/vkpr_whoami_remove) - Uninstall whoami from the cluster.

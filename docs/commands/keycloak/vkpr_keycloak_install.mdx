@@ -7,7 +7,7 @@ version: v1.0.20
 
 ## Description
 
-Install keycloak into cluster. For more information about keycloak, click [here](https://www.keycloak.org/).
+Install Keycloak into cluster. For more information about Keycloak, click [here](https://www.keycloak.org/).
 
 ## Commands
 
@@ -52,12 +52,13 @@ If the VKPR dont identify any postgresql installed in the cluster, he will [inst
 ```jsx title="vkpr.yaml"
 global:
   domain:               <String>
-  secure:               <Bool>
+  secure:               <Boolean>
   keycloak:
+    HA:                 <Boolean>
     ingressClassName:   <String>
     adminUser:          <String>
     adminPassword:      <String>
-    metrics:            <Bool>
+    metrics:            <Boolean>
     helmArgs:           <Object>
 ```
 

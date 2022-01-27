@@ -1,0 +1,60 @@
+---
+sidebar_position: 1
+version: v1.0.20
+---
+
+# VKPR postgres install
+
+## Description
+
+Install Postgresql into cluster. For more information about Postgresql, click [here](https://www.postgresql.org/).
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr postgres install [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr postgres install --default
+```
+
+### Parameters
+
+```txt
+  --default        Set all values with default.
+  --HA             Specifies if the application will have High Availability.   Default: false
+  --password       Specifies the Postgresql password.   Default: false
+```
+
+### Values File Parameters
+
+```jsx title="vkpr.yaml"
+global:
+  postgres:
+    HA:                 <Boolean>
+    metrics:            <Boolean>
+    helmArgs:           <Object>
+```
+
+---
+
+:::info About the Formula
+`Chart Version`: 10.12.3 <br/>
+`Application Version`: v11.13.0 <br/>
+`Helm Chart`: [bitnami/postgresql](https://artifacthub.io/packages/helm/bitnami/postgresql) <br/>
+
+---
+
+`Chart Version`: 8.2.5 <br/>
+`Application Version`: v11.14.0 <br/>
+`Helm Chart`: [bitnami/postgresql-ha](https://artifacthub.io/packages/helm/bitnami/postgresql-ha) <br/>
+:::
+
+### See Also
+
+- [VKPR postgres remove](/docs/commands/postgres/vkpr_postgres_remove) - Uninstall postgres from the cluster.
