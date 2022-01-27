@@ -34,7 +34,7 @@ Running the above command will run a script that will install the following tool
 :::tip Tips
 We recommend updating the `PATH` so that you can use these tools from the command line.
 ```bash
-export PATH=$PATH:$HOME/.vkpr/bin
+export PATH=$HOME/.vkpr/bin:$PATH
 ```
 :::
 
