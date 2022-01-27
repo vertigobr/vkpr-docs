@@ -1,0 +1,53 @@
+---
+sidebar_position: 1
+version: v1.0.20
+---
+
+# VKPR ingress install
+
+## Description
+
+Install nginx-ingress controller into cluster. For more information about nginx-ingress controller, click [here](https://kubernetes.github.io/ingress-nginx/deploy/).
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr ingress install [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr ingress install --default
+```
+
+### Parameters
+
+```txt
+  --default       Set all values with default.
+  --lb_type       Define the Loadbalancer type in AWS. Default: "Classic" Allowed values: "Classic", "NLB"
+```
+
+### Values File Parameters
+
+```jsx title="vkpr.yaml"
+global:
+  ingress:
+    loadBalancerType:   <String>
+    metrics:    <Bool>
+    helmArgs:   <Object>
+```
+
+---
+
+:::info About the Formula
+`Chart Version`: 0.11.1 <br/>
+`Application Version`: v2.0.1 <br/>
+`Helm Chart`: [helm/nginx-ingress](https://artifacthub.io/packages/helm/nginx/nginx-ingress) <br/>
+:::
+
+### See Also
+
+- [VKPR ingress remove](/docs/commands/ingress/vkpr_ingress_remove) - Uninstall ingress from the cluster.
