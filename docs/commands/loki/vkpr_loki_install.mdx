@@ -3,13 +3,13 @@ sidebar_position: 1
 version: v1.0.20
 ---
 
-## VKPR loki install
+# VKPR loki install
 
-### Description
+## Description
 
 Install Loki into cluster. For more information about Loki, click [here](https://grafana.com/oss/loki/).
 
-### Commands
+## Commands
 
 Interactive inputs:
 
@@ -34,8 +34,9 @@ Non-interactive without setting values or using `VKPR Values`:
 ```jsx title="vkpr.yaml"
 global:
   loki:
-    metrics:            <Boolean>
-    helmArgs:           <Object>
+    namespace:   <String>
+    metrics:     <Boolean>
+    helmArgs:    <Object>
 ```
 
 ---
