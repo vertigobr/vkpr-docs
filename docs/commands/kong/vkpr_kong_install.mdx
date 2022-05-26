@@ -51,18 +51,23 @@ If the VKPR dont identify any postgresql installed in the cluster, he will [inst
 ### Values File Parameters
 
 ```jsx title="vkpr.yaml"
-global:
-  domain:               <String>
-  secure:               <Boolean>
-  kong:
-    namespace:          <String>
-    mode:               <String>
-    rbac:
-      adminPassword:    <String>
-    HA:                 <Boolean>
-    metrics:            <Boolean>
-    helmArgs:           <Object>
+kong:
+  namespace:          <String>
+  mode:               <String>
+  rbac:
+    adminPassword:    <String>
+  HA:                 <Boolean>
+  metrics:            <Boolean>
+  vitals:
+    prometheusStrategy:  <Boolean>
+  helmArgs:           <Object>
 ```
+
+:::caution Info
+If you want to use the Prometheus Strategy for Kong Vitals (vitals.prometheusStrategy: true), 
+along with metrics being set to true, you must first install the prometheus-stack (vkpr prometheus-stack install),
+otherwise you wont have the needed CRDs installed on your environment.
+:::
 
 ---
 
