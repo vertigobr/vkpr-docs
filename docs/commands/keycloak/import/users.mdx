@@ -1,0 +1,35 @@
+---
+sidebar_position: 2
+version: v1.0.20
+---
+
+# VKPR keycloak import users
+
+## Description
+
+Import users from a specifed file in Keycloak database.
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr keycloak import users [flags]
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --keycloak_password='': Specifies the Keycloak Super admin password.
+  --keycloak_username='': Specifies the Keycloak Super admin username.
+  --realm_name='': Specifies the realm name to be imported.
+  --realm_path='': Specifies the path to file.
+```
+
+---
+
+## See Also
+
+- [VKPR keycloak export users](/docs/commands/keycloak/export/vkpr_keycloak_export_users) - Export users into keycloak database

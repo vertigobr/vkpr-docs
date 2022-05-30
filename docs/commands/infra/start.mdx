@@ -1,0 +1,74 @@
+---
+sidebar_position: 3
+version: v1.0.20
+---
+
+# VKPR infra start
+
+## Description
+
+Create a configurable k3d cluster to test the applications.
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr infra start [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr infra start --default
+```
+
+### Example Usage
+
+```jsx title="vkpr infra start --default"
+# vkpr.yaml
+---
+infra:
+  enabled: true
+  httpPort: "foo"
+  httpsPort: "bar"
+  enableTraefik: false
+  resources:
+    masters: 1
+    workers: 3
+  enableVolume: true
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --default=false: Use to automatically fill inputs with default values.
+  --enable_traefik=false: Enable Traefik by default in Cluster.
+  --enable_volume=false: Enable mount of volumes in cluster.
+  --http_port='8000': Specifies the HTTP listening port from the Cluster.
+  --https_port='8001': Specifies the HTTPS listening port from the Cluster.
+  --worker_nodes='1': Specifies the quantity of Worker nodes.
+```
+
+### Values File
+
+#### Local
+
+The following arguments are supported:
+
+- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/vkpr_apply)) Enable the auto install from the application.
+- [`httpPort`](#argument-reference) - (Required) Define the domain used by the application. The default is `localhost`.
+- [`httpsPort`](#argument-reference) - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
+- [`enableTraefik`](#argument-reference) - (Required) Define which ingress controller will expose the application. The default is `false`.
+- [`resources`](#argument-reference)
+  - [`masters`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `1`.
+  - [`workers`](#argument-reference) - (Required) Define where the application will be provisioned. The default is `1`.
+- [`enableVolume`](#argument-reference) - (Required) Define where the application will be provisioned. The default is `false`.
+
+---
+
+## See Also
+
+- [VKPR infra down](/docs/commands/infra/vkpr_infra_down) - Delete the local cluster created.

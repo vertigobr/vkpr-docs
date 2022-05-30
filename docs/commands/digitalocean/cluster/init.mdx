@@ -1,0 +1,86 @@
+---
+sidebar_position: 1
+version: v1.0.20
+---
+
+# VKPR digitalocean cluster init
+
+## Description
+
+Fork and setup the [GitOps Repo](https://gitlab.com/vkpr/k8s-digitalocean) in your Gitlab, using Gitlab Backend to save the Terraform state.
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr digitalocean cluster init [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr digitalocean cluster init --default
+```
+
+### Example Usage
+
+```jsx title="vkpr digitalocean cluster init --default"
+# vkpr.yaml
+---
+digitalocean:
+  cluster:
+    name: "cluster-sample"
+    version: 1.21
+    region: "nyc1"
+    nodes:
+      instaceType: "s-2vcpu-2gb"
+      quantitySize: 3
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --default=false: Use to automatically fill inputs with default value provided on config.json
+  --do_cluster_region='nyc1': Specifies the EKS Kubernetes Version.
+  --do_cluster_size='1': Specifies the number of Nodes.
+  --do_k8s_version='1.22': Specifies the EKS Kubernetes Version.
+```
+
+### Values File
+
+#### Local
+
+The following arguments are supported:
+
+- [`name`](#argument-reference) - (Required) Specify the name of the cluster in AWS EKS. The default is `eks-sample`.
+- [`version`](#argument-reference) - (Required) Define the Kubernetes version used. Allowed Values: `1.22`, `1.21`. The default is `1.22`.
+- [`region`](#argument-reference) - (Required) Define the Cluster Region. Allowed Values: `nyc1`, `nyc2`, `sfo1`. The default is `nyc1`.
+- [`nodes`](#argument-reference)
+  - [`instaceType`](#argument-reference) - (Required) Specifies the type of ec2 created to the nodes. Allowed Values: `s-2vcpu-2gb`, `s-2vcpu-4gb`, `s-2vcpu-4gb`. The default is `s-2vcpu-2gb`.
+  - [`quantitySize`](#argument-reference) - (Required) Specifies the quantity of nodes created to the cluster. The default is `1`.
+
+### Setting Provider credentials
+
+**CAUTION: Setting credentials manually will override the credentials already saved in memory**
+
+#### Digital Ocean
+
+```bash
+  rit set credential --provider="digitalocean" --fields="token" --values="your-api-token"
+```
+
+#### Gitlab
+
+```bash
+  rit set credential --provider="gitlab" --fields="token,username" --values="your-token,your-username"
+```
+
+---
+
+## See Also
+
+- [VKPR aws eks deploy](/docs/commands/aws/eks/vkpr_aws_eks_deploy) - Execute the pipeline to deploy the EKS Cluster.
+- [VKPR aws eks destroy](/docs/commands/aws/eks/vkpr_aws_eks_destroy) - Execute the pipeline to destroy the EKS Cluster.

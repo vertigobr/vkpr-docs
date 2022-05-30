@@ -1,0 +1,41 @@
+---
+sidebar_position: 1
+version: v1.0.20
+---
+
+# VKPR aws eks tfc
+
+## Description
+
+Fork and setup the [GitOps Repo](https://gitlab.com/vkpr/aws-eks) in your Gitlab, using Terraform Cloud as Backend to save the Terraform state.
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr aws eks tfc [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr aws eks tfc --default
+```
+
+### Setting Provider credentials
+
+**CAUTION: Setting credentials manually will override the credentials already saved in memory**
+
+#### Terraform Cloud
+
+```bash
+  rit set credential --provider="terraformcloud" --fields="token,email" --values="your-token,your-email"
+```
+
+---
+
+## See Also
+
+- [VKPR aws eks deploy](/docs/commands/aws/eks/vkpr_aws_eks_deploy) - Execute the pipeline to deploy the EKS Cluster.
+- [VKPR aws eks destroy](/docs/commands/aws/eks/vkpr_aws_eks_destroy) - Execute the pipeline to destroy the EKS Cluster.

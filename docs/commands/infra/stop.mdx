@@ -1,0 +1,40 @@
+---
+sidebar_position: 4
+version: v1.0.20
+---
+
+# VKPR infra stop
+
+## Description
+
+Destroy the k3d local cluster.
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr infra stop [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr infra stop --default
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --default=false: Use to automatically fill inputs with default values.
+  --delete_registry=false: Specifies if you want to delete the builtin registries
+```
+
+---
+
+## See Also
+
+- [VKPR infra up](/docs/commands/infra/vkpr_infra_up) - Create a local cluster with k3d.
+- [VKPR infra start](/docs/commands/infra/vkpr_infra_start) - Create a configurable local cluster with k3d.

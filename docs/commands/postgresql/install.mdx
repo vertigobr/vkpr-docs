@@ -1,0 +1,99 @@
+---
+sidebar_position: 1
+version: v1.0.20
+---
+
+# VKPR postgres install
+
+## Description
+
+Install Postgresql into cluster. For more information about Postgresql, click [here](https://www.postgresql.org/).
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr postgres install [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr postgres install --default
+```
+
+### Example Usage
+
+```jsx title="vkpr postgres install --default"
+# vkpr.yaml
+---
+postgresql:
+  enabled: true
+  namespace: "foo"
+  HA: false
+  metrics: true
+  helmArgs:
+    ...
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --HA=false: Specifies if the application will have High Availability.
+  --default=false: Use to automatically fill inputs with default values.
+  --dry_run=false: Specifies if output the values from the application.
+```
+
+### Values File
+
+#### Globals
+
+The following arguments are supported by the globals:
+
+- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+
+#### Local
+
+The following arguments are supported:
+
+- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/vkpr_apply)) Enable the auto install from the application
+- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- [`HA`](#argument-reference) - (Required) Specifies if the application will have High Availability. The default is `false`.
+- [`metrics`](#argument-reference) - (Optional) Specifies if the application will expose your metrics. The default is `false`.
+- [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+
+:::caution
+Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
+Use it when you know what you're doing
+:::
+
+### Setting Provider credentials
+
+**CAUTION: Setting credentials manually will override the credentials already saved in memory**
+
+#### Postgresql
+
+```bash
+  rit set credential --provider="postgres" --fields="password" --values="your-access-password"
+```
+
+---
+
+:::info About the Formula
+`Chart Version`: 10.12.3 <br/>
+`Application Version`: v11.13.0 <br/>
+`Helm Chart`: [bitnami/postgresql](https://artifacthub.io/packages/helm/bitnami/postgresql) <br/>
+
+---
+
+`Chart Version`: 8.2.5 <br/>
+`Application Version`: v11.14.0 <br/>
+`Helm Chart`: [bitnami/postgresql-ha](https://artifacthub.io/packages/helm/bitnami/postgresql-ha) <br/>
+:::
+
+## See Also
+
+- [VKPR postgres remove](/docs/commands/postgresql/vkpr_postgres_remove) - Uninstall postgres from the cluster.

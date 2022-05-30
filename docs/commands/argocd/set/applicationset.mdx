@@ -1,0 +1,38 @@
+---
+sidebar_position: 2
+version: v1.0.20
+---
+
+# VKPR argocd set applicationset
+
+## Description
+
+Applies an Applicationset Addon that will deploy all the applications manifests from a repository.
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr argocd set applicationset [flags]
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --repo_url='': Specifies the Git repository URL to ArgoCD sync the repository.
+```
+
+---
+
+:::info About the Formula
+`Application Version`: v0.3.0 <br/>
+`Project Repository`: [argoproj/applicationset](https://github.com/argoproj/applicationset) <br/>
+:::
+
+## See Also
+
+- [VKPR argocd install](/docs/commands/argocd/vkpr_argocd_install) - Install ArgoCD in the cluster.
+- [VKPR argocd set repository](/docs/commands/argocd/set/vkpr_argocd_set_repository) - Sync a repository with the ArgoCD.

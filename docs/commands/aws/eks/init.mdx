@@ -1,0 +1,97 @@
+---
+sidebar_position: 1
+version: v1.0.20
+---
+
+# VKPR aws eks init
+
+## Description
+
+Fork and setup the [GitOps Repo](https://gitlab.com/vkpr/aws-eks) in your Gitlab, using Gitlab Backend to save the Terraform state.
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr aws eks init [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr aws eks init --default
+```
+
+### Example Usage
+
+```jsx title="vkpr aws eks init --default"
+# vkpr.yaml
+---
+aws:
+  eks:
+    clusterName: "eks-sample"
+    version: 1.21
+    nodes:
+      instaceType: "t3.medium"
+      quantitySize: 3
+      capacityType: "SPOT"
+      terraformState: "gitlab"
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --default=false: Use to automatically fill inputs with default value provided on config.json
+  --eks_capacity_type='on_demand': Specifies the Node Group capacity type.
+  --eks_cluster_name='eks-sample': Specifies the EKS Cluster name.
+  --eks_cluster_node_instance_type='t3.small (vCPU:2, Mem: 2Gib)': Specifies the EKS Node instance type.
+  --eks_cluster_size='1': Specifies the number of Nodes.
+  --eks_k8s_version='1.20': Specifies the EKS Kubernetes Version.
+  --terraform_state='gitlab': Specifies where you want to store the TF state.
+```
+
+### Values File
+
+#### Local
+
+The following arguments are supported:
+
+- [`clusterName`](#argument-reference) - (Required) Specify the name of the cluster in AWS EKS. The default is `eks-sample`.
+- [`version`](#argument-reference) - (Required) Define the Kubernetes version used. Allowed Values: `1.21`, `1.20`, `1.19`, `1.18`, `1.17`. The default is `1.21`.
+- [`nodes`](#argument-reference)
+  - [`instaceType`](#argument-reference) - (Required) Specifies the type of ec2 created to the nodes. Allowed Values: `t3.small`, `m5.large`, `m5.xlarge`, `t4g.small`, `m6g.large`, `m6g.xlarge`. The default is `t3.small`.
+  - [`quantitySize`](#argument-reference) - (Required) Specifies the quantity of nodes created to the cluster. The default is `1`.
+  - [`capacityType`](#argument-reference) - (Required) Specify the capacity type from created ec2. Allowed Values: `spot`, `on_demand`. The default is `on_demand`.
+- [`terraformState`](#argument-reference) - (Required) Specify the backend to store the Terraform state. Allowed Values: `terraform-cloud`, `gitlab`. The default is `gitlab`.
+
+### Setting Provider credentials
+
+**CAUTION: Setting credentials manually will override the credentials already saved in memory**
+
+#### AWS
+
+```bash
+  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region" --values="your-accesskey,your-secretaccess,your-region"
+```
+
+#### Gitlab
+
+```bash
+  rit set credential --provider="gitlab" --fields="token,username" --values="your-token,your-username"
+```
+
+#### Terraform Cloud
+
+```bash
+  rit set credential --provider="terraformcloud" --fields="token" --values="your-token"
+```
+
+---
+
+## See Also
+
+- [VKPR aws eks deploy](/docs/commands/aws/eks/vkpr_aws_eks_deploy) - Execute the pipeline to deploy the EKS Cluster.
+- [VKPR aws eks destroy](/docs/commands/aws/eks/vkpr_aws_eks_destroy) - Execute the pipeline to destroy the EKS Cluster.

@@ -1,0 +1,90 @@
+---
+sidebar_position: 1
+version: v1.0.20
+---
+
+# VKPR ingress install
+
+## Description
+
+Install nginx-ingress controller into cluster. For more information about nginx-ingress controller, click [here](https://kubernetes.github.io/ingress-nginx/deploy/).
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr ingress install [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr ingress install --default
+```
+
+### Example Usage
+
+```jsx title="vkpr ingress install --default"
+# vkpr.yaml
+---
+ingress:
+  enabled: true
+  namespace: "foo"
+  loadBalancerType: "NLB"
+  ssl:
+    enabled: false
+  metrics: true
+  helmArgs:
+    ...
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --default=false: Use to automatically fill inputs with default values.
+  --dry_run=false: Specifies if output the values from the application.
+  --lb_type='Classic': Define the Loadbalancer type in AWS.
+```
+
+### Values File
+
+#### Globals
+
+The following arguments are supported by the globals:
+
+- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+
+#### Local
+
+The following arguments are supported:
+
+- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/vkpr_apply)) Enable the auto install from the application.
+- [`loadBalancerType`](#argument-reference) - (Required) Define the Loadbalancer type in AWS. Allowed values: `Classic`, `NLB`. The default is `Classic`.
+- [`ssl`](#argument-reference)
+  - [`enabled`](#argument-reference) - (Optional) Enable the certificate inside the ingressController. The default is `false`.
+  - [`crt`](#argument-reference) - (Required) Specify the certificate path.
+  - [`key`](#argument-reference) - (Required) Specify the key path.
+  - [`secretName`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume.
+- [`metrics`](#argument-reference) - (Optional) Specifies if the application will expose your metrics. The default is `false`.
+- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+
+:::caution
+Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
+Use it when you know what you're doing
+:::
+
+---
+
+:::info About the Formula
+`Chart Version`: 4.0.13 <br/>
+`Application Version`: v1.1.0 <br/>
+`Helm Chart`: [helm/nginx-ingress](https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx) <br/>
+:::
+
+## See Also
+
+- [VKPR ingress remove](/docs/commands/ingress/vkpr_ingress_remove) - Uninstall ingress from the cluster.

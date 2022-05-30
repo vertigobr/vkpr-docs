@@ -1,0 +1,40 @@
+---
+sidebar_position: 1
+version: v1.0.20
+---
+
+# VKPR bitbucket parameter add
+
+## Description
+
+Add a secret on repo to use with Bitbucket pipeline.
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr bitbucket parameter add [flags]
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --default=false: Use to automatically fill inputs with default values.
+  --project_name='': Specifies the bitbucket project Name.
+  --parameter_masked=false: Specifies if the parameter will be masked when execute the pipeline
+  --parameter_name='': Specifies the name from the secret to be used in Bitbucket pipeline
+  --parameter_value='': Specifies the value from the secret to be used in Bitbucket pipeline
+```
+
+### Setting Provider credentials
+
+**CAUTION: Setting credentials manually will override the credentials already saved in memory**
+
+#### Github
+
+```bash
+  rit set credential --provider="bitbucket" --fields="bitbucket_username,bitbucket_token" --values="your-username,your-token"
+```

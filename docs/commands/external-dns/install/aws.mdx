@@ -1,0 +1,90 @@
+---
+sidebar_position: 1
+version: v1.0.20
+---
+
+# VKPR external-dns install aws
+
+## Description
+
+Install external-dns into cluster. For more information about external-dns, click [here](https://github.com/kubernetes-sigs/external-dns).
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr external-dns install aws [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr external-dns install aws --default
+```
+
+### Example Usage
+
+```jsx title="vkpr external-dns install aws --default"
+# vkpr.yaml
+---
+external-dns:
+  enabled: true
+  namespace: "foo"
+  metrics: true
+  helmArgs:
+    ...
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --default=false: Use to automatically fill inputs with default values.
+  --dry_run=false: Specifies if output the values from the application.
+```
+
+### Values File
+
+#### Globals
+
+The following arguments are supported by the globals:
+
+- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+
+#### Local
+
+The following arguments are supported:
+
+- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/vkpr_apply)) Enable the auto install from the application.
+- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- [`metrics`](#argument-reference) - (Optional) Specifies if the application will expose your metrics. The default is `false`.
+- [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+
+:::caution
+Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
+Use it when you know what you're doing
+:::
+
+### Setting Provider credentials
+
+**CAUTION: Setting credentials manually will override the credentials already saved in memory**
+
+#### AWS
+
+```bash
+  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region" --values="your-accesskey,your-secretaccess,your-region"
+```
+
+---
+
+:::info About the Formula
+`Chart Version`: 5.4.9 <br/>
+`Application Version`: v0.10.0 <br/>
+`Helm Chart`: [bitnami/external-dns](https://artifacthub.io/packages/helm/bitnami/external-dns) <br/>
+:::
+
+## See Also
+
+- [VKPR external-dns remove](/docs/commands/external-dns/vkpr_external-dns_remove) - Uninstall external-dns from the cluster.

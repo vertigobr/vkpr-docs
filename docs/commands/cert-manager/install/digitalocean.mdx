@@ -1,0 +1,101 @@
+---
+sidebar_position: 2
+version: v1.0.20
+---
+
+# VKPR cert-manager install digitalocean
+
+## Description
+
+Install cert-manager into cluster. For more information about cert-manager, click [here](https://github.com/kubernetes-sigs/cert-manager).
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr cert-manager install digitalocean [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr cert-manager install digitalocean --default
+```
+
+### Example Usage
+
+```jsx title="vkpr cert-manager install aws --default"
+# vkpr.yaml
+---
+cert-manager:
+  enabled: true
+  email: "test@test.com"
+  issuer:
+    type: "production"
+    solver: "DNS01"
+    ingress: "nginx"
+  helmArgs:
+    ...
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --default=false: Use to automatically fill inputs with default values.
+  --dry_run=false: Specifies if output the values from the application.
+  --email='default@vkpr.com': Specifies your email to issue the certificate.
+  --issuer='staging': Specifies what will be used to issue certificates.
+  --issuer_solver='DNS01': Specifies the type of challenge you will use to issue the certificate.
+```
+
+### Values File
+
+#### Globals
+
+The following arguments are supported by the globals:
+
+- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `cert-manager`.
+
+#### Local
+
+The following arguments are supported:
+
+- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/vkpr_apply)) Enable the auto install from the application.
+- [`email`](#argument-reference) - Specifies the email to use with Let's encrypt to generate the certificate
+- [`issuer`](#argument-reference)
+  - [`type`](#argument-reference) - Specifies the envirmoment to cert-manager. Allowed Values: `staging`, `production`. The default is `production`.
+  - [`solver`](#argument-reference) - Specifies the method of the certificate issuer. Allowed Values: `DNS01`, `HTTP01`. The default is `DNS01`.
+  - [`ingress`](#argument-reference) - (Required unless using the HTTP01 method) Specifies the ingress controller used by the applications. The default is `nginx`.
+- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `cert-manager`.
+- [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+
+:::caution
+Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
+Use it when you know what you're doing
+:::
+
+### Setting Provider credentials
+
+**CAUTION: Setting credentials manually will override the credentials already saved in memory**
+
+#### Digital Ocean
+
+```bash
+  rit set credential --provider="digitalocean" --fields="token" --values="your-api-token"
+```
+
+---
+
+:::info About the Formula
+`Chart Version`: 0.1.20 <br/>
+`Application Version`: v1.5.3 <br/>
+`Helm Chart`: [bitnami/cert-manager](https://artifacthub.io/packages/helm/bitnami/cert-manager) <br/>
+`Install CRDS`: true <br/>
+:::
+
+## See Also
+
+- [VKPR cert-manager remove](/docs/commands/cert-manager/vkpr_cert-manager_remove) - Uninstall cert-manager from the cluster.

@@ -1,0 +1,89 @@
+---
+sidebar_position: 1
+version: v1.0.20
+---
+
+# VKPR consul install
+
+## Description
+
+Install Consul into cluster. For more information about Consul, click [here](https://www.consul.io/).
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr consul install [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr consul install --default
+```
+
+:::caution
+Consul will always be installed in HA (High Availability), it is recommended that the cluster has at least 3 Nodes.
+:::
+
+### Example Usage
+
+```jsx title="vkpr consul install --default"
+# vkpr.yaml
+---
+consul:
+  enabled: true
+  namespace: "foo"
+  ingressClassName: "bar"
+  metrics: true
+  helmArgs:
+    ...
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --default=false: Use to automatically fill inputs with default values.
+  --domain='localhost': Specifies the domain to use in the application.
+  --dry_run=false: Specifies if output the values from the application.
+  --secure=false: Specifies if the application will have HTTPS.
+```
+
+### Values File
+
+#### Globals
+
+The following arguments are supported by the globals:
+
+- [`domain`](#argument-reference) - (Required) Define the domain used by the application. The default is `localhost`.
+- [`secure`](#argument-reference) - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
+- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- [`ingressClassName`](#argument-reference) - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+
+#### Local
+
+The following arguments are supported:
+
+- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/vkpr_apply)) Enable the auto install from the application.
+- [`ingressClassName`](#argument-reference) - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+
+:::caution
+Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
+Use it when you know what you're doing
+
+---
+
+:::info About the Formula
+`Chart Version`: 0.38.0 <br/>
+`Application Version`: v1.10.4 <br/>
+`Helm Chart`: [hashicorp/consul](https://artifacthub.io/packages/helm/hashicorp/consul) <br/>
+:::
+
+## See Also
+
+- [VKPR consul remove](/docs/commands/consul/vkpr_consul_remove) - Uninstall consul from the cluster.
