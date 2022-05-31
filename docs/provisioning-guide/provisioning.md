@@ -14,7 +14,7 @@ For the provisioning of the local infrastructure, the `k3d` tool is used which i
 Read more on [Local Development](./cloud-dev)
 
 :::info Formula
-  To see local infrastructure commands, click [here](/docs/commands/infra/vkpr_infra_start)
+  To see local infrastructure commands, click [here](/docs/commands/infra/start)
 :::
 
 ## Cloud development provisioning
@@ -31,5 +31,5 @@ VKPR has an opinionated take on several configs and enforces a GitOps approach o
 Read more on [Production clusters](./production)
 
 :::info Formula
-  To see Cloud infrastructure commands, click [here](/docs/commands/aws/eks/vkpr_aws_eks_init)
+  To see Cloud infrastructure commands, click [here](/docs/commands/aws/eks/init)
 :::

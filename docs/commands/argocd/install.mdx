@@ -66,7 +66,7 @@ The following arguments are supported by the globals:
 
 The following arguments are supported:
 
-- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/vkpr_apply)) Enable the auto install from the application.
+- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
 - [`ingressClassName`](#argument-reference) - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
 - [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `argocd`.
 - [`HA`](#argument-reference) - (Optional) Specifies if the application will have High Availability. The default is `false`.
@@ -90,6 +90,6 @@ Use it when you know what you're doing
 
 ## See Also
 
-- [VKPR argocd remove](/docs/commands/argocd/vkpr_argocd_remove) - Uninstall ArgoCD from the cluster.
-- [VKPR argocd set repository](/docs/commands/argocd/set/vkpr_argocd_set_repository) - Sync a repository with the ArgoCD.
-- [VKPR argocd set applicationset](/docs/commands/argocd/set/vkpr_argocd_set_applicationset) - Apply an Applicationset manifest in the cluster.
+- [VKPR argocd remove](/docs/commands/argocd/remove) - Uninstall ArgoCD from the cluster.
+- [VKPR argocd set repository](/docs/commands/argocd/set/repository) - Sync a repository with the ArgoCD.
+- [VKPR argocd set applicationset](/docs/commands/argocd/set/applicationset) - Apply an Applicationset manifest in the cluster.

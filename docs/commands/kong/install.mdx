@@ -24,7 +24,7 @@ Non-interactive without setting values or using `VKPR Values`:
 ```
 
 :::caution Info
-If the VKPR dont identify any postgresql installed in the cluster, he will [install](/docs/commands/postgresql/vkpr_postgres_install) to use with kong.
+If the VKPR dont identify any postgresql installed in the cluster, he will [install](/docs/commands/postgresql/install) to use with kong.
 :::
 
 ### Example Usage
@@ -82,7 +82,7 @@ The following arguments are supported by the globals:
 
 The following arguments are supported:
 
-- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/vkpr_apply)) Enable the auto install from the application.
+- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
 - [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
 - [`HA`](#argument-reference) - (Optional) Specifies if the application will have High Availability. The default is `false`.
 - [`mode`](#argument-reference) - (Required) Specifies the type of Kong Deployment. Allowed Values: `dbless`, `standalone`, `hybrid` The default is `dbless`.
@@ -108,4 +108,4 @@ Use it when you know what you're doing
 
 ## See Also
 
-- [VKPR kong remove](/docs/commands/kong/vkpr_kong_remove) - Uninstall kong from the cluster.
+- [VKPR kong remove](/docs/commands/kong/remove) - Uninstall kong from the cluster.
