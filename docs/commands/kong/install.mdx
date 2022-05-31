@@ -23,6 +23,10 @@ Non-interactive without setting values or using `VKPR Values`:
   vkpr kong install --default
 ```
 
+:::caution Info
+If the VKPR dont identify any postgresql installed in the cluster, he will [install](/docs/commands/postgresql/vkpr_postgres_install) to use with kong.
+:::
+
 ### Example Usage
 
 ```jsx title="vkpr kong install --default"
@@ -36,12 +40,16 @@ kong:
   metrics: false
   rbac:
     adminPassword: "kong1234"
+  vitals:
+    prometheusStrategy: false
   helmArgs:
     ...
 ```
 
 :::caution Info
-If the VKPR dont identify any postgresql installed in the cluster, he will [install](/docs/commands/postgresql/vkpr_postgres_install) to use with kong.
+If you want to use the Prometheus Strategy for Kong Vitals (vitals.prometheusStrategy: true),
+along with metrics being set to true, you must first install the prometheus-stack (vkpr prometheus-stack install),
+otherwise you wont have the needed CRDs installed on your environment.
 :::
 
 ## Argument Reference
