@@ -87,10 +87,20 @@ The following arguments are supported:
 - [`alertManager`](#argument-reference)
   - [`enabled`](#argument-reference) - (Required) Enable the auto install from the application. The default is `false`.
   - [`HA`](#argument-reference) - (Optional) Specifies if the application will have High Availability. The default is `false`.
+  - [`ssl`](#argument-reference)
+    - [`enabled`](#argument-reference) - (Optional) Enable the manual certificate into ingress. The default is `false`.
+    - [`crt`](#argument-reference) - (Required) Specify the certificate path.
+    - [`key`](#argument-reference) - (Required) Specify the key path.
+    - [`secretName`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume.
 - [`grafana`](#argument-reference)
   - [`adminPassword`](#argument-reference) - (Required) Specify the grafana admin password. The default is `vkpr123`.
   - [`k8sExporters`](#argument-reference) - (Optional) Enable kubernetes metrics crawlers. The default is `true`.
   - [`persistance`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
+  - [`ssl`](#argument-reference)
+    - [`enabled`](#argument-reference) - (Optional) Enable the manual certificate into ingress. The default is `false`.
+    - [`crt`](#argument-reference) - (Required) Specify the certificate path.
+    - [`key`](#argument-reference) - (Required) Specify the key path.
+    - [`secretName`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume.
 - [`prometheus`](#argument-reference)
   - [`persistance`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
 - [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
