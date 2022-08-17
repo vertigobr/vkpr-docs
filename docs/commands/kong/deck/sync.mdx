@@ -1,0 +1,36 @@
+---
+sidebar_position: 2
+version: v1.0.20
+---
+
+# VKPR kong deck sync
+
+## Description
+
+Import content into kong workspace.
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr kong deck sync [flags]
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --default=false: Use to automatically fill inputs with default values
+  --kong_addr='admin.localhost:8000': Specifies the Kong Admin Adress
+  --kong_admin_token='': Specifies the Kong Admin Token
+  --kong_workspace='default': Specifies the Kong's Workspace
+  --kong_yaml_path='': Type the path to the folder with your kong.yaml file
+```
+
+---
+
+## See Also
+
+- [VKPR kong deck dump](/docs/commands/kong/deck/dump) - Export kong workspace content.
