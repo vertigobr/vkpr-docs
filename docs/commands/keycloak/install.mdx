@@ -78,7 +78,12 @@ The following arguments are supported:
 - [`HA`](#argument-reference) - (Optional) Specifies if the application will have High Availability. The default is `false`.
 - [`metrics`](#argument-reference) - (Optional) Specifies if the application will expose your metrics. The default is `false`.
 - [`adminUser`](#argument-reference) - (Required) Specify the keycloak admin password. The default is `admin`.
-- [`adminPassword`](#argument-reference) - (Required) Specify the keycloak admin password. The default is `vkpr123`.
+- [`adminPassword`](#argument-reference) - (Required) Specify the keycloak admin password. The default is `v
+- [`ssl`](#argument-reference)
+  - [`enabled`](#argument-reference) - (Optional) Enable the manual certificate into ingress. The default is `false`.
+  - [`crt`](#argument-reference) - (Required) Specify the certificate path.
+  - [`key`](#argument-reference) - (Required) Specify the key path.
+  - [`secretName`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume.
 - [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution

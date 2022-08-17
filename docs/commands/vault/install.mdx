@@ -75,6 +75,11 @@ The following arguments are supported:
 - [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
 - [`storageMode`](#argument-reference) - (Required) Specifies the Vault storage mode. Allowed Values: `raft`, `consul`. The default is `raft`.
 - [`autoUnseal`](#argument-reference) - (Required) Enable to Auto Unseal the Vault with a Cloud provider. Allowed Values: `aws`, `azure`. The default is `false`.
+- [`ssl`](#argument-reference)
+  - [`enabled`](#argument-reference) - (Optional) Enable the manual certificate into ingress. The default is `false`.
+  - [`crt`](#argument-reference) - (Required) Specify the certificate path.
+  - [`key`](#argument-reference) - (Required) Specify the key path.
+  - [`secretName`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume.
 - [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution
