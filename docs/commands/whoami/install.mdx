@@ -65,6 +65,11 @@ The following arguments are supported:
 - [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
 - [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
 - [`ingressClassName`](#argument-reference) - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- [`ssl`](#argument-reference)
+  - [`enabled`](#argument-reference) - (Optional) Enable the manual certificate into ingress. The default is `false`.
+  - [`crt`](#argument-reference) - (Required) Specify the certificate path.
+  - [`key`](#argument-reference) - (Required) Specify the key path.
+  - [`secretName`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume.
 - [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution
