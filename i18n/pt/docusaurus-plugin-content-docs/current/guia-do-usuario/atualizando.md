@@ -35,6 +35,6 @@ Se você quiser fazer isso de maneira não interativa, você executará o seguin
 rit update repo --name="vkpr-cli" --version="v.1.0.20"
 ```
 
-:::danger Take care
+:::danger Atenção
   Após atualizar o VKPR, é recomendável sempre executar o comando `vkpr init` para evitar problemas com novos recursos.
 :::
