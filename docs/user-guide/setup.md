@@ -28,8 +28,8 @@ Running the above command will run a script that will install the following tool
 - [arkade](https://github.com/alexellis/arkade): arkade provides a portable marketplace for downloading CLIs and installing helm charts.
 - [jq](https://stedolan.github.io/jq/): jq is a lightweight and flexible command-line JSON processor.
 - [yq](https://mikefarah.gitbook.io/yq/): yq is a lightweight and portable command-line YAML processor
-- [glab](https://glab.readthedocs.io/en/latest/): GLab is an open source Gitlab Cli tool to help work seamlessly with Gitlab from the command line.
-
+- [aws](https://aws.amazon.com/cli/): The AWS Command Line Interface (AWS CLI) is a unified tool to manage your AWS services.
+- [okteto](https://www.okteto.com/): gives you free access to secure Kubernetes namespaces, fully integrated with remote development capabilities.
 
 :::tip Tips
 We recommend updating the `PATH` so that you can use these tools from the command line.
