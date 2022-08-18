@@ -12,11 +12,11 @@ Para atualizar o VKPR a cada versão lançada, você precisa seguir as seguintes
 ```bash
 ➜ rit update repo
 
-? Selecione um repositório para atualizar: [Use as setas para mover, digite para filtrar, ? para mais ajuda]
+? Select a repository to update:   [Use arrows to move, type to filter, ? for more help]
   ALL
 > vkpr-cli
 
-? Selecione sua nova versão para "vkpr-cli": [Use as setas para mover, digite para filtrar]
+? Select your new version for "vkpr-cli":  [Use arrows to move, type to filter]
 > v.1.0.20
   v.1.0.19
   v.1.0.18
@@ -25,13 +25,13 @@ Para atualizar o VKPR a cada versão lançada, você precisa seguir as seguintes
   v1.0.15
   v1.0.14
 
-O repositório "vkpr-cli" foi atualizado com sucesso para a versão "v.1.0.20"
+The "vkpr-cli" repository was updated with success to version "v.1.0.20"
 ```
 
 Se você quiser fazer isso de maneira não interativa, você executará o seguinte comando:
 
 ```bash
-# Not specifying a version, the latest is installed
+# Não especificando uma versão, a mais recente é instalada
 rit update repo --name="vkpr-cli" --version="v.1.0.20"
 ```
 
