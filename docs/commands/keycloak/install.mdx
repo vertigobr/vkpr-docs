@@ -1,6 +1,5 @@
 ---
 sidebar_position: 1
-version: v1.0.20
 ---
 
 # VKPR keycloak install
@@ -23,23 +22,6 @@ Non-interactive without setting values or using `VKPR Values`:
   vkpr keycloak install --default
 ```
 
-### Example Usage
-
-```jsx title="vkpr keycloak install --default"
-# vkpr.yaml
----
-keycloak:
-  enabled: true
-  namespace: "foo"
-  ingressClassName: "bar"
-  HA: false
-  adminUser: "admin"
-  adminPassword: "vkpr1234"
-  metrics: true
-  helmArgs:
-    ...
-```
-
 :::caution Info
 If the VKPR dont identify any postgresql installed in the cluster, he will [install](/docs/commands/postgresql/install) to use with keycloak.
 :::
@@ -49,12 +31,16 @@ If the VKPR dont identify any postgresql installed in the cluster, he will [inst
 ### Flags
 
 ```sh
-  --default=false: Use to automatically fill inputs with default values.
-  --domain='localhost': Specifies the domain to use in the application.
-  --dry_run=false: Specifies if output the values from the application.
-  --secure=false: Specifies if the application will have HTTPS.
-  --vault_auto_unseal='false': Enable to Auto Unseal the Vault with a Cloud provider.
-  --vault_mode='raft': Specifies the Vault storage mode.
+  --default          Use to automatically fill inputs with default values.
+  --dry_run          Specifies if output the values from the application.
+  --domain           Specifies the domain to use in the application.
+  --secure           Specifies if the application will have HTTPS.
+  --HA               Specifies if the application will have High Availability.
+  --admin_password   Specifies the Super Admin password
+  --admin_user       Specifies the Super Admin username
+  --ssl              Specifies if the keycloak will be using internal SSL certificates
+  --crt_file         Specifies the keycloak .crt file path.
+  --key_file         Specifies the keycloak .key file path.
 ```
 
 ### Values File
@@ -63,33 +49,67 @@ If the VKPR dont identify any postgresql installed in the cluster, he will [inst
 
 The following arguments are supported by the globals:
 
-- [`domain`](#argument-reference) - (Required) Define the domain used by the application. The default is `localhost`.
-- [`secure`](#argument-reference) - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
-- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
-- [`ingressClassName`](#argument-reference) - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `domain` - (Required) Define the domain used by the application. The default is `localhost`.
+- `secure` - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
 
 #### Local
 
 The following arguments are supported:
 
-- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
-- [`ingressClassName`](#argument-reference) - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
-- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
-- [`HA`](#argument-reference) - (Optional) Specifies if the application will have High Availability. The default is `false`.
-- [`metrics`](#argument-reference) - (Optional) Specifies if the application will expose your metrics. The default is `false`.
-- [`adminUser`](#argument-reference) - (Required) Specify the keycloak admin password. The default is `admin`.
-- [`adminPassword`](#argument-reference) - (Required) Specify the keycloak admin password. The default is `v
-- [`ssl`](#argument-reference)
-  - [`enabled`](#argument-reference) - (Optional) Enable the manual certificate into ingress. The default is `false`.
-  - [`crt`](#argument-reference) - (Required) Specify the certificate path.
-  - [`key`](#argument-reference) - (Required) Specify the key path.
-  - [`secretName`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume.
-- [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+- `enabled` - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
+- `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `HA` - (Optional) Specifies if the application will have High Availability. The default is `false`.
+- `metrics` - (Optional) Specifies if the application will expose your metrics. The default is `false`.
+- `adminUser` - (Required) Specify the keycloak admin password. The default is `admin`.
+- `adminPassword` - (Required) Specify the keycloak admin password. The default is `vkpr123`
+- `openid`
+  - `grafana`
+    - `enabled` - (Optional) Enable realm creation in Keycloak for Grafana. The default is `false`.
+    - `clientSecret` - (Optional) Specifies the Client Secret from Client ID used. The default is a random UUID.
+    - `identityProviders` - (Optional) Specifies which IdP will use. Allowed Values: Google, Github
+  - `kong`
+    - `enabled` - (Optional) Enable realm creation in Keycloak for Kong Manager. The default is `false`.
+    - `clientSecret` - (Optional) Specifies the Client Secret from Client ID used. The default is a random UUID.
+    - `identityProviders` - (Optional) Specifies which IdP will use. Allowed Values: Google, Github
+- `ssl`
+  - `enabled` - (Optional) Enable the manual certificate into ingress. The default is `false`.
+  - `crt` - (Required) Specify the certificate path.
+  - `key` - (Required) Specify the key path.
+  - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
+- `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution
 Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
 Use it when you know what you're doing
 :::
+
+### Environment values
+
+The following variables are supported:
+
+- `ingressClassName` - **VKPR_ENV_KEYCLOAK_INGRESS_CLASS_NAME**
+- `namespace` - **VKPR_ENV_KEYCLOAK_NAMESPACE**
+- `HA` - **VKPR_ENV_KEYCLOAK_HA**
+- `metrics` - **VKPR_ENV_KEYCLOAK_METRICS**
+- `adminUser` - **VKPR_ENV_KEYCLOAK_ADMIN_USER**
+- `adminPassword` - **VKPR_ENV_KEYCLOAK_ADMIN_PASSWORD**
+- `ssl`
+  - `enabled` - **VKPR_ENV_KEYCLOAK_SSL**
+  - `crt` - **VKPR_ENV_KEYCLOAK_CERTIFICATE**
+  - `key` - **VKPR_ENV_KEYCLOAK_KEY**
+  - `secretName` - **VKPR_ENV_KEYCLOAK_SSL_SECRET**
+- `openid`
+  - `grafana`
+    - `enabled` - **VKPR_ENV_KEYCLOAK_OPENID_GRAFANA**
+    - `clientSecret` - **VKPR_ENV_KEYCLOAK_OPENID_GRAFANA_CLIENTSECRET**
+    - `identityProviders` - **VKPR_ENV_KEYCLOAK_OPENID_GRAFANA_IDENTITY_PROVIDERS**
+  - `kong`
+    - `enabled` - **VKPR_ENV_KEYCLOAK_OPENID_KONG**
+    - `clientSecret` - **VKPR_ENV_KEYCLOAK_OPENID_KONG_CLIENTSECRET**
+    - `identityProviders` - **VKPR_ENV_KEYCLOAK_OPENID_KONG_IDENTITY_PROVIDERS**
 
 ### Setting Postgresql credentials
 
@@ -102,8 +122,8 @@ Use it when you know what you're doing
 ---
 
 :::info About the Formula
-`Chart Version`: 6.1.2 <br/>
-`Application Version`: v16.1.1 <br/>
+`Chart Version`: 9.6.8 <br/>
+`Application Version`: v18.0.2 <br/>
 `Helm Chart`: [bitnami/keycloak](https://artifacthub.io/packages/helm/bitnami/keycloak/) <br/>
 :::
 

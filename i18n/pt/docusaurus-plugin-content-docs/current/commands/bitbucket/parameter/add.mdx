@@ -1,0 +1,48 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR bitbucket parameter add
+title: VKPR bitbucket parameter add
+---
+
+# VKPR bitbucket parameter add
+
+## Descrição
+
+Adicione uma secret no repositório para usar dentro da pipeline do Bitbucket.
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr bitbucket parameter add [flags]
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --project_name      Específica o nome do projeto no Bitbucket
+  --parameter_name    Específica o nome da secret utilizada na pipeline do Bitbucket
+  --parameter_value   Específica o valor da secret utilizada na pipleine do Bitbucket
+  --parameter_masked  Específica se o conteúdo da secret será ocultado na pipeline
+  --parameter_scope   Específica o escopo da secret do Bitbucket
+```
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+### Bitbucket
+
+```bash
+  rit set credential --provider="bitbucket" --fields="bitbucket_username,bitbucket_token" --values="seu-username,seu-token"
+```
+
+---
+
+## Veja também
+
+- [VKPR aws eks init](/docs/commands/aws/eks/init) - Cria pipeline para inicializar um cluster EKS.
+- [VKPR digitalocean cluster init](/docs/commands/digitalocean/cluster/init) - Cria pipeline para inicializar um cluster Digitalocean.

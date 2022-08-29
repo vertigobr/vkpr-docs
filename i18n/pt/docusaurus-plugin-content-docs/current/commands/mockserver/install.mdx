@@ -1,0 +1,93 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR mockserver install
+title: VKPR mockserver install
+---
+
+# VKPR mockserver install
+
+## Descrição
+
+Instala o Mockserver no cluster. Para mais informações sobre o Mockserver, clique [aqui](https://mock-server.com/).
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr mockserver install [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr mockserver install --default
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default   Use para preencher automaticamente as entradas com valores padrões
+  --dry_run   Simula uma instalação
+  --domain    Define o endereço da aplicação
+  --secure    Utilizar HTTPS na aplicação
+  --ssl       Define que a aplicação utilizará certificado próprio
+  --crt_file  Específica o caminho do .crt do Mockserver
+  --key_file  Específica o caminho do .key do Mockserver
+```
+
+### Arquivo de configuração
+
+#### Globals
+
+Os seguintes valores são suportados pelo globals:
+
+- `domain` - (Obrigatório) Define o endereço da aplicação. O valor padrão é `localhost`.
+- `secure` - (Obrigatório) Define que a aplicação será acessada externamente por HTTPS. O valor padrão é `false`.
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
+
+#### Local
+
+Os seguintes valores são suportados:
+
+- `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
+- `ssl`
+  - `enabled` - (Opcional) Define que a aplicação utilizará certificado próprio. O valor padrão é `false`.
+  - `crt` - Específica o caminho do certificado.
+  - `key` - Específica o caminho do chave.
+  - `secretName` - (Opcional) Específica uma secret TLS a qual conterá os valores do crt e key descritos.
+- `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
+
+:::caution Cuidado
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobreescritos definidos pelo VKPR.
+Use-o quando souber o que está fazendo!
+:::
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `namespace` - **VKPR_ENV_MOCKSERVER_NAMESPACE**
+- `ingressClassName` - **VKPR_ENV_MOCKSERVER_INGRESS_CLASS_NAME**
+- `ssl`
+  - `enabled` - **VKPR_ENV_MOCKSERVER_SSL**
+  - `crt` - **VKPR_ENV_MOCKSERVER_CERTIFICATE**
+  - `key` - **VKPR_ENV_MOCKSERVER_KEY**
+  - `secretName` - **VKPR_ENV_MOCKSERVER_SSL_SECRET**
+
+---
+
+:::info Sobre o comando
+`Versão do Chart`: 5.13.2 <br/>
+`Versão da aplicação`: 5.13.2 <br/>
+`Helm Chart`: [github/mockserver](https://github.com/mock-server/mockserver/tree/master/helm/mockserver) <br/>
+:::
+
+## Veja também
+
+- [VKPR mockserver remove](/docs/commands/mockserver/remove) - Desinstala o Mockserver do cluster.

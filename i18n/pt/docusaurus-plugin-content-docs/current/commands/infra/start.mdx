@@ -1,0 +1,71 @@
+---
+sidebar_position: 3
+sidebar_label: VKPR infra start
+title: VKPR infra start
+---
+
+# VKPR infra start
+
+## Description
+
+Cria um cluster com K3D com opções de customização.
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr infra start [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr infra start --default
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default         Use para preencher automaticamente as entradas com valores padrões
+  --enable_traefik  Habilita ingressController Traefik no cluster
+  --enable_volume   Habilita o mapeamento local de volumes no cluster
+  --http_port       Específica a porta HTTP a qual o Cluster irá se comunica.
+  --https_port      Específica a porta HTTPS a qual o Cluster irá se comunica.
+  --worker_nodes    Específica a quantidade de nodes do cluster.
+```
+
+### Arquivo de configuração
+
+#### Local
+
+Os seguintes valores são suportados:
+
+- `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
+- `httpPort` - (Obrigatório) Específica a porta HTTP a qual o Cluster irá se comunica. O valor padrão é `localhost`.
+- `httpsPort` - (Obrigatório) Específica a porta HTTPS a qual o Cluster irá se comunica. O valor padrão é `false`.
+- `enableTraefik` - (Obrigatório) Habilita ingressController Traefik no cluster. O valor padrão é `false`.
+- `enableVolume` - (Obrigatório) Habilita o mapeamento local de volumes no cluster. O valor padrão é `false`.
+- `resources`
+  - `masters` - (Opcional) Específica a quantidade de nodes CP do cluster. O valor padrão é `1`.
+  - `workers` - (Opcional) Específica a quantidade de nodes do cluster. O valor padrão é `1`.
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `httpPort` - **VKPR_ENV_HTTP_PORT**
+- `httpsPort` - **VKPR_ENV_HTTPS_PORT**
+- `enableTraefik` - **VKPR_ENV_TRAEFIK**
+- `enableVolume` - **VKPR_ENV_VOLUME**
+- `resources`
+  - `masters` - **VKPR_ENV_K3D_SERVERS**
+  - `workers` - **VKPR_ENV_K3D_AGENTS**
+
+---
+
+## Veja também
+
+- [VKPR infra stop](/docs/commands/infra/stop) - Destroi o cluster K3D juntamente com seus registries.

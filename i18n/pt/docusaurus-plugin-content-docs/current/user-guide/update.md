@@ -31,7 +31,7 @@ The "vkpr-cli" repository was updated with success to version "v.1.0.20"
 Se você quiser fazer isso de maneira não interativa, você executará o seguinte comando:
 
 ```bash
-# Não especificando uma versão, a mais recente é instalada
+# Não Específicando uma versão, a mais recente é instalada
 rit update repo --name="vkpr-cli" --version="v.1.0.20"
 ```
 

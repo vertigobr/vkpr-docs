@@ -1,0 +1,143 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR prometheus-stack install
+title: VKPR prometheus-stack install
+---
+
+# VKPR prometheus-stack install
+
+## Descrição
+
+Instala o prometheus-stack no cluster. Para mais informações sobre o prometheus-stack, clique [aqui](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack).
+
+Kube-prometheus-stack é um pacote de aplicações de monitoramento, contendo:
+
+- [Prometheus](https://prometheus.io/docs/introduction/overview/)
+- [Alert-Manager](https://prometheus.io/docs/alerting/latest/alertmanager/)
+- [Grafana](https://grafana.com/grafana/)
+- Kubernetes Exporters
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr prometheus-stack install [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr prometheus-stack install --default
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default           Use para preencher automaticamente as entradas com valores padrões
+  --dry_run           Simula uma instalação
+  --domain            Define o endereço da aplicação
+  --secure            Utilizar HTTPS na aplicação
+  --alertmanager      Habilita o Alert-manager para ser exposto pelo ingressController
+  --HA                Define que aplicação do alertManager terá HA
+  --grafana_password  Específica a senha do admin do Grafana
+  --ssl               Define que a aplicação utilizará certificado próprio
+  --crt_file          Específica o caminho do .crt do grafana
+  --key_file          Específica o caminho do .key do grafana
+```
+
+### Arquivo de configuração
+
+#### Globals
+
+Os seguintes valores são suportados pelo globals:
+
+- `domain` - (Obrigatório) Define o endereço da aplicação. O valor padrão é `localhost`.
+- `secure` - (Obrigatório) Define que a aplicação será acessada externamente por HTTPS. O valor padrão é `false`.
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
+
+#### Local
+
+Os seguintes valores são suportados:
+
+- `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
+- `k8sExporters` - (Opcional) Habilita coleta de métricas do Kubernetes. O valor padrão é `true`.
+- `alertManager`
+  - `enabled` - (Obrigatório) Disponibiliza Endpoint para acesso da aplicação. O valor padrão é `false`.
+  - `HA` - (Opcional) Define que a aplicação será instalada em HA. O valor padrão é `false`.
+  - `ssl`
+    - `enabled` - (Opcional) Define que a aplicação utilizará certificado próprio. O valor padrão é `false`.
+    - `crt` - Específica o caminho do certificado.
+    - `key` - Específica o caminho do chave.
+    - `secretName` - (Opcional) Específica uma secret TLS a qual conterá os valores do crt e key descritos.
+- `grafana`
+  - `adminPassword` - (Obrigatório) Específica a senha do admin do Grafana. O valor padrão é `vkpr123`.
+  - `persistence` - (Opcional) Específica se o dados da aplicação será guardado em volumes. O valor padrão é `false`.
+  - `ssl`
+    - `enabled` - (Opcional) Define que a aplicação utilizará certificado próprio. O valor padrão é `false`.
+    - `crt` - Específica o caminho do certificado.
+    - `key` - Específica o caminho do chave.
+    - `secretName` - (Opcional) Específica uma secret TLS a qual conterá os valores do crt e key descritos.
+- `prometheus`
+  - `enabled` - (Obrigatório) Disponibiliza Endpoint para acesso da aplicação. The default is `false`.
+  - `persistence` - (Opcional) Específica se o dados da aplicação será guardado em volumes. O valor padrão é `false`.
+  - `ssl`
+    - `enabled` - (Opcional) Define que a aplicação utilizará certificado próprio. O valor padrão é `false`.
+    - `crt` - Específica o caminho do certificado.
+    - `key` - Específica o caminho do chave.
+    - `secretName` - (Opcional) Específica uma secret TLS a qual conterá os valores do crt e key descritos.
+- `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
+
+:::caution Cuidado
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobreescritos definidos pelo VKPR.
+Use-o quando souber o que está fazendo!
+:::
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `ingressClassName` - **VKPR_ENV_PROMETHEUS_STACK_INGRESS_CLASS_NAME**
+- `namespace` - **VKPR_ENV_PROMETHEUS_STACK_NAMESPACE**
+- `k8sExporters` - **VKPR_ENV_PROMETHEUS_STACK_EXPORTERS**
+- `alertManager`
+  - `enabled` - **VKPR_ENV_ALERTMANAGER**
+  - `HA` - **VKPR_ENV_ALERTMANAGER_HA**
+  - `ssl`
+    - `enabled` - **VKPR_ENV_ALERTMANAGER_SSL**
+    - `crt` - **VKPR_ENV_ALERTMANAGER_CERTIFICATE**
+    - `key` - **VKPR_ENV_ALERTMANAGER_KEY**
+    - `secretName` - **VKPR_ENV_ALERTMANAGER_SSL_SECRET**
+- `grafana`
+  - `adminPassword` - **VKPR_ENV_GRAFANA_PASSWORD**
+  - `persistence` - **VKPR_ENV_GRAFANA_PERSISTENCE**
+  - `ssl`
+    - `enabled` - **VKPR_ENV_GRAFANA_SSL**
+    - `crt` - **VKPR_ENV_GRAFANA_CERTIFICATE**
+    - `key` - **VKPR_ENV_GRAFANA_KEY**
+    - `secretName` - **VKPR_ENV_GRAFANA_SSL_SECRET**
+- `prometheus`
+  - `enabled` - **VKPR_ENV_PROMETHEUS**
+  - `persistence` - **VKPR_ENV_PROMETHEUS_PERSISTENCE**
+  - `ssl`
+    - `enabled` - **VKPR_ENV_PROMETHEUS_SSL**
+    - `crt` - **VKPR_ENV_PROMETHEUS_CERTIFICATE**
+    - `key` - **VKPR_ENV_PROMETHEUS_KEY**
+    - `secretName` - **VKPR_ENV_PROMETHEUS_SSL_SECRET**
+
+---
+
+:::info Sobre o comando
+`Versão do Chart`: 35.3.0 <br/>
+`Versão da aplicação`: v0.56.2 <br/>
+`Helm Chart`: [prometheus-community/kube-prometheus-stack](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack) <br/>
+:::
+
+## Veja também
+
+- [VKPR prometheus-stack remove](/docs/commands/prometheus-stack/remove) - Desinstala o prometheus-stack do cluster.

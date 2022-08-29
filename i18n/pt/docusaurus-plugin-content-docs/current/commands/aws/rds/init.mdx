@@ -1,0 +1,84 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR aws rds init
+title: VKPR aws rds init
+---
+
+# VKPR aws rds init
+
+## Descrição
+
+Cria um banco de dados RDS.
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr aws rds init [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr aws rds init --default
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default         Use para preencher automaticamente as entradas com valores padrões
+  --instance_name   Específica o nome da instância do RDS
+  --instance_type   Específica o tipo de instância do RDS
+  --dbname          Específica o nome do BD dentro do RDS
+  --dbuser          Específica o username do owner do BD
+  --dbpassword      Específica a senha do owner do BD
+```
+
+### Arquivo de configuração
+
+#### Local
+
+Os seguintes valores são suportados:
+
+- `instanceName` - (Obrigatório) Específica o nome da instancia do RDS. O valor padrão é `rds-sample`.
+- `instanceType` - (Obrigatório) Específica o tipo de instância do RDS. Valores válidos: `db.t3.micro`, `db.m5.large`, `db.m5.xlarge`, `db.t4g.micro`, `db.m6g.large`, `db.m6g.xlarge`. O valor padrão é `db.t3.micro`.
+- `dbName` - (Obrigatório) Específica o nome do BD dentro do RDS. O valor padrão é `vkprDb`.
+- `dbUser` - (Obrigatório) Específica o username do owner do BD. O valor padrão é `vkprUser`.
+- `dbPassword` - (Obrigatório) Específica a senha do owner do BD. O valor padrão é `vkpr1234`.
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `rds`
+  - `instanceName` - **VKPR_ENV_RDS_INSTANCE_NAME**
+  - `instanceType` - **VKPR_ENV_RDS_INSTANCE_TYPE**
+  - `dbName` - **VKPR_ENV_RDS_DB_NAME**
+  - `dbUser` - **VKPR_ENV_RDS_DB_USER**
+  - `dbPassword` - **VKPR_ENV_RDS_DB_PASSWORD**
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+### AWS
+
+```bash
+  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region" --values="seu-accesskey,seu-secretaccess,seu-region"
+```
+
+### Postgresql
+
+```bash
+  rit set credential --provider="postgres" --fields="password" --values="seu-password"
+```
+
+---
+
+## Veja também
+
+- [VKPR aws rds snapshot](/docs/commands/aws/rds/snapshot) - Cria um snapshot do RDS.
+- [VKPR aws rds destroy](/docs/commands/aws/rds/destroy) - Destroi o RDS.

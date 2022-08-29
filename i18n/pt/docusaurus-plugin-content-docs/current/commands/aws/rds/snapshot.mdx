@@ -1,0 +1,50 @@
+---
+sidebar_position: 2
+sidebar_label: VKPR aws rds snapshot
+title: VKPR aws rds snapshot
+---
+
+# VKPR aws rds snapshot
+
+## Descrição
+
+Cria um snapshot do RDS.
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr aws rds snapshot [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr aws rds snapshot --default
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default         Use para preencher automaticamente as entradas com valores padrões
+  --instance_name   Específica a instância do RDS para criar o snapshot
+```
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+### AWS
+
+```bash
+  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region" --values="seu-accesskey,seu-secretaccess,seu-region"
+```
+
+---
+
+## Veja também
+
+- [VKPR aws rds destroy](/docs/commands/aws/rds/destroy) - Destroi o RDS.

@@ -1,0 +1,96 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR cert-manager install aws
+title: VKPR cert-manager install aws
+---
+
+# VKPR cert-manager install aws
+
+## Descrição
+
+Instala o cert-manager para AWS no cluster. Para mais informações sobre o cert-manager, clique [aqui](https://cert-manager.io/docs/).
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr cert-manager install aws [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr cert-manager install aws --default
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default             Use para preencher automaticamente as entradas com valores padrões
+  --dry_run             Simula uma instalação
+  --email               Específica o email para a Lets Encrypt
+  --issuer              Específica o ambiente utilizado do cert-manager
+  --issuer_solver       Específica o método de emissores
+  --aws_hostedzone_id   Específica o Hostedzone ID do domínio no Route53
+```
+
+### Arquivo de configuração
+
+#### Globals
+
+Os seguintes valores são suportados pelo globals:
+
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `cert-manager`.
+
+#### Local
+
+Os seguintes valores são suportados:
+
+- `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
+- `email` - (Obrigatório) Específica o email para receber informações sobre expiração dos certificados.
+- `issuer`
+  - `type` - (Obrigatório) Específica o ambiente o qual será utilizado o cert-manager. Valores válidos: `staging`, `production`. O valor padrão é `production`.
+  - `solver` - (Obrigatório) Específica o método de emissores. Valores válidos: `DNS01`, `HTTP01`. O valor padrão é `DNS01`.
+  - `ingress` - (Obrigatório caso utilize o método `HTTP01`) Específica o ingressController utilizado pelas aplicações. O valor padrão é `nginx`.
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `cert-manager`.
+- `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
+
+:::caution Cuidado
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobreescritos definidos pelo VKPR.
+Use-o quando souber o que está fazendo!
+:::
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `email` - **VKPR_ENV_CERT_MANAGER_EMAIL**
+- `issuer`
+  - `type` - **VKPR_ENV_CERT_MANAGER_ISSUER_TYPE**
+  - `solver` - **VKPR_ENV_CERT_MANAGER_ISSUER_SOLVER**
+  - `ingress` - **VKPR_ENV_CERT_MANAGER_ISSUER_INGRESS**
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+### AWS
+
+```bash
+  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region" --values="seu-accesskey,seu-secretaccess,seu-region"
+```
+
+---
+
+:::info Sobre o comando
+`Versão do Chart`: 0.1.20 <br/>
+`Versão da aplicação`: v1.5.3 <br/>
+`Helm Chart`: [bitnami/cert-manager](https://artifacthub.io/packages/helm/bitnami/cert-manager) <br/>
+:::
+
+## Veja também
+
+- [VKPR cert-manager remove](/docs/commands/cert-manager/remove) - Desinstala o cert-manager do cluster.

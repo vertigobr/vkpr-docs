@@ -1,0 +1,121 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR vault install
+title: VKPR vault install
+---
+
+# VKPR vault install
+
+## Descrição
+
+Instala o Vault no cluster. Para mais informações sobre o Vault, clique [aqui](https://www.vaultproject.io/).
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr vault install [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr vault install --default
+```
+
+:::caution Atenção
+O Vault sempre será instalado em HA, logo é recomendado ter no mínimo 3 nodes no cluster.
+:::
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default       Use para preencher automaticamente as entradas com valores padrões
+  --dry_run       Simula uma instalação
+  --domain        Define o endereço da aplicação
+  --secure        Utilizar HTTPS na aplicação
+  --mode          Específica o modo de Storage do Vault
+  --auto_unseal   Habilita o Auto Unseal do Vault com algum provider da Cloud
+  --ssl           Define que a aplicação utilizará certificado próprio
+  --crt_file      Específica o caminho do .crt do Vault
+  --key_file      Específica o caminho do .key do Vault
+```
+
+### Arquivo de configuração
+
+#### Globals
+
+Os seguintes valores são suportados pelo globals:
+
+- `domain` - (Obrigatório) Define o endereço da aplicação. O valor padrão é `localhost`.
+- `secure` - (Obrigatório) Define que a aplicação será acessada externamente por HTTPS. O valor padrão é `false`.
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
+
+#### Local
+
+Os seguintes valores são suportados:
+
+- `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
+- `metrics` - (Opcional) Define que a aplicação irá expor as suas métricas. O valor padrão é `false`.
+- `storageMode` - (Obrigatório) Específica o modo de Storage do Vault. Valores válidos: `raft`, `consul`. O valor padrão é `raft`.
+- `autoUnseal` - (Obrigatório) Habilita o Auto Unseal do Vault com algum provider da Cloud. Valores válidos: `aws`, `azure`. O valor padrão é `false`.
+- `ssl`
+  - `enabled` - (Opcional) Define que a aplicação utilizará certificado próprio. O valor padrão é `false`.
+  - `crt` - Específica o caminho do certificado.
+  - `key` - Específica o caminho do chave.
+  - `secretName` - (Opcional) Específica uma secret TLS a qual conterá os valores do crt e key descritos.
+- `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
+
+:::caution Cuidado
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobreescritos definidos pelo VKPR.
+Use-o quando souber o que está fazendo!
+:::
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `namespace` - **VKPR_ENV_VAULT_NAMESPACE**
+- `ingressClassName` - **VKPR_ENV_VAULT_INGRESS_CLASS_NAME**
+- `storageMode` - **VKPR_ENV_VAULT_STORAGE_MODE**
+- `autoUnseal` - **VKPR_ENV_VAULT_AUTO_UNSEAL**
+- `metrics` - **VKPR_ENV_VAULT_METRICS**
+- `ssl`
+  - `enabled` - **VKPR_ENV_VAULT_SSL**
+  - `crt` - **VKPR_ENV_VAULT_CERTIFICATE**
+  - `key` - **VKPR_ENV_VAULT_KEY**
+  - `secretName` - **VKPR_ENV_VAULT_SSL_SECRET**
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+### AWS
+
+```bash
+  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region" --values="seu-accesskey,seu-secretaccess,seu-region"
+```
+
+### Azure
+
+```bash
+  rit set credential --provider="azure" --fields="azuretenantid,azureclientid,azureclientsecret,vaultazurekeyvaultvaultname,vaultazurekeyvaultkeyname" --values="seu-azuretenantid,seu-azureclientid,seu-azureclientsecret,seu-vaultazurekeyvaultvaultname,seu-vaultazurekeyvaultkeyname,"
+```
+
+---
+
+:::info Sobre o comando
+`Versão do Chart`: 0.19.0 <br/>
+`Versão da aplicação`: v1.9.2 <br/>
+`Helm Chart`: [hashicorp/vault](https://artifacthub.io/packages/helm/hashicorp/vault) <br/>
+:::
+
+## Veja também
+
+- [VKPR vault remove](/docs/commands/vault/remove) - Desinstala o vault do cluster.

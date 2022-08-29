@@ -1,0 +1,91 @@
+---
+sidebar_position: 1
+---
+
+# VKPR mockserver install
+
+## Description
+
+Install Mockserver into cluster. For more information about Mockserver, click [here](https://mock-server.com/).
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr mockserver install [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr mockserver install --default
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --default   Use to automatically fill inputs with default values.
+  --dry_run   Specifies if output the values from the application.
+  --domain    Specifies the domain to use in the application.
+  --secure    Specifies if the application will have HTTPS.
+  --ssl       Specifies if the mockserver will be using internal SSL certificates
+  --crt_file  Specifies the mockserver .crt file path.
+  --key_file  Specifies the mockserver .key file path.
+```
+
+### Values File
+
+#### Globals
+
+The following arguments are supported by the globals:
+
+- `domain` - (Required) Define the domain used by the application. The default is `localhost`.
+- `secure` - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+
+#### Local
+
+The following arguments are supported:
+
+- `enabled` - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `ssl`
+  - `enabled` - (Optional) Enable the manual certificate into ingress. The default is `false`.
+  - `crt` - Specify the certificate path.
+  - `key` - Specify the key path.
+  - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
+- `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+
+:::caution
+Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
+Use it when you know what you're doing
+:::
+
+### Environment values
+
+The following variables are supported:
+
+- `namespace` - **VKPR_ENV_MOCKSERVER_NAMESPACE**
+- `ingressClassName` - **VKPR_ENV_MOCKSERVER_INGRESS_CLASS_NAME**
+- `ssl`
+  - `enabled` - **VKPR_ENV_MOCKSERVER_SSL**
+  - `crt` - **VKPR_ENV_MOCKSERVER_CERTIFICATE**
+  - `key` - **VKPR_ENV_MOCKSERVER_KEY**
+  - `secretName` - **VKPR_ENV_MOCKSERVER_SSL_SECRET**
+
+---
+
+:::info About the Formula
+`Chart Version`: 5.13.2 <br/>
+`Application Version`: 5.13.2 <br/>
+`Helm Chart`: [github/mockserver](https://github.com/mock-server/mockserver/tree/master/helm/mockserver) <br/>
+:::
+
+## See Also
+
+- [VKPR mockserver remove](/docs/commands/mockserver/remove) - Uninstall Mockserver from the cluster.

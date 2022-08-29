@@ -1,6 +1,5 @@
 ---
 sidebar_position: 1
-version: v1.0.20
 ---
 
 # VKPR loki install
@@ -23,28 +22,13 @@ Non-interactive without setting values or using `VKPR Values`:
   vkpr loki install --default
 ```
 
-### Example Usage
-
-```jsx title="vkpr loki install --default"
-# vkpr.yaml
----
-loki:
-  enabled: true
-  namespace: "foo"
-  persistance: false
-  metrics: true
-  helmArgs:
-    ...
-```
-
 ## Argument Reference
 
 ### Flags
 
 ```sh
-  --default=false: Use to automatically fill inputs with default values.
-  --domain='localhost': Specifies the domain to use in the application.
-  --dry_run=false: Specifies if output the values from the application.
+  --default  Use to automatically fill inputs with default values.
+  --dry_run  Specifies if output the values from the application.
 ```
 
 ### Values File
@@ -53,28 +37,36 @@ loki:
 
 The following arguments are supported by the globals:
 
-- [`domain`](#argument-reference) - (Required) Define the domain used by the application. The default is `localhost`.
-- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `domain` - (Required) Define the domain used by the application. The default is `localhost`.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
 
 #### Local
 
 The following arguments are supported:
 
-- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application
-- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
-- [`persistence`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
-- [`metrics`](#argument-reference) - (Optional) Specifies if the application will expose your metrics. The default is `false`.
-- [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+- `enabled` - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `persistence` - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
+- `metrics` - (Optional) Specifies if the application will expose your metrics. The default is `false`.
+- `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution
 Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
 Use it when you know what you're doing
 :::
 
+### Environment values
+
+The following variables are supported:
+
+- `namespace` - **VKPR_ENV_LOKI_NAMESPACE**
+- `persistence` - **VKPR_ENV_LOKI_PERSISTENCE**
+- `metrics` - **VKPR_ENV_LOKI_METRICS**
+
 ---
 
 :::info About the Formula
-`Chart Version`: 2.5.0 <br/>
+`Chart Version`: 2.6.3 <br/>
 `Application Version`: v2.1.0 <br/>
 `Helm Chart`: [grafana/loki-stack](https://artifacthub.io/packages/helm/grafana/loki-stack) <br/>
 :::

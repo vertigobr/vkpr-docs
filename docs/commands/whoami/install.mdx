@@ -1,6 +1,5 @@
 ---
 sidebar_position: 1
-version: v1.0.20
 ---
 
 # VKPR whoami install
@@ -23,28 +22,18 @@ Non-interactive without setting values or using `VKPR Values`:
   vkpr whoami install --default
 ```
 
-### Example Usage
-
-```jsx title="vkpr whoami install --default"
-# vkpr.yaml
----
-whoami:
-  enabled: true
-  namespace: "foo"
-  ingressClassName: "bar"
-  helmArgs:
-    ...
-```
-
 ## Argument Reference
 
 ### Flags
 
 ```sh
-  --default=false: Use to automatically fill inputs with default values.
-  --domain='localhost': Specifies the domain to use in the application.
-  --dry_run=false: Specifies if output the values from the application.
-  --secure=false: Specifies if the application will have HTTPS.
+  --default   Use to automatically fill inputs with default values.
+  --dry_run   Specifies if output the values from the application.
+  --domain    Specifies the domain to use in the application.
+  --secure    Specifies if the application will have HTTPS.
+  --ssl       Specifies if the whoami will be using internal SSL certificates
+  --crt_file  Specifies the whoami .crt file path.
+  --key_file  Specifies the whoami .key file path.
 ```
 
 ### Values File
@@ -53,29 +42,41 @@ whoami:
 
 The following arguments are supported by the globals:
 
-- [`domain`](#argument-reference) - (Required) Define the domain used by the application. The default is `localhost`.
-- [`secure`](#argument-reference) - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
-- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
-- [`ingressClassName`](#argument-reference) - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `domain` - (Required) Define the domain used by the application. The default is `localhost`.
+- `secure` - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
 
 #### Local
 
 The following arguments are supported:
 
-- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
-- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
-- [`ingressClassName`](#argument-reference) - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
-- [`ssl`](#argument-reference)
-  - [`enabled`](#argument-reference) - (Optional) Enable the manual certificate into ingress. The default is `false`.
-  - [`crt`](#argument-reference) - (Required) Specify the certificate path.
-  - [`key`](#argument-reference) - (Required) Specify the key path.
-  - [`secretName`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume.
-- [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+- `enabled` - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `ssl`
+  - `enabled` - (Optional) Enable the manual certificate into ingress. The default is `false`.
+  - `crt` - Specify the certificate path.
+  - `key` - Specify the key path.
+  - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
+- `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution
 Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
 Use it when you know what you're doing
 :::
+
+### Environment values
+
+The following variables are supported:
+
+- `namespace` - **VKPR_ENV_WHOAMI_NAMESPACE**
+- `ingressClassName` - **VKPR_ENV_WHOAMI_INGRESS_CLASS_NAME**
+- `ssl`
+  - `enabled` - **VKPR_ENV_WHOAMI_SSL**
+  - `crt` - **VKPR_ENV_WHOAMI_CERTIFICATE**
+  - `key` - **VKPR_ENV_WHOAMI_KEY**
+  - `secretName` - **VKPR_ENV_WHOAMI_SSL_SECRET**
 
 ---
 

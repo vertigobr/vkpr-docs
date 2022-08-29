@@ -133,9 +133,9 @@ global:
   external-dns:
     provider: aws
 ```
-A especificação de valores-chave de cada aplicativo é descrita na documentação do aplicativo.
+A Específicação de valores-chave de cada aplicativo é descrita na documentação do aplicativo.
 
-Em Valores VKPR, estou especificando que todos os aplicativos que usarei usarão o domínio `test.vkpr.net` e usarão o protocolo HTTPS. E todas as outras configurações específicas de fórmulas são descritas em seus respectivos nós.
+Em Valores VKPR, estou Específicando que todos os aplicativos que usarei usarão o domínio `test.vkpr.net` e usarão o protocolo HTTPS. E todas as outras configurações específicas de fórmulas são descritas em seus respectivos nós.
 
 Para  implantar as aplicações, é necessário executar os comandos como antes, mas com o seguinte sinalizador:
 
@@ -144,7 +144,7 @@ Para  implantar as aplicações, é necessário executar os comandos como antes,
 ```
 
 A flag `--default` ignorará todas as entradas que seriam solicitadas e reescritas pelo arquivo de configuração que foi criado.
-Se você deseja mais controle sobre os aplicativos, pode especificar os valores também por flags específicas para cada fórmula.
+Se você deseja mais controle sobre os aplicativos, pode Específicar os valores também por flags específicas para cada fórmula.
 
 
 Para ver as flags disponíveis para cada fórmula, execute o seguinte comando:

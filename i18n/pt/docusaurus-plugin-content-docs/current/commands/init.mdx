@@ -1,0 +1,40 @@
+---
+sidebar_position: 14
+sidebar_label: VKPR Init
+title: VKPR Init
+---
+
+# VKPR Init
+
+## Descrição
+
+Instala todos os binários e suas bibliotecas usados no VKPR.
+
+Os Binários são instalados em `~/.vkpr/bin`, sendo eles:
+
+- kubectl - v1.20.0
+- helm - v3.9.0
+- k3d - v5.2.2
+- jq - v1.6
+- yq - v4.16.1
+- decK - v0.24.15
+- aws-cli - latest
+- okteto-cli - latest
+
+:::note Atenção!
+Essa fórmula é usada apenas quando você deseja contribuir com o VKPR ou atualizar os binários do VKPR.
+:::
+
+## Comando
+
+Comando não interativo:
+
+```bash
+  vkpr init
+```
+
+---
+
+## Veja também
+
+- [VKPR create formula](/docs/commands/create) - Criando novas formulas para o VKPR.

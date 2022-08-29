@@ -1,0 +1,136 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR keycloak install
+title: VKPR keycloak install
+---
+
+# VKPR keycloak install
+
+## Descrição
+
+Instala o Keycloak no cluster. Para mais informações sobre o Keycloak, clique [aqui](https://www.keycloak.org/).
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr keycloak install [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr keycloak install --default
+```
+
+:::caution Info
+Se o VKPR não encontrar nenhum postgresql dentro do cluster, ele irá [instalar](/docs/commands/postgresql/install) um para utilizar juntamente com o Keycloak.
+:::
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default          Use para preencher automaticamente as entradas com valores padrões
+  --dry_run          Simula uma instalação
+  --domain           Define o endereço da aplicação
+  --secure           Utilizar HTTPS na aplicação
+  --HA               Define que aplicação terá HA
+  --admin_user       Específica o username do admin
+  --admin_password   Específica a senha do admin
+  --ssl              Define que a aplicação utilizará certificado próprio
+  --crt_file         Específica o caminho do .crt do keycloak
+  --key_file         Específica o caminho do .key do keycloak
+```
+
+### Arquivo de configuração
+
+#### Globals
+
+Os seguintes valores são suportados pelo globals:
+
+- `domain` - (Obrigatório) Define o endereço da aplicação. O valor padrão é `localhost`.
+- `secure` - (Obrigatório) Define que a aplicação será acessada externamente por HTTPS. O valor padrão é `false`.
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
+
+#### Local
+
+Os seguintes valores são suportados:
+
+- `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
+- `HA` - (Opcional) Define que a aplicação será instalada em HA. O valor padrão é `false`.
+- `metrics` - (Opcional) Define que a aplicação irá expor as suas métricas. O valor padrão é `false`.
+- `adminUser` - (Obrigatório) Específica o username do admin. O valor padrão é `admin`.
+- `adminPassword` - (Obrigatório) Específica a senha do admin. O valor padrão é `vkpr123`
+- `openid`
+  - `grafana`
+    - `enabled` - (Opcional) Habilita criação de Realm pré-criado para o Grafana. O valor padrão é `false`.
+    - `clientSecret` - Específica o Client Secret do ClientID para ser utilizado. O valor padrão é a random UUID.
+    - `identityProviders` - Específica qual IdP utilizará. Valores válidos: Google, Github
+  - `kong`
+    - `enabled` - (Opcional) Habilita criação de Realm pré-criado para o Kong Manager. O valor padrão é `false`.
+    - `clientSecret` - Específica o Client Secret do ClientID para ser utilizado. O valor padrão é a random UUID.
+    - `identityProviders` - Específica qual IdP utilizará. Valores válidos: Google, Github
+- `ssl`
+  - `enabled` - (Opcional) Define que a aplicação utilizará certificado próprio. O valor padrão é `false`.
+  - `crt` - Específica o caminho do certificado.
+  - `key` - Específica o caminho do chave.
+  - `secretName` - (Opcional) Específica uma secret TLS a qual conterá os valores do crt e key descritos.
+- `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
+
+:::caution Cuidado
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobreescritos definidos pelo VKPR.
+Use-o quando souber o que está fazendo!
+:::
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `ingressClassName` - **VKPR_ENV_KEYCLOAK_INGRESS_CLASS_NAME**
+- `namespace` - **VKPR_ENV_KEYCLOAK_NAMESPACE**
+- `HA` - **VKPR_ENV_KEYCLOAK_HA**
+- `metrics` - **VKPR_ENV_KEYCLOAK_METRICS**
+- `adminUser` - **VKPR_ENV_KEYCLOAK_ADMIN_USER**
+- `adminPassword` - **VKPR_ENV_KEYCLOAK_ADMIN_PASSWORD**
+- `ssl`
+  - `enabled` - **VKPR_ENV_KEYCLOAK_SSL**
+  - `crt` - **VKPR_ENV_KEYCLOAK_CERTIFICATE**
+  - `key` - **VKPR_ENV_KEYCLOAK_KEY**
+  - `secretName` - **VKPR_ENV_KEYCLOAK_SSL_SECRET**
+- `openid`
+  - `grafana`
+    - `enabled` - **VKPR_ENV_KEYCLOAK_OPENID_GRAFANA**
+    - `clientSecret` - **VKPR_ENV_KEYCLOAK_OPENID_GRAFANA_CLIENTSECRET**
+    - `identityProviders` - **VKPR_ENV_KEYCLOAK_OPENID_GRAFANA_IDENTITY_PROVIDERS**
+  - `kong`
+    - `enabled` - **VKPR_ENV_KEYCLOAK_OPENID_KONG**
+    - `clientSecret` - **VKPR_ENV_KEYCLOAK_OPENID_KONG_CLIENTSECRET**
+    - `identityProviders` - **VKPR_ENV_KEYCLOAK_OPENID_KONG_IDENTITY_PROVIDERS**
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+### Postgresql
+
+```bash
+  rit set credential --provider="postgres" --fields="password" --values="seu-password"
+```
+
+---
+
+:::info Sobre o comando
+`Versão do Chart`: 9.6.8 <br/>
+`Versão da aplicação`: v18.0.2 <br/>
+`Helm Chart`: [bitnami/keycloak](https://artifacthub.io/packages/helm/bitnami/keycloak/) <br/>
+:::
+
+## Veja também
+
+- [VKPR keycloak remove](/docs/commands/keycloak/remove) - Desinstala o keycloak do cluster.

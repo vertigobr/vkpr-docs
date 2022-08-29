@@ -1,0 +1,48 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR gitlab parameter add
+title: VKPR gitlab parameter add
+---
+
+# VKPR gitlab parameter add
+
+## Descrição
+
+Adicione uma secret no repositório para usar dentro da pipeline do Gitlab.
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr gitlab parameter add [flags]
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --project_name      Específica o nome do projeto no Gitlab
+  --parameter_name    Específica o nome da secret utilizada na pipeline do Gitlab
+  --parameter_value   Específica o valor da secret utilizada na pipleine do Gitlab
+  --parameter_masked  Específica se o conteúdo da secret será ocultado na pipeline
+  --parameter_scope   Específica o escopo da secret do Gitlab
+```
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+### Gitlab
+
+```bash
+  rit set credential --provider="gitlab" --fields="token,username" --values="seu-token,seu-username"
+```
+
+---
+
+## Veja também
+
+- [VKPR aws eks init](/docs/commands/aws/eks/init) - Cria pipeline para inicializar um cluster EKS.
+- [VKPR digitalocean cluster init](/docs/commands/digitalocean/cluster/init) - Cria pipeline para inicializar um cluster Digitalocean.
