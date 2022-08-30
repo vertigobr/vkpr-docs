@@ -1,0 +1,94 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR postgresql install
+title: VKPR postgresql install
+---
+
+# VKPR postgresql install
+
+## Descrição
+
+Instala o PostgreSQL no cluster. Para mais informações sobre o PostgreSQL, clique [aqui](https://www.postgresql.org/).
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr postgresql install [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr postgresql install --default
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default   Use para preencher automaticamente as entradas com valores padrões
+  --dry_run   Simula uma instalação
+  --HA        Define que aplicação terá HA
+```
+
+### Arquivo de configuração
+
+#### Globals
+
+Os seguintes valores são suportados pelo globals:
+
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+
+#### Local
+
+Os seguintes valores são suportados:
+
+- `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `HA` - (Opcional) Define que a aplicação será instalada em HA. O valor padrão é `false`.
+- `metrics` - (Opcional) Define que a aplicação irá expor as suas métricas. O valor padrão é `false`.
+- `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
+
+:::caution Cuidado
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobreescritos definidos pelo VKPR.
+Use-o quando souber o que está fazendo!
+:::
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `namespace` - **VKPR_ENV_POSTGRESQL_NAMESPACE**
+- `metrics` - **VKPR_ENV_POSTGRESQL_METRICS**
+- `HA` - **VKPR_ENV_POSTGRESQL_HA**
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+### Postgresql
+
+```bash
+  rit set credential --provider="postgres" --fields="password" --values="seu-password"
+```
+
+---
+
+:::info Sobre o comando
+`Versão do Chart`: 11.6.4 <br/>
+`Versão da aplicação`: v14.3.0 <br/>
+`Helm Chart`: [bitnami/postgresql](https://artifacthub.io/packages/helm/bitnami/postgresql) <br/>
+
+---
+
+`Versão do Chart`: 8.2.5 <br/>
+`Versão da aplicação`: v11.14.0 <br/>
+`Helm Chart`: [bitnami/postgresql-ha](https://artifacthub.io/packages/helm/bitnami/postgresql-ha) <br/>
+:::
+
+## Veja também
+
+- [VKPR postgres remove](/docs/commands/postgresql/remove) - Desinstala o PostgreSQL do cluster.

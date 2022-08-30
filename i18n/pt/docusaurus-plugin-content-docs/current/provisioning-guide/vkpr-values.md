@@ -28,21 +28,21 @@ nó-pai:      # Aplicação
 ```
 :::tip Dica
 
-A especificação de valores-chave de cada aplicativo é descrita na documentação do aplicativo.
+A Específicação de valores-chave de cada aplicativo é descrita na documentação do aplicativo.
 
 ::::
 
 ### Globals
 
-No VKPR Values, você estará especificando os valores para serem utilizados na instalação da aplicação, algumas das configurações podem ser definidas nos dominios globais como a opção `global` que servirá a aplicação caso a mesma configuração não esteja definida em um nó-filho (algum dos valores não conseguirão ser especificados na aplicação). 
+No VKPR Values, você estará Específicando os valores para serem utilizados na instalação da aplicação, algumas das configurações podem ser definidas nos dominios globais como a opção `global` que servirá a aplicação caso a mesma configuração não esteja definida em um nó-filho (algum dos valores não conseguirão ser Específicados na aplicação). 
 
 Segue a lista de valores-chaves na opção do `globals`
 
-- `domain` - especifica o domínio que será utilizado na aplicação. O valor padrão é `localhost`.
-- `secure` - especifica se a aplicação será exposta pelo ingressControler como HTTP/HTTPS. O valor padrão é `false`.
-- `ingressClassName` - especifica qual ingressControler será responsável por expor a aplicação. Valores permitidos: `kong` e `nginx`  O valor padrão é `nginx`. 
-- `namespace` - especifica o namespace que será utilizado para a instalação das aplicações. O valor padrão é `vkpr`.
-- `provider` - (Opcional) especifica o provider que a aplicação deve comportar. Valores permitidos: `aws`, `digitalocean` e `okteto`.
+- `domain` - Específica o domínio que será utilizado na aplicação. O valor padrão é `localhost`.
+- `secure` - Específica se a aplicação será exposta pelo ingressControler como HTTP/HTTPS. O valor padrão é `false`.
+- `ingressClassName` - Específica qual ingressControler será responsável por expor a aplicação. Valores permitidos: `kong` e `nginx`  O valor padrão é `nginx`. 
+- `namespace` - Específica o namespace que será utilizado para a instalação das aplicações. O valor padrão é `vkpr`.
+- `provider` - (Opcional) Específica o provider que a aplicação deve comportar. Valores permitidos: `aws`, `digitalocean` e `okteto`.
 
 ### Credentials
 
@@ -79,9 +79,9 @@ Em linhas gerais não é somente o `vkpr.yaml` que tem uma precedência, todos o
 
 Segue a ordem de precedência do menór para o maior:
 
-- `default` - Valor atribuido padrão caso não seja especificado anteriormente.
+- `default` - Valor atribuido padrão caso não seja Específicado anteriormente.
 - `env` - (variável de ambiente) valores de váriavel do seu ambiente.
-- `VKPR values` - (vkpr.yaml) valores atribuidos ao ter ou especificar o arquivo de configuração do VKPR Values no seu diretório padrão. 
+- `VKPR values` - (vkpr.yaml) valores atribuidos ao ter ou Específicar o arquivo de configuração do VKPR Values no seu diretório padrão. 
 - `input` - Valores definidos na árvore de decisões ou atribuidos por flags.
 
 ## Exemplo VKPR Values

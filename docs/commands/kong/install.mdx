@@ -1,6 +1,5 @@
 ---
 sidebar_position: 1
-version: v1.0.20
 ---
 
 # VKPR kong install
@@ -27,25 +26,6 @@ Non-interactive without setting values or using `VKPR Values`:
 If the VKPR dont identify any postgresql installed in the cluster, he will [install](/docs/commands/postgresql/install) to use with kong.
 :::
 
-### Example Usage
-
-```jsx title="vkpr kong install --default"
-# vkpr.yaml
----
-kong:
-  enabled: true
-  namespace: "foo"
-  HA: false
-  mode: "standard"
-  metrics: false
-  rbac:
-    adminPassword: "kong1234"
-  vitals:
-    prometheusStrategy: false
-  helmArgs:
-    ...
-```
-
 :::caution Info
 If you want to use the Prometheus Strategy for Kong Vitals (vitals.prometheusStrategy: true),
 along with metrics being set to true, you must first install the prometheus-stack (vkpr prometheus-stack install),
@@ -57,18 +37,17 @@ otherwise you won't have the needed CRDs installed on your environment.
 ### Flags
 
 ```sh
-  --HA=false: Specifies if the application will have High Availability.
-  --default=false: Use to automatically fill inputs with default values.
-  --domain='localhost': Specifies the domain to use in the application.
-  --dry_run=false: Specifies if output the values from the application.
-  --enterprise=false: Specifies if the Kong will be using Enterprise License.
-  --kong_mode='dbless': Specifies the type of Kong Deployment.
-  --kong_plane='control': If kong_mode is set do hybrid, specifies which plane to install.
-  --kong_cp_url='kong-kong-cluster.vkpr.svc.cluster.local:8005': Specifies which kong DP to connect.
-  --kong_telemetry_url='kong-kong-clustertelemetry.vkpr.svc.cluster.local:8006': Specifies which kong DP telemetry endpoint to connect.
-  --license=' ': Specifies the Kong Enterprise License path.
-  --rbac_password='vkpr123': Specifies the RBAC Super Admin Password. Has no effect on hybrid data plane installations.
-  --secure=false: Specifies if the application will have HTTPS.
+  --default         Use to automatically fill inputs with default values.
+  --dry_run         Specifies if output the values from the application.
+  --domain          Specifies the domain to use in the application.
+  --secure          Specifies if the application will have HTTPS.
+  --HA              Specifies if the application will have High Availability.
+  --mode            Specifies the type of Kong Deployment.
+  --license         Specifies the Kong Enterprise License path.
+  --rbac_password   Specifies the RBAC Super Admin Password. Has no effect on hybrid data plane installatio
+  --plane           If mode is set do hybrid, specifies which plane to install.
+  --cp_url          Specifies which kong DP to connect.
+  --telemetry_url   Specifies which kong DP telemetry endpoint to connect.
 ```
 
 ### Values File
@@ -77,35 +56,63 @@ otherwise you won't have the needed CRDs installed on your environment.
 
 The following arguments are supported by the globals:
 
-- [`domain`](#argument-reference) - (Required) Define the domain used by the application. The default is `localhost`.
-- [`secure`](#argument-reference) - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
-- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `domain` - (Required) Define the domain used by the application. The default is `localhost`.
+- `secure` - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
 
 #### Local
 
 The following arguments are supported:
 
-- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
-- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
-- [`HA`](#argument-reference) - (Optional) Specifies if the application will have High Availability. The default is `false`.
-- [`mode`](#argument-reference) - (Required) Specifies the type of Kong Deployment. Allowed Values: `dbless`, `standalone` and `hybrid`. The default is `dbless`. Flags derived from `hybrid`, such as `kong_plane`, are not supported at the moment.
-- [`metrics`](#argument-reference) - (Optional) Specifies if the application will expose your metrics. The default is `false`.
-- [`enterprise`](#argument-reference) - (Required) Specifies if the Kong will be using Enterprise License. The default is `false`.
-  - [`license`](#argument-reference) - (Optional) Specifies the Kong Enterprise License path.
-- [`rbac`](#argument-reference)
-  - [`adminPassword`](#argument-reference) - (Required) Specify the kong admin password. The default is `vkpr123`.
-- [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+- `enabled` - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `HA` - (Optional) Specifies if the application will have High Availability. The default is `false`.
+- `mode` - (Required) Specifies the type of Kong Deployment. Allowed Values: `dbless`, `standalone` and `hybrid`. The default is `dbless`.
+- `metrics` - (Optional) Specifies if the application will expose your metrics. The default is `false`.
+- `enterprise`
+  - `license` - (Optional) Specifies the Kong Enterprise License path.
+- `rbac`
+  - `adminPassword` - (Required) Specify the kong admin password. The default is `vkpr123`.
+  - `openid`
+    - `enabled` - (Optional) Enable Kong Manager OpenID Connect with Keycloak.
+    - `clientSecret` - (Optional) Specifies the Client Secret used by Keycloak.
+- `vitals`
+  - `prometheusStrategy` - (Optional) Use prometheus to collect the vital's metrics from Kong.
+- `hybrid`
+  - `plane` - (Optional) Specifies the Kong Plane to be installed.
+  - `dataPlane`
+    - `controlPlaneEndpoint` - (Optional) Specifies the Kong Control Plane endpoint to communicate between the planes.
+    - `telemetryEndpoint` - (Optional) Specifies the Kong Telemetry enpoint to communicate between the planes.
+- `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution
 Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
 Use it if you know what you're doing.
 :::
 
+### Environment values
+
+The following variables are supported:
+
+- `namespace` - **VKPR_ENV_KONG_NAMESPACE**
+- `HA` - **VKPR_ENV_KONG_HA**
+- `mode` - **VKPR_ENV_KONG_MODE**
+- `metrics` - **VKPR_ENV_KONG_METRICS**
+- `license` - **VKPR_ENV_KONG_ENTERPRISE_LICENSE**
+- `prometheusStrategy` - **VKPR_ENV_KONG_VITALS_STRATEGY**
+- `adminPassword` - **VKPR_ENV_KONG_RBAC_ADMIN_PASSWORD**
+- `openid`
+  - `enabled` - **VKPR_ENV_KONG_KEYCLOAK_OPENID**
+  - `clientSecret` - **VKPR_ENV_KONG_KEYCLOAK_OPENID_CLIENTSECRET**
+- `plane` - **VKPR_ENV_KONG_PLANE**
+- `controlPlaneEndpoint` - **VKPR_ENV_KONG_CP_ENDPOINT**
+- `telemetryEndpoint` - **VKPR_ENV_KONG_TELEMETRY_URL**
+
 ---
 
 :::info About the Formula
-`Chart Version`: 2.6.4 <br/>
-`Application Version`: v2.7.0 <br/>
+`Chart Version`: 2.9.1 <br/>
+`Application Version`: v2.8.1.2 <br/>
 `Helm Chart`: [kong/kong](https://artifacthub.io/packages/helm/kong/kong/) <br/>
 :::
 

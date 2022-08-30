@@ -1,6 +1,5 @@
 ---
 sidebar_position: 1
-version: v1.0.20
 ---
 
 # VKPR vault install
@@ -27,32 +26,20 @@ Non-interactive without setting values or using `VKPR Values`:
 Vault will always be installed in HA (High Availability), it is recommended that the cluster has at least 3 Nodes.
 :::
 
-### Example Usage
-
-```jsx title="vkpr vault install --default"
-# vkpr.yaml
----
-vault:
-  enabled: true
-  namespace: "foo"
-  ingressClassName: "bar"
-  storageMode: "raft"
-  autoUnseal: "aws"
-  helmArgs:
-    ...
-```
-
 ## Argument Reference
 
 ### Flags
 
 ```sh
-  --default=false: Use to automatically fill inputs with default values.
-  --domain='localhost': Specifies the domain to use in the application.
-  --dry_run=false: Specifies if output the values from the application.
-  --secure=false: Specifies if the application will have HTTPS.
-  --vault_auto_unseal='false': Enable to Auto Unseal the Vault with a Cloud provider.
-  --vault_mode='raft': Specifies the Vault storage mode.
+  --default       Use to automatically fill inputs with default values.
+  --dry_run       Specifies if output the values from the application.
+  --domain        Specifies the domain to use in the application.
+  --secure        Specifies if the application will have HTTPS.
+  --mode          Specifies the Vault storage mode.
+  --auto_unseal   Enable to Auto Unseal the Vault with a Cloud provider.
+  --ssl           Specifies if the vault will be using internal SSL certificates
+  --crt_file      Specifies the vault .crt file path.
+  --key_file      Specifies the vault .key file path.
 ```
 
 ### Values File
@@ -61,31 +48,47 @@ vault:
 
 The following arguments are supported by the globals:
 
-- [`domain`](#argument-reference) - (Required) Define the domain used by the application. The default is `localhost`.
-- [`secure`](#argument-reference) - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
-- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
-- [`ingressClassName`](#argument-reference) - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `domain` - (Required) Define the domain used by the application. The default is `localhost`.
+- `secure` - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
 
 #### Local
 
 The following arguments are supported:
 
-- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
-- [`ingressClassName`](#argument-reference) - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
-- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
-- [`storageMode`](#argument-reference) - (Required) Specifies the Vault storage mode. Allowed Values: `raft`, `consul`. The default is `raft`.
-- [`autoUnseal`](#argument-reference) - (Required) Enable to Auto Unseal the Vault with a Cloud provider. Allowed Values: `aws`, `azure`. The default is `false`.
-- [`ssl`](#argument-reference)
-  - [`enabled`](#argument-reference) - (Optional) Enable the manual certificate into ingress. The default is `false`.
-  - [`crt`](#argument-reference) - (Required) Specify the certificate path.
-  - [`key`](#argument-reference) - (Required) Specify the key path.
-  - [`secretName`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume.
-- [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+- `enabled` - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
+- `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `storageMode` - (Required) Specifies the Vault storage mode. Allowed Values: `raft`, `consul`. The default is `raft`.
+- `autoUnseal` - (Required) Enable to Auto Unseal the Vault with a Cloud provider. Allowed Values: `aws`, `azure`. The default is `false`.
+- `metrics` - (Optional) Specifies if the application will expose your metrics. The default is `false`.
+- `ssl`
+  - `enabled` - (Optional) Enable the manual certificate into ingress. The default is `false`.
+  - `crt` - (Required) Specify the certificate path.
+  - `key` - (Required) Specify the key path.
+  - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
+- `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution
 Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
 Use it when you know what you're doing
 :::
+
+### Environment values
+
+The following variables are supported:
+
+- `namespace` - **VKPR_ENV_VAULT_NAMESPACE**
+- `ingressClassName` - **VKPR_ENV_VAULT_INGRESS_CLASS_NAME**
+- `storageMode` - **VKPR_ENV_VAULT_STORAGE_MODE**
+- `autoUnseal` - **VKPR_ENV_VAULT_AUTO_UNSEAL**
+- `metrics` - **VKPR_ENV_VAULT_METRICS**
+- `ssl`
+  - `enabled` - **VKPR_ENV_VAULT_SSL**
+  - `crt` - **VKPR_ENV_VAULT_CERTIFICATE**
+  - `key` - **VKPR_ENV_VAULT_KEY**
+  - `secretName` - **VKPR_ENV_VAULT_SSL_SECRET**
 
 ### Setting Provider credentials
 
@@ -106,8 +109,8 @@ Use it when you know what you're doing
 ---
 
 :::info About the Formula
-`Chart Version`: 0.18.0 <br/>
-`Application Version`: v1.9.0 <br/>
+`Chart Version`: 0.19.0 <br/>
+`Application Version`: v1.9.2 <br/>
 `Helm Chart`: [hashicorp/vault](https://artifacthub.io/packages/helm/hashicorp/vault) <br/>
 :::
 

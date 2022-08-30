@@ -1,0 +1,48 @@
+---
+sidebar_position: 2
+sidebar_label: VKPR aws eks tfc
+title: VKPR aws eks tfc
+---
+
+# VKPR aws eks tfc
+
+## Descrição
+
+Faz Fork e configura o [GitOps Repo](https://gitlab.com/vkpr/aws-eks) no seu Gitlab, usando o Terraform Cloud para salvar o estado do Terraform.
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr aws eks tfc [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr aws eks tfc --default
+```
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+### Gitlab
+
+```bash
+  rit set credential --provider="gitlab" --fields="token,username" --values="seu-token,seu-username"
+```
+
+### Terraform Cloud
+
+```bash
+  rit set credential --provider="terraformcloud" --fields="token" --values="seu-token"
+```
+
+---
+
+## Veja também
+
+- [VKPR aws eks deploy](/docs/commands/aws/eks/deploy) - Executa pipeline para provisionamento da infraestrutura criada pela pipeline do cluster EKS.
+- [VKPR aws eks destroy](/docs/commands/aws/eks/destroy) - Destrua o cluster EKS provisionada pela pipeline.

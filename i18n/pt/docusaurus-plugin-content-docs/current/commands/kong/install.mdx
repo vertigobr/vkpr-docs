@@ -1,0 +1,117 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR kong install
+title: VKPR kong install
+---
+
+# VKPR kong install
+
+## Descrição
+
+Instala o Kong Gateway no cluster. Para mais informações sobre o Kong Gateway, clique [aqui](https://docs.konghq.com/gateway/).
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr kong install [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr kong install --default
+```
+
+:::caution Info
+Se o VKPR não encontrar nenhum postgresql dentro do cluster, ele irá [instalar](/docs/commands/postgresql/install) um para utilizar juntamente com o Kong.
+:::
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --default         Use para preencher automaticamente as entradas com valores padrões
+  --dry_run         Simula uma instalação
+  --domain          Define o endereço da aplicação
+  --secure          Utilizar HTTPS na aplicação
+  --HA              Define que aplicação terá HA
+  --mode            Específica o modo o qual o Kong será instalado
+  --license         Específica o caminho da licensa do Kong Enterprise
+  --rbac_password   Específica a senha do admin. Não há necessidade na instalação do DataPlane
+  --plane           Se for escolhido o modo `hybrid`, Específica o plane que será instalado
+  --cp_url          Específica o Kong CP URL
+  --telemetry_url   Específica o Kong CP telemetry URL
+```
+
+### Arquivo de configuração
+
+#### Globals
+
+Os seguintes valores são suportados pelo globals:
+
+- `domain` - (Obrigatório) Define o endereço da aplicação. O valor padrão é `localhost`.
+- `secure` - (Obrigatório) Define que a aplicação será acessada externamente por HTTPS. O valor padrão é `false`.
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+
+#### Local
+
+Os seguintes valores são suportados:
+
+- `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `HA` - (Opcional) Define que a aplicação será instalada em HA. O valor padrão é `false`.
+- `metrics` - (Opcional) Define que a aplicação irá expor as suas métricas. O valor padrão é `false`.
+- `mode` - (Obrigatório) Específica o modo o qual o Kong será instalado. Valores válidos: `dbless`, `standalone` e `hybrid`. O valor padrão é `dbless`.
+- `enterprise`
+  - `license` - (Opcional) Específica o caminho da licensa do Kong Enterprise.
+- `rbac`
+  - `adminPassword` - (Obrigatório) Específica a senha do admin. Não há necessidade na instalação do DataPlane. O valor padrão é `vkpr123`.
+  - `openid`
+    - `enabled` - (Opcional) Habilita Kong Manager OpenID Connect com Keycloak.
+    - `clientSecret` - Específica o Client Secret do ClientID para ser utilizado.
+- `vitals`
+  - `prometheusStrategy` - (Opcional) Use o prometheus para coletar as métricas vitals de Kong.
+- `hybrid`
+  - `plane` - (Opcional) Específica o Kong Plane que será instalado. Valores válidos: `control` e `data`. O valor padrão é `control`.
+  - `dataPlane`
+    - `controlPlaneEndpoint` - (Obrigatório com DataPlane) Específica o Kong Control Plane endpoint para comunicação entre planes.
+    - `telemetryEndpoint` - (Obrigatório com DataPlane) Específica o Kong Telemetry enpoint para comunicação entre planes.
+- `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
+
+:::caution Cuidado
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobreescritos definidos pelo VKPR.
+Use-o quando souber o que está fazendo!
+:::
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `namespace` - **VKPR_ENV_KONG_NAMESPACE**
+- `HA` - **VKPR_ENV_KONG_HA**
+- `mode` - **VKPR_ENV_KONG_MODE**
+- `metrics` - **VKPR_ENV_KONG_METRICS**
+- `license` - **VKPR_ENV_KONG_ENTERPRISE_LICENSE**
+- `prometheusStrategy` - **VKPR_ENV_KONG_VITALS_STRATEGY**
+- `adminPassword` - **VKPR_ENV_KONG_RBAC_ADMIN_PASSWORD**
+- `openid`
+  - `enabled` - **VKPR_ENV_KONG_KEYCLOAK_OPENID**
+  - `clientSecret` - **VKPR_ENV_KONG_KEYCLOAK_OPENID_CLIENTSECRET**
+- `plane` - **VKPR_ENV_KONG_PLANE**
+- `controlPlaneEndpoint` - **VKPR_ENV_KONG_CP_ENDPOINT**
+- `telemetryEndpoint` - **VKPR_ENV_KONG_TELEMETRY_URL**
+
+---
+
+:::info Sobre o comando
+`Versão do Chart`: 2.9.1 <br/>
+`Versão da aplicação`: v2.8.1.2 <br/>
+`Helm Chart`: [kong/kong](https://artifacthub.io/packages/helm/kong/kong/) <br/>
+:::
+
+## Veja também
+
+- [VKPR kong remove](/docs/commands/kong/remove) - Desinstala o Kong do cluster.

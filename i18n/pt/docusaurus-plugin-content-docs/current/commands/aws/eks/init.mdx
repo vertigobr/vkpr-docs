@@ -1,0 +1,102 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR aws eks init
+title: VKPR aws eks init
+---
+
+# VKPR aws eks init
+
+## Descrição
+
+Faz Fork e configura o [GitOps Repo](https://gitlab.com/vkpr/aws-eks) no seu Gitlab, usando o Gitlab Backend para salvar o estado do Terraform.
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr aws eks init [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr aws eks init --default
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default                      Use para preencher automaticamente as entradas com valores padrões
+  --project_location             Específica qual tipo de organização será forkeado o projeto
+  --project_location_path        Específica o caminho do grupo para o fork do projeto
+  --cluster_name                 Específica o nome do EKS Cluster
+  --k8s_version                  Específica a versão do EKS Kubernetes
+  --cluster_size                 Específica o numero de Nodes
+  --cluster_node_instance_type   Específica o tipo de EC2 criado para os nodes
+  --capacity_type                Específica o capacity type do Node Group
+  --terraform_state              Específica aonde deseja armazenar o TF state
+```
+
+### Arquivo de configuração
+
+#### Local
+
+Os seguintes valores são suportados:
+
+- `clusterName` - (Obrigatório) Específica o nome do EKS Cluster. O valor padrão é `eks-sample`.
+- `version` - (Obrigatório) Específica a versão do EKS Kubernetes. Valores válidos: `1.21`, `1.20`, `1.19`, `1.18`, `1.17`. O valor padrão é `1.21`.
+- `nodes`
+  - `instaceType` - (Obrigatório) Específica o tipo de EC2 criado para os nodes. Valores válidos: `t3.small`, `m5.large`, `m5.xlarge`, `t4g.small`, `m6g.large`, `m6g.xlarge`. O valor padrão é `t3.small`.
+  - `quantitySize` - (Obrigatório) Específica o numero de Nodes criados para o cluster. O valor padrão é `1`.
+  - `capacityType` - (Obrigatório) Específica o capacity type do Node Group. Valores válidos: `spot`, `on_demand`. O valor padrão é `on_demand`.
+- `terraformState` - (Obrigatório) Específica aonde deseja armazenar o TF state. Valores válidos: `terraform-cloud`, `gitlab`. O valor padrão é `gitlab`.
+- `extraArgs` - (Opcional) Opção utilizada para definir valores direto no arquivo de configuração da pipeline não suportados pelo comando.
+
+:::info extra args
+Para mais informações sobre as opções possiveis, clique [aqui](https://gitlab.com/vkpr/terraform-aws-eks#inputs).
+:::
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `eks`
+  - `clusterName` - **VKPR_ENV_EKS_CLUSTER_NAME**
+  - `version` - **VKPR_ENV_EKS_VERSION**
+  - `terraformState` - **VKPR_ENV_EKS_TERRAFORM_STATE**
+  - `nodes`
+    - `instanceType` - **VKPR_ENV_EKS_NODES_INSTANCE_TYPE**
+    - `quantitySize` - **VKPR_ENV_EKS_NODES_QUANTITY_SIZE**
+    - `capacityType` - **VKPR_ENV_EKS_NODES_CAPACITY_TYPE**
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+### AWS
+
+```bash
+  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region" --values="seu-accesskey,seu-secretaccess,seu-region"
+```
+
+### Gitlab
+
+```bash
+  rit set credential --provider="gitlab" --fields="token,username" --values="seu-token,seu-username"
+```
+
+### Terraform Cloud
+
+```bash
+  rit set credential --provider="terraformcloud" --fields="token" --values="seu-token"
+```
+
+---
+
+## Veja também
+
+- [VKPR aws eks deploy](/docs/commands/aws/eks/deploy) - Executa pipeline para provisionamento da infraestrutura criada pela pipeline do cluster EKS.
+- [VKPR aws eks destroy](/docs/commands/aws/eks/destroy) - Destrua o cluster EKS provisionada pela pipeline.

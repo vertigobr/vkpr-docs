@@ -1,0 +1,97 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR devportal install
+title: VKPR devportal install
+---
+
+# VKPR devportal install
+
+## Descrição
+
+Instala o DevPortal no cluster. Para mais informações sobre o DevPortal, clique [aqui](https://backstage.io/docs/overview/what-is-backstage).
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr devportal install [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr devportal install --default
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default              Use para preencher automaticamente as entradas com valores padrões
+  --dry_run              Simula uma instalação
+  --domain               Define o endereço da aplicação
+  --secure               Utilizar HTTPS na aplicação
+  --github_spechouseurl  Específica o endereço da Swagger Spec no github
+```
+
+### Arquivo de configuração
+
+#### Globals
+
+Os seguintes valores são suportados pelo globals:
+
+- `domain` - (Obrigatório) Define o endereço da aplicação. O valor padrão é `localhost`.
+- `secure` - (Obrigatório) Define que a aplicação será acessada externamente por HTTPS. O valor padrão é `false`.
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
+
+#### Local
+
+Os seguintes valores são suportados:
+
+- `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
+- `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
+
+:::caution Cuidado
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobreescritos definidos pelo VKPR.
+Use-o quando souber o que está fazendo!
+:::
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `namespace` - **VKPR_ENV_DEVPORTAL_NAMESPACE**
+- `ingressClassName` - **VKPR_ENV_DEVPORTAL_INGRESS_CLASS_NAME**
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+#### Okta
+
+```bash
+  rit set credential --provider="okta" --fields="clientid,clientsecret,audience" --values="seu-clientid,seu-clientsecret,seu-audienc"
+```
+
+#### Github
+
+```bash
+  rit set credential --provider="github" --fields="token" --values="seu-token"
+```
+
+---
+
+:::info Sobre o comando
+`Versão do Chart`: 0.1.2 <br/>
+`Versão da aplicação`: v1.0.0 <br/>
+`Helm Chart`: [veecode-plataform/devportal](https://vfipaas.github.io/public-charts/) <br/>
+:::
+
+## Veja também
+
+- [VKPR devportal remove](/docs/commands/devportal/remove) - Desinstala o DevPortal do cluster.

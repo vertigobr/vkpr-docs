@@ -8,7 +8,7 @@ sidebar_position: 2
 Para usar o VKPR CLI, o usuário deve possuir o [Docker](https://www.docker.com/) e [Git](https://git-scm.com/) instalados em seu ambiente local. Estes são utilizados em certas fórmulas para estruturar os aplicativos e criar o cluster local.
 
 :::danger Cuidado
-  Atualmente VKPR foi projetado especificamente para ser utilizado em distribuições UNIX, então **VKPR não suporta o uso em distribuições Windows**.
+  Atualmente VKPR foi projetado Específicamente para ser utilizado em distribuições UNIX, então **VKPR não suporta o uso em distribuições Windows**.
 :::
 
 ## Instalando VKPR CLI

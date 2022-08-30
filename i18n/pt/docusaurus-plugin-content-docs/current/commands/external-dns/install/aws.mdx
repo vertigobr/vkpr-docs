@@ -1,0 +1,87 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR external-dns install aws
+title: VKPR external-dns install aws
+---
+
+# VKPR external-dns install aws
+
+## Descrição
+
+Instala o external-dns para AWS no cluster. Para mais informações sobre o external-dns, clique [aqui](https://github.com/kubernetes-sigs/external-dns).
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr external-dns install aws [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr external-dns install aws --default
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default   Use para preencher automaticamente as entradas com valores padrões
+  --dry_run   Simula uma instalação
+  --domain    Específica o domínio do record no servidor DNS
+```
+
+### Arquivo de configuração
+
+#### Globals
+
+Os seguintes valores são suportados pelo globals:
+
+- `domain` - (Obrigatório) Define o domínio usado para delimitar o filtro no servidor DNS. O valor padrão é `localhost`.
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+
+#### Local
+
+The following arguments are supported:
+
+- `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `metrics` - (Opcional) Define que a aplicação irá expor as suas métricas. O valor padrão é `false`.
+- `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
+
+:::caution Cuidado
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobreescritos definidos pelo VKPR.
+Use-o quando souber o que está fazendo!
+:::
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `namespace` - **VKPR_ENV_EXTERNAL_DNS_NAMESPACE**
+- `metrics` - **VKPR_ENV_EXTERNAL_DNS_METRICS**
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+### AWS
+
+```bash
+  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region" --values="seu-accesskey,seu-secretaccess,seu-region"
+```
+
+---
+
+:::info Sobre o comando
+`Versão do Chart`: 1.10.1 <br/>
+`Versão da aplicação`: v0.12.0 <br/>
+`Helm Chart`: [external-dns/external-dns](https://artifacthub.io/packages/helm/external-dns/external-dns) <br/>
+:::
+
+## Veja também
+
+- [VKPR external-dns remove](/docs/commands/external-dns/remove) - Desinstala o external-dns do cluster.

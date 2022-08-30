@@ -1,0 +1,46 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR github parameter add
+title: VKPR github parameter add
+---
+
+# VKPR github parameter add
+
+## Descrição
+
+Adicione uma secret no repositório para usar dentro da pipeline do Github Actions.
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr github parameter add [flags]
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --project_name  Específica o nome do projeto no Github
+  --secret_name   Específica o nome da secret utilizada na pipeline do Github Actions.
+  --secret_value  Específica o valor da secret utilizada na pipleine do Github Actions
+```
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+### Github
+
+```bash
+  rit set credential --provider="github" --fields="github_username,github_token" --values="seu-username,seu-token"
+```
+
+---
+
+## Veja também
+
+- [VKPR aws eks init](/docs/commands/aws/eks/init) - Cria pipeline para inicializar um cluster EKS.
+- [VKPR digitalocean cluster init](/docs/commands/digitalocean/cluster/init) - Cria pipeline para inicializar um cluster Digitalocean.

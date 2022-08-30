@@ -1,0 +1,88 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR ingress install
+title: VKPR ingress install
+---
+
+# VKPR ingress install
+
+## Description
+
+Instala o nGINX IngressController no cluster. Para mais informações sobre o nGINX IngressController, clique [aqui](https://kubernetes.github.io/ingress-nginx/deploy/).
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr ingress install [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr ingress install --default
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default   Use para preencher automaticamente as entradas com valores padrões
+  --dry_run   Simula uma instalação
+  --ssl       Define que a aplicação utilizará certificado próprio
+  --crt_file  Específica o caminho do .crt do nginx
+  --key_file  Específica o caminho do .key do nginx
+```
+
+### Arquivo de configuração
+
+#### Globals
+
+Os seguintes valores são suportados pelo globals:
+
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+
+#### Local
+
+Os seguintes valores são suportados:
+
+- `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `metrics` - (Opcional) Define que a aplicação irá expor as suas métricas. O valor padrão é `false`.
+- `ssl`
+  - `enabled` - (Opcional) Define que a aplicação utilizará certificado interno para expor as aplicações que passarem por seu ingressController. O valor padrão é `false`.
+  - `crt` - Específica o caminho do certificado.
+  - `key` - Específica o caminho do chave.
+  - `secretName` - (Opcional) Específica uma secret TLS a qual conterá os valores do crt e key descritos.
+- `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
+
+:::caution Cuidado
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobreescritos definidos pelo VKPR.
+Use-o quando souber o que está fazendo!
+:::
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `namespace` - **VKPR_ENV_INGRESS_NAMESPACE**
+- `metrics` - **VKPR_ENV_INGRESS_METRICS**
+- `ssl`
+  - `enabled` - **VKPR_ENV_INGRESS_SSL**
+  - `crt` - **VKPR_ENV_INGRESS_CERTIFICATE**
+  - `key` - **VKPR_ENV_INGRESS_KEY**
+  - `secretName` - **VKPR_ENV_INGRESS_SSL_SECRET**
+
+---
+
+:::info Sobre o comando
+`Versão do Chart`: 4.0.13 <br/>
+`Versão da aplicação`: v1.1.0 <br/>
+`Helm Chart`: [helm/nginx-ingress](https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx) <br/>
+:::
+
+## Veja também
+
+- [VKPR ingress remove](/docs/commands/ingress/remove) - Desinstala o ingress do cluster.
