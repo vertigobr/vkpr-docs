@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
-version: v1.0.20
+sidebar_label: VKPR ingress install
+title: VKPR ingress install
 ---
 
 # VKPR ingress install
@@ -23,30 +24,16 @@ Non-interactive without setting values or using `VKPR Values`:
   vkpr ingress install --default
 ```
 
-### Example Usage
-
-```jsx title="vkpr ingress install --default"
-# vkpr.yaml
----
-ingress:
-  enabled: true
-  namespace: "foo"
-  loadBalancerType: "NLB"
-  ssl:
-    enabled: false
-  metrics: true
-  helmArgs:
-    ...
-```
-
 ## Argument Reference
 
 ### Flags
 
 ```sh
-  --default=false: Use to automatically fill inputs with default values.
-  --dry_run=false: Specifies if output the values from the application.
-  --lb_type='Classic': Define the Loadbalancer type in AWS.
+  --default   Use to automatically fill inputs with default values
+  --dry_run   Simulate an install
+  --ssl       Specifies if the ingress will be using internal SSL certificates
+  --crt_file  Specifies the ingress .crt file path
+  --key_file  Specifies the ingress .key file path
 ```
 
 ### Values File
@@ -55,27 +42,38 @@ ingress:
 
 The following arguments are supported by the globals:
 
-- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
 
 #### Local
 
 The following arguments are supported:
 
-- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
-- [`loadBalancerType`](#argument-reference) - (Required) Define the Loadbalancer type in AWS. Allowed values: `Classic`, `NLB`. The default is `Classic`.
-- [`ssl`](#argument-reference)
-  - [`enabled`](#argument-reference) - (Optional) Enable the certificate inside the ingressController. The default is `false`.
-  - [`crt`](#argument-reference) - (Required) Specify the certificate path.
-  - [`key`](#argument-reference) - (Required) Specify the key path.
-  - [`secretName`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume.
-- [`metrics`](#argument-reference) - (Optional) Specifies if the application will expose your metrics. The default is `false`.
-- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
-- [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+- `enabled` - (Optional) Enables the installation if performed with the command [vkpr apply](/docs/commands/apply).
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `metrics` - (Optional) Specifies if the application will expose your metrics. The default is `false`.
+- `ssl`
+  - `enabled` - (Optional) Enable the certificate inside the ingressController. The default is `false`.
+  - `crt` - Specify the certifi cate path.
+  - `key` - Specify the key path.
+  - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
+- `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution
 Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
 Use it when you know what you're doing
 :::
+
+### Environment values
+
+The following variables are supported:
+
+- `namespace` - **VKPR_ENV_INGRESS_NAMESPACE**
+- `metrics` - **VKPR_ENV_INGRESS_METRICS**
+- `ssl`
+  - `enabled` - **VKPR_ENV_INGRESS_SSL**
+  - `crt` - **VKPR_ENV_INGRESS_CERTIFICATE**
+  - `key` - **VKPR_ENV_INGRESS_KEY**
+  - `secretName` - **VKPR_ENV_INGRESS_SSL_SECRET**
 
 ---
 

@@ -1,5 +1,7 @@
 ---
 sidebar_position: 1
+sidebar_label: VKPR keycloak install
+title: VKPR keycloak install
 ---
 
 # VKPR keycloak install
@@ -31,16 +33,16 @@ If the VKPR dont identify any postgresql installed in the cluster, he will [inst
 ### Flags
 
 ```sh
-  --default          Use to automatically fill inputs with default values.
-  --dry_run          Specifies if output the values from the application.
-  --domain           Specifies the domain to use in the application.
-  --secure           Specifies if the application will have HTTPS.
-  --HA               Specifies if the application will have High Availability.
-  --admin_password   Specifies the Super Admin password
+  --default          Use to automatically fill inputs with default values
+  --dry_run          Simulate an install
+  --domain           Set the application address
+  --secure           Using HTTPS in the application
+  --HA               Specifies if the application will have High Availability
   --admin_user       Specifies the Super Admin username
+  --admin_password   Specifies the Super Admin password
   --ssl              Specifies if the keycloak will be using internal SSL certificates
-  --crt_file         Specifies the keycloak .crt file path.
-  --key_file         Specifies the keycloak .key file path.
+  --crt_file         Specifies the keycloak .crt file path
+  --key_file         Specifies the keycloak .key file path
 ```
 
 ### Values File
@@ -58,9 +60,9 @@ The following arguments are supported by the globals:
 
 The following arguments are supported:
 
-- `enabled` - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
-- `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `enabled` - (Optional) Enables the installation if performed with the command [vkpr apply](/docs/commands/apply).
 - `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
 - `HA` - (Optional) Specifies if the application will have High Availability. The default is `false`.
 - `metrics` - (Optional) Specifies if the application will expose your metrics. The default is `false`.
 - `adminUser` - (Required) Specify the keycloak admin password. The default is `admin`.
@@ -68,16 +70,16 @@ The following arguments are supported:
 - `openid`
   - `grafana`
     - `enabled` - (Optional) Enable realm creation in Keycloak for Grafana. The default is `false`.
-    - `clientSecret` - (Optional) Specifies the Client Secret from Client ID used. The default is a random UUID.
-    - `identityProviders` - (Optional) Specifies which IdP will use. Allowed Values: Google, Github
+    - `clientSecret` - Specifies the Client Secret from Client ID used. The default is a random UUID.
+    - `identityProviders` - Specifies which IdP will use. Allowed Values: Google, Github
   - `kong`
     - `enabled` - (Optional) Enable realm creation in Keycloak for Kong Manager. The default is `false`.
-    - `clientSecret` - (Optional) Specifies the Client Secret from Client ID used. The default is a random UUID.
-    - `identityProviders` - (Optional) Specifies which IdP will use. Allowed Values: Google, Github
+    - `clientSecret` - Specifies the Client Secret from Client ID used. The default is a random UUID.
+    - `identityProviders` - Specifies which IdP will use. Allowed Values: Google, Github
 - `ssl`
   - `enabled` - (Optional) Enable the manual certificate into ingress. The default is `false`.
-  - `crt` - (Required) Specify the certificate path.
-  - `key` - (Required) Specify the key path.
+  - `crt` - Specify the certificate path.
+  - `key` - Specify the key path.
   - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
 - `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
@@ -111,9 +113,9 @@ The following variables are supported:
     - `clientSecret` - **VKPR_ENV_KEYCLOAK_OPENID_KONG_CLIENTSECRET**
     - `identityProviders` - **VKPR_ENV_KEYCLOAK_OPENID_KONG_IDENTITY_PROVIDERS**
 
-### Setting Postgresql credentials
+## Setting Postgresql credentials
 
-#### Postgresql
+### Postgresql
 
 ```bash
   rit set credential --provider="postgres" --fields="password" --values="your-password"

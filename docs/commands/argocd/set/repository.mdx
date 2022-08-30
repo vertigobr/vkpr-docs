@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
-version: v1.0.20
+sidebar_label: VKPR argocd set repository
+title: VKPR argocd set repository
 ---
 
 # VKPR argocd set repository
@@ -22,12 +23,14 @@ Interactive inputs:
 ### Flags
 
 ```sh
-  --repo_url='': Specifies the Git repository URL to ArgoCD sync the repository.
+  --repo_url   Specifies the Git repository URL to ArgoCD sync the repository.
 ```
 
 ### Setting Provider credentials
 
 **CAUTION: Setting credentials manually will override the credentials already saved in memory**
+
+### Gitlab
 
 ```bash
   rit set credential --provider="gitlab" --fields="token,username" --values="your-token,your-username"

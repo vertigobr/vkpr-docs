@@ -1,41 +1,84 @@
 ---
 sidebar_position: 1
-version: v1.0.20
+sidebar_label: VKPR aws rds init
+title: VKPR aws rds init
 ---
 
-# VKPR aws eks tfc
+# VKPR aws rds init
 
 ## Description
 
-Fork and setup the [GitOps Repo](https://gitlab.com/vkpr/aws-eks) in your Gitlab, using Terraform Cloud as Backend to save the Terraform state.
+Create a RDS database
 
 ## Commands
 
 Interactive inputs:
 
 ```bash
-  vkpr aws eks tfc [flags]
+  vkpr aws rds init [flags]
 ```
 
 Non-interactive without setting values or using `VKPR Values`:
 
 ```bash
-  vkpr aws eks tfc --default
+  vkpr aws rds init --default
 ```
 
-### Setting Provider credentials
+## Argument Reference
+
+### Flags
+
+```sh
+  --default         Use to automatically fill inputs with default values
+  --instance_name   Specifies the RDS instance name.
+  --instance_type   Specifies the RDS instance type.
+  --dbname          Specifies the name of the new database.
+  --dbuser          Specifies the username of the database owner.
+  --dbpassword      Specifies the database owners user password.
+```
+
+### Values File
+
+#### Local
+
+The following arguments are supported:
+
+- `instanceName` - (Required) Specifies the RDS instance name. The default is `rds-sample`.
+- `instanceType` - (Required) Specifies the RDS instance type. Allowed Values: `db.t3.micro`, `db.m5.large`, `db.m5.xlarge`, `db.t4g.micro`, `db.m6g.large`, `db.m6g.xlarge`. The default is `db.t3.micro`.
+- `dbName` - (Required) Specifies the name of the new database. The default is `vkprDb`.
+- `dbUser` - (Required) Specifies the username of the database owner. The default is `vkprUser`.
+- `dbPassword` - (Required) Specifies the database owner's user password. The default is `vkpr1234`.
+
+### Environment values
+
+The following variables are supported:
+
+- `rds`
+  - `instanceName` - **VKPR_ENV_RDS_INSTANCE_NAME**
+  - `instanceType` - **VKPR_ENV_RDS_INSTANCE_TYPE**
+  - `dbName` - **VKPR_ENV_RDS_DB_NAME**
+  - `dbUser` - **VKPR_ENV_RDS_DB_USER**
+  - `dbPassword` - **VKPR_ENV_RDS_DB_PASSWORD**
+
+## Setting Provider credentials
 
 **CAUTION: Setting credentials manually will override the credentials already saved in memory**
 
-#### Terraform Cloud
+### AWS
 
 ```bash
-  rit set credential --provider="terraformcloud" --fields="token,email" --values="your-token,your-email"
+  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region" --values="your-accesskey,your-secretaccess,your-region"
+```
+
+### Postgresql
+
+```bash
+  rit set credential --provider="postgres" --fields="password" --values="your-access-password"
 ```
 
 ---
 
 ## See Also
 
-- [VKPR aws eks deploy](/docs/commands/aws/eks/deploy) - Execute the pipeline to deploy the EKS Cluster.
-- [VKPR aws eks destroy](/docs/commands/aws/eks/destroy) - Execute the pipeline to destroy the EKS Cluster.
+- [VKPR aws rds snapshot](/docs/commands/aws/rds/snapshot) - Execute the pipeline to deploy the rds Cluster.
+- [VKPR aws rds destroy](/docs/commands/aws/rds/destroy) - Execute the pipeline to destroy the rds Cluster.

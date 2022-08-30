@@ -73,7 +73,7 @@ Os seguintes valores são suportados:
 - `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
 
 :::caution Cuidado
-Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobreescritos definidos pelo VKPR.
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobrescritos definidos pelo VKPR.
 Use-o quando souber o que está fazendo!
 :::
 
@@ -99,7 +99,7 @@ As seguintes variáveis são suportadas:
 ### AWS
 
 ```bash
-  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region" --values="seu-accesskey,seu-secretaccess,seu-region"
+  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region,kmskeyid,kmsendpoint" --values="seu-accesskey,seu-secretaccess,seu-region,seu-kmskeyid,seu-kmsendpoint"
 ```
 
 ### Azure

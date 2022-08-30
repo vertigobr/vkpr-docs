@@ -1,5 +1,7 @@
 ---
 sidebar_position: 1
+sidebar_label: VKPR prometheus-stack install
+title: VKPR prometheus-stack install
 ---
 
 # VKPR prometheus-stack install
@@ -35,7 +37,7 @@ Non-interactive without setting values or using `VKPR Values`:
 
 ```sh
   --default           Use to automatically fill inputs with default values.
-  --dry_run           Specifies if output the values from the application.
+  --dry_run           Simulate an install.
   --domain            Specifies the domain to use in the application.
   --secure            Specifies if the application will have HTTPS.
   --alertmanager      Enable Alert-manager to be installed.
@@ -61,33 +63,33 @@ The following arguments are supported by the globals:
 
 The following arguments are supported:
 
-- `enabled` - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
+- `enabled` - (Optional) Enables the installation if performed with the command [vkpr apply](/docs/commands/apply).
 - `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
 - `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
 - `k8sExporters` - (Optional) Enable kubernetes metrics crawlers. The default is `true`.
 - `alertManager`
-  - `enabled` - (Required) Enable the auto install from the application. The default is `false`.
+  - `enabled` - (Required) Provides Endpoint for application access. The default is `false`.
   - `HA` - (Optional) Specifies if the application will have High Availability. The default is `false`.
   - `ssl`
     - `enabled` - (Optional) Enable the manual certificate into ingress. The default is `false`.
-    - `crt` - (Required) Specify the certificate path.
-    - `key` - (Required) Specify the key path.
+    - `crt` - Specify the certificate path.
+    - `key` - Specify the key path.
     - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
 - `grafana`
   - `adminPassword` - (Required) Specify the grafana admin password. The default is `vkpr123`.
   - `persistence` - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
   - `ssl`
     - `enabled` - (Optional) Enable the manual certificate into ingress. The default is `false`.
-    - `crt` - (Required) Specify the certificate path.
-    - `key` - (Required) Specify the key path.
+    - `crt` - Specify the certificate path.
+    - `key` - Specify the key path.
     - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
 - `prometheus`
-  - `enabled` - (Required) Enable the auto install from the application. The default is `false`.
+  - `enabled` - (Required) Provides Endpoint for application access. The default is `false`.
   - `persistence` - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
   - `ssl`
     - `enabled` - (Optional) Enable the manual certificate into ingress. The default is `false`.
-    - `crt` - (Required) Specify the certificate path.
-    - `key` - (Required) Specify the key path.
+    - `crt` - Specify the certificate path.
+    - `key` - Specify the key path.
     - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
 - `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 

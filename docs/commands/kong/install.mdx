@@ -1,5 +1,7 @@
 ---
 sidebar_position: 1
+sidebar_label: VKPR kong install
+title: VKPR kong install
 ---
 
 # VKPR kong install
@@ -26,28 +28,22 @@ Non-interactive without setting values or using `VKPR Values`:
 If the VKPR dont identify any postgresql installed in the cluster, he will [install](/docs/commands/postgresql/install) to use with kong.
 :::
 
-:::caution Info
-If you want to use the Prometheus Strategy for Kong Vitals (vitals.prometheusStrategy: true),
-along with metrics being set to true, you must first install the prometheus-stack (vkpr prometheus-stack install),
-otherwise you won't have the needed CRDs installed on your environment.
-:::
-
 ## Argument Reference
 
 ### Flags
 
 ```sh
-  --default         Use to automatically fill inputs with default values.
-  --dry_run         Specifies if output the values from the application.
-  --domain          Specifies the domain to use in the application.
-  --secure          Specifies if the application will have HTTPS.
-  --HA              Specifies if the application will have High Availability.
-  --mode            Specifies the type of Kong Deployment.
-  --license         Specifies the Kong Enterprise License path.
-  --rbac_password   Specifies the RBAC Super Admin Password. Has no effect on hybrid data plane installatio
-  --plane           If mode is set do hybrid, specifies which plane to install.
-  --cp_url          Specifies which kong DP to connect.
-  --telemetry_url   Specifies which kong DP telemetry endpoint to connect.
+  --default         Use to automatically fill inputs with default values
+  --dry_run         Simulate an install
+  --domain          Set the application address
+  --secure          Using HTTPS in the application
+  --HA              Specifies if the application will have High Availability
+  --mode            Specifies the type of Kong Deployment
+  --license         Specifies the Kong Enterprise License path
+  --rbac_password   Specifies the RBAC Super Admin Password Has no effect on hybrid data plane installatio
+  --plane           If mode is set do hybrid, specifies which plane to install
+  --cp_url          Specifies which kong CP endpoint
+  --telemetry_url   Specifies which kong CP telemetry endpoint
 ```
 
 ### Values File
@@ -64,25 +60,25 @@ The following arguments are supported by the globals:
 
 The following arguments are supported:
 
-- `enabled` - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
+- `enabled` - (Optional) Enables the installation if performed with the command [vkpr apply](/docs/commands/apply).
 - `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
 - `HA` - (Optional) Specifies if the application will have High Availability. The default is `false`.
-- `mode` - (Required) Specifies the type of Kong Deployment. Allowed Values: `dbless`, `standalone` and `hybrid`. The default is `dbless`.
 - `metrics` - (Optional) Specifies if the application will expose your metrics. The default is `false`.
+- `mode` - (Required) Specifies the type of Kong Deployment. Allowed Values: `dbless`, `standalone` and `hybrid`. The default is `dbless`.
 - `enterprise`
   - `license` - (Optional) Specifies the Kong Enterprise License path.
 - `rbac`
   - `adminPassword` - (Required) Specify the kong admin password. The default is `vkpr123`.
   - `openid`
     - `enabled` - (Optional) Enable Kong Manager OpenID Connect with Keycloak.
-    - `clientSecret` - (Optional) Specifies the Client Secret used by Keycloak.
+    - `clientSecret` - Specifies the Client Secret used by Keycloak.
 - `vitals`
   - `prometheusStrategy` - (Optional) Use prometheus to collect the vital's metrics from Kong.
 - `hybrid`
-  - `plane` - (Optional) Specifies the Kong Plane to be installed.
+  - `plane` - (Optional) Specifies the Kong Plane to be installed. Allowed Values: `control` and `data`. The default is `control`.
   - `dataPlane`
-    - `controlPlaneEndpoint` - (Optional) Specifies the Kong Control Plane endpoint to communicate between the planes.
-    - `telemetryEndpoint` - (Optional) Specifies the Kong Telemetry enpoint to communicate between the planes.
+    - `controlPlaneEndpoint` - (Required with DataPlane) Specifies the Kong Control Plane endpoint to communicate between the planes.
+    - `telemetryEndpoint` - (Required with DataPlane) Specifies the Kong Telemetry enpoint to communicate between the planes.
 - `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution
