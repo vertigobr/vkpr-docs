@@ -60,7 +60,6 @@ Os seguintes valores são suportados:
 - `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
 - `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
 - `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
-- `HA` - (Opcional) Define que a aplicação será instalada em HA. O valor padrão é `false`.
 - `metrics` - (Opcional) Define que a aplicação irá expor as suas métricas. O valor padrão é `false`.
 - `ssl`
   - `enabled` - (Opcional) Define que a aplicação utilizará certificado próprio. O valor padrão é `false`.
@@ -70,7 +69,7 @@ Os seguintes valores são suportados:
 - `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
 
 :::caution Cuidado
-Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobreescritos definidos pelo VKPR.
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobrescritos definidos pelo VKPR.
 Use-o quando souber o que está fazendo!
 :::
 

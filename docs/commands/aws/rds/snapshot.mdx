@@ -1,41 +1,50 @@
 ---
 sidebar_position: 2
-version: v1.0.20
+sidebar_label: VKPR aws rds snapshot
+title: VKPR aws rds snapshot
 ---
 
-# VKPR aws eks tfc
+# VKPR aws rds snapshot
 
 ## Description
 
-Fork and setup the [GitOps Repo](https://gitlab.com/vkpr/aws-eks) in your Gitlab, using Terraform Cloud as Backend to save the Terraform state.
+Create a snapshot from a RDS database.
 
 ## Commands
 
 Interactive inputs:
 
 ```bash
-  vkpr aws eks tfc [flags]
+  vkpr aws rds snapshot [flags]
 ```
 
 Non-interactive without setting values or using `VKPR Values`:
 
 ```bash
-  vkpr aws eks tfc --default
+  vkpr aws rds snapshot --default
 ```
 
-### Setting Provider credentials
+## Argument Reference
+
+### Flags
+
+```sh
+  --default         Use to automatically fill inputs with default value provided on config.json
+  --instance_name   Specifies the RDS instance name to create SNAPSHOT.
+```
+
+## Setting Provider credentials
 
 **CAUTION: Setting credentials manually will override the credentials already saved in memory**
 
-#### Terraform Cloud
+### AWS
 
 ```bash
-  rit set credential --provider="terraformcloud" --fields="token,email" --values="your-token,your-email"
+  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region" --values="your-accesskey,your-secretaccess,your-region"
 ```
 
 ---
 
 ## See Also
 
-- [VKPR aws eks deploy](/docs/commands/aws/eks/deploy) - Execute the pipeline to deploy the EKS Cluster.
-- [VKPR aws eks destroy](/docs/commands/aws/eks/destroy) - Execute the pipeline to destroy the EKS Cluster.
+- [VKPR aws rds destroy](/docs/commands/aws/rds/destroy) - Execute the pipeline to destroy the rds Cluster.

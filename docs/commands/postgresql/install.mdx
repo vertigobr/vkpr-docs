@@ -1,12 +1,14 @@
 ---
 sidebar_position: 1
+sidebar_label: VKPR postgresql install
+title: VKPR postgresql install
 ---
 
 # VKPR postgresql install
 
 ## Description
 
-Install Postgresql into cluster. For more information about Postgresql, click [here](https://www.postgresql.org/).
+Install PostgreSQL into cluster. For more information about PostgreSQL, click [here](https://www.postgresql.org/).
 
 ## Commands
 
@@ -27,9 +29,9 @@ Non-interactive without setting values or using `VKPR Values`:
 ### Flags
 
 ```sh
-  --default   Use to automatically fill inputs with default values.
-  --dry_run   Specifies if output the values from the application.
-  --HA        Specifies if the application will have High Availability.
+  --default   Use to automatically fill inputs with default values
+  --dry_run   Simulate an install
+  --HA        Specifies if the application will have High Availability
 ```
 
 ### Values File
@@ -44,7 +46,7 @@ The following arguments are supported by the globals:
 
 The following arguments are supported:
 
-- `enabled` - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application
+- `enabled` - (Optional) Enables the installation if performed with the command [vkpr apply](/docs/commands/apply).
 - `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
 - `HA` - (Required) Specifies if the application will have High Availability. The default is `false`.
 - `metrics` - (Optional) Specifies if the application will expose your metrics. The default is `false`.
@@ -89,4 +91,4 @@ The following variables are supported:
 
 ## See Also
 
-- [VKPR postgres remove](/docs/commands/postgresql/remove) - Uninstall postgres from the cluster.
+- [VKPR postgresql remove](/docs/commands/postgresql/remove) - Uninstall Postgresql from the cluster.

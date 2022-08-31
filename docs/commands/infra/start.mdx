@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
-version: v1.0.20
+sidebar_label: VKPR infra start
+title: VKPR infra start
 ---
 
 # VKPR infra start
@@ -23,33 +24,17 @@ Non-interactive without setting values or using `VKPR Values`:
   vkpr infra start --default
 ```
 
-### Example Usage
-
-```jsx title="vkpr infra start --default"
-# vkpr.yaml
----
-infra:
-  enabled: true
-  httpPort: "foo"
-  httpsPort: "bar"
-  enableTraefik: false
-  resources:
-    masters: 1
-    workers: 3
-  enableVolume: true
-```
-
 ## Argument Reference
 
 ### Flags
 
 ```sh
-  --default=false: Use to automatically fill inputs with default values.
-  --enable_traefik=false: Enable Traefik by default in Cluster.
-  --enable_volume=false: Enable mount of volumes in cluster.
-  --http_port='8000': Specifies the HTTP listening port from the Cluster.
-  --https_port='8001': Specifies the HTTPS listening port from the Cluster.
-  --worker_nodes='1': Specifies the quantity of Worker nodes.
+  --default         Use to automatically fill inputs with default values.
+  --enable_traefik  Enable Traefik by default in Cluster.
+  --enable_volume   Enable mount of volumes in cluster.
+  --http_port       Specifies the HTTP listening port from the Cluster.
+  --https_port      Specifies the HTTPS listening port from the Cluster.
+  --worker_nodes    Specifies the quantity of Worker nodes.
 ```
 
 ### Values File
@@ -58,17 +43,29 @@ infra:
 
 The following arguments are supported:
 
-- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
-- [`httpPort`](#argument-reference) - (Required) Define the domain used by the application. The default is `localhost`.
-- [`httpsPort`](#argument-reference) - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
-- [`enableTraefik`](#argument-reference) - (Required) Define which ingress controller will expose the application. The default is `false`.
-- [`resources`](#argument-reference)
-  - [`masters`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `1`.
-  - [`workers`](#argument-reference) - (Required) Define where the application will be provisioned. The default is `1`.
-- [`enableVolume`](#argument-reference) - (Required) Define where the application will be provisioned. The default is `false`.
+- `enabled` - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
+- `httpPort` - (Required) Specifies the HTTP port on which the Cluster will communicate. The default is `8000`.
+- `httpsPort` - (Required) Specifies the HTTPS port on which the Cluster will communicate. The default is `8001`.
+- `enableTraefik` - (Required) Enable ingressController Traefik on the cluster. The default is `false`.
+- `enableVolume` - (Required) Enables local mapping of volumes on the cluster. The default is `false`.
+- `resources`
+  - `masters` - (Optional) Specifies the number of CP nodes in the cluster. The default is `1`.
+  - `workers` - (Optional) Specifies the number of DP nodes in the cluster. The default is `1`.
+
+### Environment values
+
+The following variables are supported:
+
+- `httpPort` - **VKPR_ENV_HTTP_PORT**
+- `httpsPort` - **VKPR_ENV_HTTPS_PORT**
+- `enableTraefik` - **VKPR_ENV_TRAEFIK**
+- `enableVolume` - **VKPR_ENV_VOLUME**
+- `resources`
+  - `masters` - **VKPR_ENV_K3D_SERVERS**
+  - `workers` - **VKPR_ENV_K3D_AGENTS**
 
 ---
 
 ## See Also
 
-- [VKPR infra down](/docs/commands/infra/down) - Delete the local cluster created.
+- [VKPR infra stop](/docs/commands/infra/stop) - Delete the local cluster created.

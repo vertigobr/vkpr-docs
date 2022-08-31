@@ -1,13 +1,14 @@
 ---
 sidebar_position: 3
-version: v1.0.20
+sidebar_label: VKPR aws rds destroy
+title: VKPR aws rds destroy
 ---
 
 # VKPR aws rds destroy
 
 ## Description
 
-Fork and setup the [GitOps Repo](https://gitlab.com/vkpr/aws-eks) in your Gitlab, using Terraform Cloud as Backend to save the Terraform state.
+Destroy a RDS database.
 
 ## Commands
 
@@ -28,12 +29,22 @@ Non-interactive without setting values or using `VKPR Values`:
 ### Flags
 
 ```sh
-  --rds_instance_name='rds-sample': Specifies the RDS instance name to destroy.
+  --default         Use to automatically fill inputs with default value provided on config.json
+  --instance_name   Specifies the RDS instance to be destroyed.
+```
+
+## Setting Provider credentials
+
+**CAUTION: Setting credentials manually will override the credentials already saved in memory**
+
+### AWS
+
+```bash
+  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region" --values="your-accesskey,your-secretaccess,your-region"
 ```
 
 ---
 
 ## See Also
 
-- [VKPR aws rds init](/docs/commands/aws/rds/init) - Execute the command to initialize a DB in RDS.
-- [VKPR aws rds snapshot](/docs/commands/aws/rds/destroy) - Execute the command to create a snapshot from the DB in RDS.
+- [VKPR aws rds destroy](/docs/commands/aws/rds/destroy) - Execute the pipeline to destroy the rds Cluster.

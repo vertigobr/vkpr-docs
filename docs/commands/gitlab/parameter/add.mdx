@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
-version: v1.0.20
+sidebar_label: VKPR gitlab parameter add
+title: VKPR gitlab parameter add
 ---
 
 # VKPR gitlab parameter add
@@ -22,20 +23,26 @@ Interactive inputs:
 ### Flags
 
 ```sh
-  --default=false: Use to automatically fill inputs with default values.
-  --parameter_masked=false: Specifies if the parameter will be masked when execute the pipeline
-  --parameter_name='': Specifies the name from the secret to be used in Gitlab pipeline
-  --parameter_scope='': Define the scope from the Gitlab secret
-  --parameter_value='': Specifies the value from the secret to be used in Gitlab pipeline
-  --project_name='': Specifies the Gitlab project Name
+  --project_name      Specifies the Gitlab project Name
+  --parameter_name    Specifies the name from the secret to be used in Gitlab pipeline
+  --parameter_value   Specifies the value from the secret to be used in Gitlab pipeline
+  --parameter_masked  Specifies if the parameter will be masked when execute the pipeline
+  --parameter_scope   Define the scope from the Gitlab secret
 ```
 
-### Setting Provider credentials
+## Setting Provider credentials
 
 **CAUTION: Setting credentials manually will override the credentials already saved in memory**
 
-#### Github
+### Gitlab
 
 ```bash
   rit set credential --provider="gitlab" --fields="gitlab_username,gitlab_token" --values="your-username,your-token"
 ```
+
+---
+
+## See Also
+
+- [VKPR aws eks init](/docs/commands/aws/eks/init) - Create the pipeline to init the EKS Cluster plan.
+- [VKPR digitalocean cluster init](/docs/commands/digitalocean/cluster/init) - Create the pipeline to init the Cluster plan.

@@ -1,5 +1,7 @@
 ---
 sidebar_position: 1
+sidebar_label: VKPR vault install
+title: VKPR vault install
 ---
 
 # VKPR vault install
@@ -31,15 +33,15 @@ Vault will always be installed in HA (High Availability), it is recommended that
 ### Flags
 
 ```sh
-  --default       Use to automatically fill inputs with default values.
-  --dry_run       Specifies if output the values from the application.
-  --domain        Specifies the domain to use in the application.
-  --secure        Specifies if the application will have HTTPS.
-  --mode          Specifies the Vault storage mode.
-  --auto_unseal   Enable to Auto Unseal the Vault with a Cloud provider.
-  --ssl           Specifies if the vault will be using internal SSL certificates
-  --crt_file      Specifies the vault .crt file path.
-  --key_file      Specifies the vault .key file path.
+  --default       Use to automatically fill inputs with default values
+  --dry_run       Simulate an install
+  --domain        Set the application address
+  --secure        Using HTTPS in the application
+  --mode          Specifies the Vault storage mode
+  --auto_unseal   Enable to Auto Unseal the Vault with a Cloud provider
+  --ssl           Defines that the application will use its own certificate
+  --crt_file      Specifies the vault .crt file path
+  --key_file      Specifies the vault .key file path
 ```
 
 ### Values File
@@ -57,16 +59,16 @@ The following arguments are supported by the globals:
 
 The following arguments are supported:
 
-- `enabled` - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
-- `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `enabled` - (Optional) Enables the installation if performed with the command [vkpr apply](/docs/commands/apply).
 - `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `metrics` - (Optional) Specifies if the application will expose your metrics. The default is `false`.
 - `storageMode` - (Required) Specifies the Vault storage mode. Allowed Values: `raft`, `consul`. The default is `raft`.
 - `autoUnseal` - (Required) Enable to Auto Unseal the Vault with a Cloud provider. Allowed Values: `aws`, `azure`. The default is `false`.
-- `metrics` - (Optional) Specifies if the application will expose your metrics. The default is `false`.
 - `ssl`
   - `enabled` - (Optional) Enable the manual certificate into ingress. The default is `false`.
-  - `crt` - (Required) Specify the certificate path.
-  - `key` - (Required) Specify the key path.
+  - `crt` - Specify the certificate path.
+  - `key` - Specify the key path.
   - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
 - `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
@@ -90,17 +92,17 @@ The following variables are supported:
   - `key` - **VKPR_ENV_VAULT_KEY**
   - `secretName` - **VKPR_ENV_VAULT_SSL_SECRET**
 
-### Setting Provider credentials
+## Setting Provider credentials
 
 **CAUTION: Setting credentials manually will override the credentials already saved in memory**
 
-#### AWS
+### AWS
 
 ```bash
   rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region,kmskeyid,kmsendpoint" --values="your-accesskey,your-secretaccess,your-region,your-kmskeyid,your-kmsendpoint"
 ```
 
-#### Azure
+### Azure
 
 ```bash
   rit set credential --provider="azure" --fields="azuretenantid,azureclientid,azureclientsecret,vaultazurekeyvaultvaultname,vaultazurekeyvaultkeyname" --values="your-azuretenantid,your-azureclientid,your-azureclientsecret,your-vaultazurekeyvaultvaultname,your-vaultazurekeyvaultkeyname,"

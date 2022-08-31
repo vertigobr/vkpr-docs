@@ -1,5 +1,7 @@
 ---
 sidebar_position: 14
+sidebar_label: VKPR Init
+title: VKPR Init
 ---
 
 # VKPR Init
@@ -8,8 +10,19 @@ sidebar_position: 14
 
 Installs all binaries and their libraries used in VKPR.
 
+Binaries are installed in `~/.vkpr/bin`, as follows:
+
+- kubectl - v1.20.0
+- helm - v3.9.0
+- k3d - v5.2.2
+- jq - v1.6
+- yq - v4.16.1
+- decK - v0.24.15
+- aws-cli - latest
+- okteto-cli - latest
+
 :::note Attention!
-This formula is used only when you want to contribute with VKPR.
+This formula is used only when you want to contribute with VKPR or update the VKPR binaries.
 :::
 
 ## Commands
@@ -19,6 +32,8 @@ Non-interactive:
 ```bash
   vkpr init
 ```
+
+---
 
 ## See Also
 

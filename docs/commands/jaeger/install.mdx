@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
-version: v1.0.20
+sidebar_label: VKPR jaeger install
+title: VKPR jaeger install
 ---
 
 # VKPR jaeger install
@@ -23,29 +24,18 @@ Non-interactive without setting values or using `VKPR Values`:
   vkpr jaeger install --default
 ```
 
-### Example Usage
-
-```jsx title="vkpr jaeger install --default"
-# vkpr.yaml
----
-jaeger:
-  enabled: true
-  namespace: "foo"
-  ingressClassName: "bar"
-  persistence: true
-  helmArgs:
-    ...
-```
-
 ## Argument Reference
 
 ### Flags
 
 ```sh
-  --default=false: Use to automatically fill inputs with default values.
-  --domain='localhost': Specifies the domain to use in the application.
-  --dry_run=false: Specifies if output the values from the application.
-  --secure=false: Specifies if the application will have HTTPS.
+  --default   Use to automatically fill inputs with default values
+  --dry_run   Simulate an install
+  --domain    Set the application address
+  --secure    Using HTTPS in the application
+  --ssl       Defines that the application will use its own certificate
+  --crt_file  Specifies the jaeger .crt file path
+  --key_file  Specifies the jaeger .key file path
 ```
 
 ### Values File
@@ -54,30 +44,44 @@ jaeger:
 
 The following arguments are supported by the globals:
 
-- [`domain`](#argument-reference) - (Required) Define the domain used by the application. The default is `localhost`.
-- [`secure`](#argument-reference) - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
-- [`ingressClassname`](#argument-reference) - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
-- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `domain` - (Required) Define the domain used by the application. The default is `localhost`.
+- `secure` - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
+- `ingressClassname` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
 
 #### Local
 
 The following arguments are supported:
 
-- [`enabled`](#argument-reference) - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
-- [`namespace`](#argument-reference) - (Optional) Define where the application will be provisioned. The default is `vkpr`.
-- [`ingressClassname`](#argument-reference) - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
-- [`ssl`](#argument-reference)
-  - [`enabled`](#argument-reference) - (Optional) Enable the manual certificate into ingress. The default is `false`.
-  - [`crt`](#argument-reference) - (Required) Specify the certificate path.
-  - [`key`](#argument-reference) - (Required) Specify the key path.
-  - [`secretName`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume.
-- [`persistance`](#argument-reference) - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
-- [`helmArgs`](#argument-reference) - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+- `enabled` - (Optional) Enables the installation if performed with the command [vkpr apply](/docs/commands/apply).
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `ingressClassname` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `persistence` - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
+- `ssl`
+  - `enabled` - (Optional) Enable the manual certificate into ingress. The default is `false`.
+  - `crt` - Specify the certificate path.
+  - `key` - Specify the key path.
+  - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
+- `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution
 Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
 Use it when you know what you're doing
 :::
+
+### Environment values
+
+The following variables are supported:
+
+- `ingressClassName` - **VKPR_ENV_JAEGER_INGRESS_CLASS_NAME**
+- `namespace` - **VKPR_ENV_JAEGER_NAMESPACE**
+- `persistence` - **VKPR_ENV_JAEGER_PERSISTENCE**
+- `metrics` - **VKPR_ENV_JAEGER_METRICS**
+- `ssl`
+  - `enabled` - **VKPR_ENV_JAEGER_SSL**
+  - `crt` - **VKPR_ENV_JAEGER_CERTIFICATE**
+  - `key` - **VKPR_ENV_JAEGER_KEY**
+  - `secretName` - **VKPR_ENV_JAEGER_SSL_SECRET**
 
 ---
 

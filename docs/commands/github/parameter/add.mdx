@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
-version: v1.0.20
+sidebar_label: VKPR github parameter add
+title: VKPR github parameter add
 ---
 
 # VKPR github parameter add
@@ -22,18 +23,24 @@ Interactive inputs:
 ### Flags
 
 ```sh
-  --default=false: Use to automatically fill inputs with default values.
-  --project_name='': Specifies the github project Name.
-  --secret_name='': Specifies the name from the secret to be used in Github Actions.
-  --secret_value='': Specifies the value from the secret to be used in Github Actions
+  --project_name  Specifies the github project Name.
+  --secret_name   Specifies the name from the secret to be used in Github Actions.
+  --secret_value  Specifies the value from the secret to be used in Github Actions
 ```
 
-### Setting Provider credentials
+## Setting Provider credentials
 
 **CAUTION: Setting credentials manually will override the credentials already saved in memory**
 
-#### Github
+### Github
 
 ```bash
   rit set credential --provider="github" --fields="github_username,github_token" --values="your-username,your-token"
 ```
+
+---
+
+## See Also
+
+- [VKPR aws eks init](/docs/commands/aws/eks/init) - Create the pipeline to init the EKS Cluster plan.
+- [VKPR digitalocean cluster init](/docs/commands/digitalocean/cluster/init) - Create the pipeline to init the Cluster plan.

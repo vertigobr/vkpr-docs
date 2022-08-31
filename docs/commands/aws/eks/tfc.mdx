@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
-version: v1.0.20
+sidebar_label: VKPR aws eks tfc
+title: VKPR aws eks tfc
 ---
 
 # VKPR aws eks tfc
@@ -23,11 +24,11 @@ Non-interactive without setting values or using `VKPR Values`:
   vkpr aws eks tfc --default
 ```
 
-### Setting Provider credentials
+## Setting Provider credentials
 
 **CAUTION: Setting credentials manually will override the credentials already saved in memory**
 
-#### Terraform Cloud
+### Terraform Cloud
 
 ```bash
   rit set credential --provider="terraformcloud" --fields="token,email" --values="your-token,your-email"

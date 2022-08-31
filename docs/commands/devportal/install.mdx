@@ -1,0 +1,95 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR devportal install
+title: VKPR devportal install
+---
+
+# VKPR devportal install
+
+## Description
+
+Install devportal into cluster. For more information about devportal, click [here](https://github.com/traefik/whoami).
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr devportal install [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr devportal install --default
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --default              Use to automatically fill inputs with default values
+  --dry_run              Simulate an install
+  --domain               Set the application address
+  --secure               Using HTTPS in the application
+  --github_spechouseurl  Specifies the address of the Swagger Spec on github
+```
+
+### Values File
+
+#### Globals
+
+The following arguments are supported by the globals:
+
+- `domain` - (Required) Define the domain used by the application. The default is `localhost`.
+- `secure` - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+
+#### Local
+
+The following arguments are supported:
+
+- `enabled` - (Required unless using the [vkpr apply](/docs/commands/apply)) Enable the auto install from the application.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `ingressClassName` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+
+:::caution
+Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
+Use it when you know what you're doing
+:::
+
+### Environment values
+
+The following variables are supported:
+
+- `namespace` - **VKPR_ENV_DEVPORTAL_NAMESPACE**
+- `ingressClassName` - **VKPR_ENV_DEVPORTAL_INGRESS_CLASS_NAME**
+
+## Setting DevPortal credentials
+
+### Okta
+
+```bash
+  rit set credential --provider="okta" --fields="clientid,clientsecret,audience" --values="my-clientid,my-clientsecret,my-audienc"
+```
+
+### Github
+
+```bash
+  rit set credential --provider="github" --fields="token" --values="my-token"
+```
+
+---
+
+:::info About the Formula
+`Chart Version`: 0.1.2 <br/>
+`Application Version`: v1.0.0 <br/>
+`Helm Chart`: [veecode-plataform/devportal](https://vfipaas.github.io/public-charts/) <br/>
+:::
+
+## See Also
+
+- [VKPR devportal remove](/docs/commands/devportal/remove) - Uninstall devportal from the cluster.
