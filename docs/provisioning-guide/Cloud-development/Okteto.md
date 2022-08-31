@@ -1,6 +1,15 @@
-## Installing Kong on Okteto with vkpr
 
-Insert in vkpr.yaml the provider and the namespace in okteto:
+## Installing Kong on Okteto with VKPR:
+
+
+VKPR also has a cloud development environment for testing provisioning, this environment is [Okteto](https://www.okteto.com/).
+
+Okteto is an open source project that provides a cloud development experience for applications running on Kubernetes for free. VKPR uses Okteto to change the local Kubernetes context to the Cloud Okteto context to simulate cloud provisioning. Okteto has some restrictions on its use and for that reason its use in production is not recommended.
+
+
+### Using Okteto context:
+
+We will need to change our default provider to Okteto, for that, insert in `vkpr.yaml` the okteto provider:
 
 ```yaml
 # vkpr.yaml
@@ -9,23 +18,26 @@ global:
   provider: okteto
 ```
 
-#### For kubectl to point to the okteto namespace:
+In order to install Kong in the Okteto context namespace, we will run `vkpr okteto init`, this command will be responsible for changing the context and namespace of our kubectl:
 
 ```sh
-vkpr okteto init
+$ vkpr okteto init
+
+Formula was successfully built!
+ ✓  Using context your-namespace @ cloud.okteto.com
+ ✓  Namespace 'your-namespace' selected
+ ✓  Using context your-namespace @ cloud.okteto.com
+ ✓  Updated kubernetes context 'cloud_okteto_com/your-namespace' in '[/home/user/.kube/config]'
 ```
 
-#### Installing kong:
+### Installing Kong:
 
-```
+To install the `Kong` Gatway API we will use `vkpr kong install`, executing this command will start the decision tree that will ask us about some specifications, to install Kong on okteto cloud we will need to use the `cloud.okteto domain. net` as in the example below:
+
+```sh
 vkpr kong install
-```
 
-When asked about domain, enter okteto cloud domain:
-
-Ex.:
-
-```sh
+Formula was successfully built!
 ? Type the Kong domain:  cloud.okteto.net
 ? Secure ?  false
 ? Kong Mode: (Hybrid only available in Kong Enterprise)  standard
@@ -35,16 +47,20 @@ Ex.:
 ? Dry-run ?  false
 ```
 
-The following endpoints will be generated in the okteto cloud:
+The following endpoints will be generated in okteto cloud:
 
 ```
-https://kong-kong-admin-<yourNamespace>.cloud.okteto.net/
-https://kong-kong-manager-<yourNamespace>.cloud.okteto.net/
-https://kong-kong-portal-<yourNamespace>cloud.okteto.net/
-https://kong-kong-portalapi-<yourNamespace>.cloud.okteto.net/
-https://kong-kong-proxy-<yourNamespace>.cloud.okteto.net/
+https://kong-kong-admin-<your-namespace>.cloud.okteto.net/
+https://kong-kong-manager-<your-namespace>.cloud.okteto.net/
+https://kong-kong-portal-<your-namespace>cloud.okteto.net/
+https://kong-kong-portalapi-<your-namespace>.cloud.okteto.net/
+https://kong-kong-proxy-<your-namespace>.cloud.okteto.net/
 ```
+You can query these endpoints by visiting [Cloud Okteto!](https://cloud.okteto.com/)
 
-## See Also
+![Okteto Cloud UI](/img/cloud-dev/okteto.png)
 
-- [VKPR kong install](/docs/commands/kong/install) - To learn more about installing kong.
+#### See also
+:::info
+ To learn more about installing Kong, click [here](/docs/commands/kong/install).
+:::
