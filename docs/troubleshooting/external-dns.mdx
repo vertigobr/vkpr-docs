@@ -1,0 +1,48 @@
+---
+sidebar_position: 2
+sidebar_label: External-DNS
+title: external-dns
+---
+
+# Most common error using external-dns
+
+## Record is not created in provider
+
+For a record not being created in your provider, two cases may occur:
+
+1. `Wrong Credentials`: Check that the domain you are referencing to create the `RECORD` belongs to the credential account.
+2. `Incorrect domain filter`: It could be that the filter that was applied to external-dns is not correct for your applications
+
+### Solving
+
+Check the values of the applied helm chart and verify that the values match what was configured:
+
+```jsx title="➜ helm get values external-dns -n YOUR_NAMESPACE"
+USER-SUPPLIED VALUES:
+domainFilters:
+- test.vkpr.net
+env:
+  ...
+```
+
+If the filter is applied to a domain to which the application does not belong, it will not be created.
+
+## Record is not propagating
+
+For a record not being propagated in the Internet, two cases may occur:
+
+1. `Propagation time`: there is a propagation time for the DNS to be available on the Internet, it must wait a maximum of 10 minutes for this propagation to be done.
+2. `Sync Policy`: In external-dns there is a policy that synchronizes Kubernetes resources to the provider, but it sometimes ends up causing problems in the current version by deleting the records and recreating them. This affects the propagation time and it is never possible to access it.
+
+### Solving
+
+Check if the DNS has been propagated:
+
+```sh
+➜ dig -t A whoami.test.vkpr.net +short
+44.207.0.117
+35.11.194.92
+
+➜ dig -t txt whoami.test.vkpr.net +short
+"heritage=external-dns,external-dns/owner=vkpr,external-dns/resource=ingress/vkpr/whoami"
+```
