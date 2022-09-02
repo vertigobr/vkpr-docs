@@ -1,0 +1,41 @@
+---
+sidebar_position: 2
+sidebar_label: Pipelines
+title: Pipelines
+---
+
+# Most common error using VKPR Pipelines
+
+## Destroy pipeline not complete or timeout (AWS)
+
+When there is one of these two scenarios, possibly because of resources created by the installed applications that linked to what was created.
+
+An example is creating Load Balancers. If any of our stacks were installed, it will create an `ELB` that will link with the `VPC and EC2` created by the script and when you delete them it will inform you that they have dependencies not specified in `tfstate`.
+
+### Solving
+
+There are 3 ways to solve the problem, which are:
+
+1. You may be removing the application that ended up creating the resources in the cloud, so that it is destroyed along with the application
+2. Refreshing and importing the terraform state and destroying them
+3. Destroying all the infrastructure at hand in the cloud
+
+## Error when creating the subnets (AWS)
+
+In some deploys, there is a problem when trying to upload the subnets in the regions.
+
+![subnet-error](img/pipeline/error-subnets.png)
+
+### Solving
+
+To proceed with the installation correctly if there is any problem, first run the destroy command to clean all the resources that were created previously.
+
+Then change the `config/defaults.yml` file of the branch that triggered the pipeline. Adding availability zones that can be used to create subnets (at least two zones)
+
+```yaml
+---
+aws_availability_zones:
+  - us-east-1a
+  - us-east-1b
+  - us-east-1c
+```
