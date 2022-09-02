@@ -12,9 +12,19 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
     baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
-    favicon: "https://vertigo.com.br/wp-content/uploads/favicon.png",
+    favicon: "https://vertigo.com.br/wp-content/uploads/2021/06/cropped-favicon-32x32.png",
     organizationName: "vertigobr", // Usually your GitHub org/user name.
     projectName: "vkpr-docs", // Usually your repo name.
+    plugins: [
+      [
+        require.resolve("@cmfcmf/docusaurus-search-local"),
+        {
+          // Options here
+          language: ["en", "pt"],
+        },
+      ],
+    ],
+
 
     i18n: {
       defaultLocale: "en",
@@ -90,28 +100,11 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
               ],
             },
             {
-              title: "Community",
-              items: [
-                {
-                  label: "Stack Overflow",
-                  href: "https://stackoverflow.com/questions/tagged/docusaurus",
-                },
-                {
-                  label: "Discord",
-                  href: "https://discordapp.com/invite/docusaurus",
-                },
-                {
-                  label: "Twitter",
-                  href: "https://twitter.com/docusaurus",
-                },
-              ],
-            },
-            {
               title: "More",
               items: [
                 {
                   label: "GitHub",
-                  href: "https://github.com/facebook/docusaurus",
+                  href: "https://github.com/vertigobr/vkpr-cli",
                 },
               ],
             },

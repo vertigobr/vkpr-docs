@@ -6,7 +6,7 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #469ce4;
+  --ifm-color-primary: rgb(68, 156, 228);
   --ifm-color-primary-dark: rgb(33, 175, 144);
   --ifm-color-primary-darker: rgb(31, 165, 136);
   --ifm-color-primary-darkest: rgb(26, 136, 112);
@@ -14,7 +14,14 @@
   --ifm-color-primary-lighter: rgb(102, 212, 189);
   --ifm-color-primary-lightest: rgb(146, 224, 208);
   --ifm-code-font-size: 95%;
+  --aa-primary-color-rgb: 68, 156, 228 !important;
+  --aa-muted-color-rgb: 0, 0, 0 !important;
 }
+[data-theme='dark']{
+  --aa-primary-color-rgb: 68, 156, 228 !important;
+  --aa-muted-color-rgb: 255, 255, 255 !important;
+}
+
 
 .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.1);
