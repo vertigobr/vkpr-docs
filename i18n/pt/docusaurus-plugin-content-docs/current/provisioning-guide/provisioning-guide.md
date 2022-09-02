@@ -25,16 +25,13 @@ Saiba mais em [Local Development](/docs/provisioning-guide/local-dev)
 
 O provisionamento em nuvem é fornecido para construir toda a sua infraestrutura em sua nuvem por meio de uma abordagem GitOps. Escrito em `Terraform` com pipelines `Gitlab`, qualquer alteração que você queira fazer no cluster, haverá um arquivo de configuração como fonte de informação. Alterá-lo refletirá todas as alterações em sua nuvem.
 
-Saiba mais em [Cloud Development](docs/provisioning-guide/cloud-dev)
-:::info Formula
-  Para ver os comandos de infraestrutura em nuvem, clique [aqui](/docs/commands/aws/eks/init)
-:::
-
-## Clusters de produção na nuvem
+### Clusters de produção na nuvem
 
 A criação de um cluster k8s gerenciado e pronto para produção requer muitos detalhes do próprio fornecedor de nuvem. 
 O VKPR tem uma inferência opinativa sobre várias configurações e impõe uma abordagem GitOps no provisionamento de infraestrutura.
 
+Saiba mais em [Cloud Development](docs/provisioning-guide/cloud-dev/)
 :::info Formula
-  Para ver os comandos de desenvolvimento local, clique [aqui](/docs/commands/infra/start)
+  Para ver os comandos de infraestrutura em nuvem, clique [aqui](/docs/commands/aws/eks/init)
 :::
+
