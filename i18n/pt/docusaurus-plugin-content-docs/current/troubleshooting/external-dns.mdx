@@ -1,0 +1,48 @@
+---
+sidebar_position: 2
+sidebar_label: External-DNS
+title: external-dns
+---
+
+# Erros mais comuns usando external-dns
+
+## O registro não é criado no provedor
+
+Para um registro que não está sendo criado em seu provedor, podem ocorrer dois casos:
+
+1. `Wrong Credentials`: Verifique se o domínio que você está referenciando para criar o `RECORD` pertence à conta de credencial.
+2. `Incorrect domain filter`: Pode ser que o filtro que foi aplicado ao externo-dns não esteja correto para seus aplicativos.
+
+### Corrigindo
+
+Verifique os valores do gráfico de leme aplicado e verifique se os valores correspondem ao que foi configurado:
+
+```jsx title="➜ helm get values external-dns -n YOUR_NAMESPACE"
+USER-SUPPLIED VALUES:
+domainFilters:
+- test.vkpr.net
+env:
+  ...
+```
+
+Se o filtro for aplicado a um domínio ao qual o aplicativo não pertence, ele não será criado.
+
+## O registro não está se propagando
+
+Para um registro que não está sendo propagado na Internet, podem ocorrer dois casos:
+
+1. `Propagation time`: existe um tempo de propagação para que o DNS fique disponível na Internet, ele deve aguardar no máximo 10 minutos para que essa propagação seja feita.
+2. `Sync Policy`: No external-dns existe uma política que sincroniza os recursos do Kubernetes com o provedor, mas às vezes acaba causando problemas na versão atual ao deletar os registros e recriá-los. Isso afeta o tempo de propagação e nunca é possível acessá-lo.
+
+### Corrigindo
+
+Verifique se o DNS foi propagado:
+
+```sh
+➜ dig -t A whoami.test.vkpr.net +short
+44.207.0.117
+35.11.194.92
+
+➜ dig -t txt whoami.test.vkpr.net +short
+"heritage=external-dns,external-dns/owner=vkpr,external-dns/resource=ingress/vkpr/whoami"
+```
