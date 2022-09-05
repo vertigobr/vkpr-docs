@@ -64,7 +64,7 @@ Os seguintes valores são suportados:
 - `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
 - `metrics` - (Opcional) Define que a aplicação irá expor as suas métricas. O valor padrão é `false`.
 - `storageMode` - (Obrigatório) Específica o modo de Storage do Vault. Valores válidos: `raft`, `consul`. O valor padrão é `raft`.
-- `autoUnseal` - (Obrigatório) Habilita o Auto Unseal do Vault com algum provider da Cloud. Valores válidos: `aws`, `azure`. O valor padrão é `false`.
+- `autoUnseal` - (Opcional) Habilita o Auto Unseal do Vault com algum provider da Cloud. Valores válidos: `aws`, `azure`. O valor padrão é `false`.
 - `ssl`
   - `enabled` - (Opcional) Define que a aplicação utilizará certificado próprio. O valor padrão é `false`.
   - `crt` - Específica o caminho do certificado.
