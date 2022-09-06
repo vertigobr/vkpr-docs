@@ -48,7 +48,8 @@ All VKPR binaries and utilities are installed in the `home` directory.
 Its structure is separated as follows:
 ```bash
 .vkpr
-|_ bin      # Application binaries directory
-|__ config  # General application settings directory
-|___ src    # VKPR code library
+|_ bin          # Application binaries directory
+|__ tmp         # Application temporary storage directory
+|___ kubeconfig # Application cluster settings directory
+|____ src       # VKPR code library
 ```

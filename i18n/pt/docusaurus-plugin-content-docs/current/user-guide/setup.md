@@ -48,7 +48,8 @@ Todos os binários e utilitários do VKPR são instalados no diretório `home`.
 Sua estrutura é dividida da seguinte forma:
 ```bash
 .vkpr
-|_ bin      # Diretório de binários da aplicação
-|__ config  # Diretório de configurações gerais da aplicação
-|___ src    # Biblioteca de código do VKPR
+|_ bin          # Diretório de binários da aplicação
+|__ tmp         # Diretório de armazenamento temporário da aplicação
+|___ kubeconfig # Diretório de configurações do cluster da aplicação
+|____ src       # Diretório de código VKPR
 ```

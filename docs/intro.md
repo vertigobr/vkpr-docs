@@ -37,12 +37,6 @@ To do that, you can run the command:
 vkpr infra up
 ```
 
-You can peek into it using `k9s`:
-
-```bash
-~/.vkpr/bin/k9s
-```
-
 ### Deploy a sample app
 
 To test some application using VKPR, we will use `whoami` as an example.
@@ -50,7 +44,7 @@ To test some application using VKPR, we will use `whoami` as an example.
 For this, we will implement an ingress controller and the whoami itself:
 
 ```shell
-vkpr ingress install
+vkpr ingress install --default
 vkpr whoami install --default
 ```
 
@@ -81,5 +75,4 @@ Each of VKPR's CLI commands is called a formula (implemented using Ritchie).
 - `vkpr infra up` formula starts a local kubernetes cluster using [k3d](https://k3d.io/).
 - 
 - `vkpr ingress install` formula deploys an ingress controller nginx, in this case exposed to localhost in ports 8000 (http) and 8001 (https).
-- 
 - `vkpr whoami install` formula deploys a sample application with a valid ingress configuration.

@@ -21,9 +21,13 @@ Com o Kubeconfig já associado ao seu contexto, você executará o seguinte coma
 ➜ vkpr ingress install
 Formula was successfully built!
 
-? Which type of LoadBalancer do you prefer ?  [Use arrows to move, type to filter, ? for more help]
-> Classic
-  NLB
+? Do you will use SSL?  [Use arrows to move, type to filter, ? for more help]
+> false
+  true
+
+? Dry-run ?  [Use arrows to move, type to filter, ? for more help]
+> false
+  true
 
 ==============================
 VKPR Ingress Install Routine
@@ -40,8 +44,16 @@ Formula was successfully built!
 ? Type the Whoami domain: [? for help] (localhost) test.vkpr.net
 
 ? Secure ?  [Use arrows to move, type to filter, ? for more help]
-> true
-  false
+> false
+  true
+
+? Do you will use SSL?  [Use arrows to move, type to filter, ? for more help]
+> false
+  true
+
+? Dry-run ?  [Use arrows to move, type to filter, ? for more help]
+> false
+  true
 
 ==============================
 VKPR Whoami Install Routine
@@ -54,17 +66,14 @@ Ingress Controller: nginx
 ### Instalando external-dns
 
 ```txt
-➜ vkpr external-dns install
+➜ vkpr external-dns install aws
 Formula was successfully built!
 
-? Type your provider:  [Use arrows to move, type to filter, ? for more help]
-> aws
-  digitalocean
-  powerDNS
+? Type the external-dns domain filter: [? for help] (localhost) 
 
-? Provider key not found, please provide a value for aws accesskeyid:
-? Provider key not found, please provide a value for aws secretaccesskey:
-? Provider key not found, please provide a value for aws region:
+? Dry-run ?  [Use arrows to move, type to filter, ? for more help]
+> false
+  true
 
 ==============================
 VKPR External-DNS Install Routine
@@ -75,7 +84,7 @@ Provider: aws
 ### Instalando cert-manager
 
 ```txt
-➜ vkpr cert-manager install
+➜ vkpr cert-manager install aws
 Formula was successfully built!
 
 ? Type your email to use to generate certificates:  [Use arrows to move, type to filter, ? for more help]
@@ -85,18 +94,18 @@ Formula was successfully built!
 ? What is the default cluster issuer ?  [Use arrows to move, type to filter, ? for more help]
   staging
 > production
-  custom-acme
 
 ? What solver do you want to use ?  [Use arrows to move, type to filter, ? for more help]
   HTTP01
 > DNS01
 
-? What cloud dns provider do you will use ?  [Use arrows to move, type to filter, ? for more help]
-> aws
-  digitalocean
-  custom-acme
+? Dry-run ?  [Use arrows to move, type to filter, ? for more help]
+> false
+  true
 
-? Type your Hostedzone id from Route53: [? for more help]
+? Type your Hostedzone id from Route53:   [Use arrows to move, type to filter, ? for more help]
+> a
+  Type another Hostedzone id
 
 ==============================
 VKPR Cert-manager Install Routine
