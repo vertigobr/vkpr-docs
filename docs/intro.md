@@ -1,5 +1,8 @@
 ---
 sidebar_position: 1
+sidebar_label: Getting started
+title: Getting started
+slug: /intro
 ---
 
 # Getting started
@@ -73,6 +76,5 @@ vkpr infra down
 Each of VKPR's CLI commands is called a formula (implemented using Ritchie).
 
 - `vkpr infra up` formula starts a local kubernetes cluster using [k3d](https://k3d.io/).
-- 
 - `vkpr ingress install` formula deploys an ingress controller nginx, in this case exposed to localhost in ports 8000 (http) and 8001 (https).
 - `vkpr whoami install` formula deploys a sample application with a valid ingress configuration.

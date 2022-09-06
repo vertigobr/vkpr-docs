@@ -8,7 +8,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
     title: "VKPR",
     tagline: "Vertigo Kubernetes Production Runtime",
     url: "https://vertigobr.github.io",
-    // baseUrl: '/vkpr-docs/',
     baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
@@ -39,8 +38,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           docs: {
             sidebarPath: require.resolve("./sidebars.js"),
             // Please change this to your repo.
-            editUrl:
-              "https://github.com/facebook/docusaurus/edit/main/website/",
+            editUrl: "https://github.com/vertigobr/vkpr-docs/edit/main/",
           },
           theme: {
             customCss: require.resolve("./src/css/custom.css"),

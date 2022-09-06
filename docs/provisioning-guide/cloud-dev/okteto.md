@@ -7,7 +7,7 @@ VKPR also has a cloud development environment for testing provisioning, this env
 Okteto is an open source project that provides a cloud development experience for applications running on Kubernetes for free. VKPR uses Okteto to change the local Kubernetes context to the Cloud Okteto context to simulate cloud provisioning. Okteto has some restrictions on its use and for that reason its use in production is not recommended.
 
 
-### Using Okteto context:
+### Using Okteto context
 
 We will need to change our default provider to Okteto, for that, insert in `vkpr.yaml` the okteto provider:
 
@@ -30,7 +30,7 @@ Formula was successfully built!
  ✓  Updated kubernetes context 'cloud_okteto_com/your-namespace' in '[/home/user/.kube/config]'
 ```
 
-### Installing Kong:
+### Installing Kong
 
 To install the `Kong` Gatway API we will use `vkpr kong install`, executing this command will start the decision tree that will ask us about some specifications, to install Kong on okteto cloud we will need to use the `cloud.okteto domain. net` as in the example below:
 

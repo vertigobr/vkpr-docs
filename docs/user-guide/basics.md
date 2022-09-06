@@ -1,5 +1,8 @@
 ---
 sidebar_position: 1
+sidebar_label: Basics
+title: Basics
+slug: /basics
 ---
 
 # VKPR Basics

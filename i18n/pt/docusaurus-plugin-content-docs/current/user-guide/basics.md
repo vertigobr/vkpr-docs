@@ -1,8 +1,11 @@
 ---
 sidebar_position: 1
+sidebar_label: Noções básicas sobre VKPR
+title: Noções básicas sobre VKPR
+slug: /basics
 ---
 
-# Noções básicas de VKPR
+# Noções básicas sobre VKPR
 
 Adotar o Kubernetes é uma missão desafiadora para empresas de qualquer tamanho - tem uma curva de aprendizado íngreme e profissionais qualificados são muito difíceis de encontrar. Embora as ofertas de Kubernetes gerenciadas pelos fornecedores de nuvem sejam um grande passo em uma boa direção, ainda é difícil encontrar a melhor maneira de provisioná-las e mantê-las.
 

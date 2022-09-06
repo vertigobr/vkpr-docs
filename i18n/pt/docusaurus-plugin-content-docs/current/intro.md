@@ -1,5 +1,8 @@
 ---
 sidebar_position: 1
+sidebar_label: Começando no VKPR
+title: Começando no VKPR
+slug: /intro
 ---
 
 # Começando no VKPR

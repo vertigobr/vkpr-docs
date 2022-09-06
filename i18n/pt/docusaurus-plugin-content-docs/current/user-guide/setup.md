@@ -1,5 +1,8 @@
 ---
 sidebar_position: 2
+sidebar_label: Instalação
+title: Instalação
+slug: /install
 ---
 
 # Instalação do VKPR

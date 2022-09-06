@@ -1,5 +1,8 @@
 ---
 sidebar_position: 5
+sidebar_label: Upgrade the CLI
+title: Upgrade the CLI
+slug: /upgrade
 ---
 
 # Upgrade VKPR CLI

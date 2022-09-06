@@ -1,5 +1,8 @@
 ---
 sidebar_position: 3
+sidebar_label: Provisioning
+title: Provisioning
+slug: /provisioning
 ---
 
 # Provisioning
@@ -57,7 +60,9 @@ Formula was successfully built!
 
 ==============================
 VKPR Whoami Install Routine
-Whoami Domain: whoami.test.vkpr.net
+Domain: whoami.test.vkpr.net
+Secure: true
+Namespace: vkpr
 Ingress Controller: nginx
 ==============================
 ....
@@ -69,15 +74,14 @@ Ingress Controller: nginx
 ➜ vkpr external-dns install aws
 Formula was successfully built!
 
-? Type the external-dns domain filter: [? for help] (localhost) 
+? Type the external-dns domain filter: [? for help] (localhost) test.vkpr.net
 
 ? Dry-run ?  [Use arrows to move, type to filter, ? for more help]
 > false
   true
 
 ==============================
-VKPR External-DNS Install Routine
-Provider: aws
+VKPR External-DNS Install AWS Routine
 ==============================
 ....
 ```
@@ -104,14 +108,14 @@ Formula was successfully built!
   true
 
 ? Type your Hostedzone id from Route53:   [Use arrows to move, type to filter, ? for more help]
-> a
-  Type another Hostedzone id
+> Type another Hostedzone id
 
 ==============================
-VKPR Cert-manager Install Routine
-Provider: aws
-Issuer Solver: DNS01
+VKPR Cert-manager Install AWS Routine
 Email: default@vkpr.com
+Issuer Type: production
+Issuer Solver: DNS01
+Namespace: cert-manager
 ==============================
 ....
 ```
@@ -133,14 +137,17 @@ If you want to save the state of your applications, rewrite the default values o
 global:
   domain: test.vkpr.net
   secure: true
-  ingress:
-    loadBalancerType: "Classic"
-  cert-manager:
-    email: default@vkpr.com
-    solver: DNS01
-    provider: aws
-  external-dns:
-    provider: aws
+  provider: aws
+ingress:
+  enabled: true
+cert-manager:
+  enabled: true
+  email: "default@vkpr.com"
+  issuer:
+    type: "production"
+    solver: "DNS01"
+external-dns:
+  enabled: true
 ```
 Each application's key-values specification is described in the application's documentation.
 

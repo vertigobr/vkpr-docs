@@ -1,5 +1,8 @@
 ---
 sidebar_position: 2
+sidebar_label: Install
+title: Install
+slug: /install
 ---
 
 # Setup VKPR
