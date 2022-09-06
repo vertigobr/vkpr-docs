@@ -1,7 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 sidebar_label: AWS EKS
 title: AWS EKS
+slug: /provisioning/dev/cloud/aws
 ---
 
 # Provisioning with AWS EKS
@@ -81,8 +82,9 @@ Deploy job started successfully
 We will be able to see the kubeconfig files being generated in the artifacts part at the end of the pipeline execution, but VKPR has features for extracting this file. By running the `vkpr aws eks kubeconfig` command VKPR will be able to automatically extract kubeconfig directly from the pipeline of our newly provisioned infrastructure.
 
 :::info
-To learn more about kubeconfig click [here](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_config/)
+To learn more about kubeconfig click [here](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
 :::
+
 ### Dropping the cluster
 
 Another command that VKPR makes available is to destroy the cluster provisioned through the previous steps. With the execution of the `vkpr aws eks destroy` command, the last stage of our repository pipeline will be triggered, which will bring down all the infrastructure previously provisioned.

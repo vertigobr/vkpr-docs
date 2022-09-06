@@ -1,3 +1,10 @@
+---
+sidebar_position: 1
+sidebar_label: AWS EKS
+title: AWS EKS
+slug: /provisioning/dev/cloud/aws
+---
+
 ## Provisionando com AWS EKS
 
 O VKPR possui uma série de comandos para provisionamento local e configuração de sua aplicação, porém você também pode instalar todas as suas aplicações diretamente no cluster de seu provedor na nuvem através do VKPR.

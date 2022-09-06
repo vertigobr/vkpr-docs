@@ -1,12 +1,13 @@
 ---
 sidebar_position: 1
+sidebar_label: Utilizando VKPR Values
+title: Utilizando VKPR Values
+slug: /provisioning/values
 ---
 
 # Utilizando VKPR Values
 
-
 Nos exemplos anteriores, testamos as aplicações passando pela árvore de decisão que o VKPR oferece. Uma das ferramentas que é utilizado pelo VKPR para abstrair os valores fornecidos tanto pela árvore de decisão, quanto por flags, seria o `vkpr.yaml`.
-
 
 Se você deseja salvar o estado de seus aplicativos, reescrever os valores padrão das fórmulas e nem sempre precisar passar pela árvore de decisão das fórmulas, recomendamos que você use Valores VKPR para implantar todos os aplicativos desejados.
 
@@ -24,12 +25,10 @@ O VKPR values é exclusivamente escrito em `YAML` se baseando em uma estrutura d
 nó-pai:      # Aplicação 
   nó-filho:  # Argumento
   ...
-
 ```
+
 :::tip Dica
-
 A Específicação de valores-chave de cada aplicativo é descrita na documentação do aplicativo.
-
 ::::
 
 ### Globals
@@ -58,9 +57,7 @@ credentials:
     apiToken: ""
 ```
 :::caution Importante!
-
 A utilização das credenciais neste campo só funciona utilizando a fórmula do [`vkpr apply`](/docs/commands/apply).
-
 :::
 
 ## Precedência de valores

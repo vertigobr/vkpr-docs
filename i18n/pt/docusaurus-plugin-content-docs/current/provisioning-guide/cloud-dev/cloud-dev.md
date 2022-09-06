@@ -2,6 +2,7 @@
 sidebar_position: 3
 sidebar_label: Desenvolvimento em nuvem
 title: Desenvolvimento em nuvem
+slug: /provisioning/dev/cloud
 ---
 
 

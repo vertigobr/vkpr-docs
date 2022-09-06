@@ -54,5 +54,5 @@ Its structure is separated as follows:
 |_ bin          # Application binaries directory
 |__ tmp         # Application temporary storage directory
 |___ kubeconfig # Application cluster settings directory
-|____ src       # VKPR code library
+|____ config    # VKPR local infra config
 ```

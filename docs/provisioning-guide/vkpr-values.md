@@ -1,5 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
+sidebar_label: Using VKPR Values
+title: Using VKPR Values
+slug: /provisioning/values
 ---
 
 # Using VKPR Values

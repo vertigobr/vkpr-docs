@@ -1,8 +1,8 @@
-
 ---
-sidebar_position: 3
+sidebar_position: 1
 sidebar_label: Cloud development
 title: Cloud development
+slug: /provisioning/dev/cloud
 ---
 
 # Cloud development 
@@ -13,8 +13,8 @@ Using CI/CD tools, we create Terraform modules for provisioning Elastic Kubernet
 
 These modules are responsible for communicating VKPR with our repository and running pipelines for provisioning with terraform.
 
-:::tip Terrafom Module | 
-To learn more about Terraform modules:
+:::tip Terrafom Module
+To learn more about ours Terraform modules:
  - [terraform-aws-eks](https://gitlab.com/vkpr/terraform-aws-eks)
  - [terraform-digitalocean-cluster](https://gitlab.com/vkpr/terraform-digitalocean-cluster)
  - [terraform-kubernetes-kubeconfig](https://gitlab.com/vkpr/terraform-kubernetes-kubeconfig)   

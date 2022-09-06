@@ -1,5 +1,8 @@
 ---
 sidebar_position: 2
+sidebar_label: Desenvolvimento Local
+title: Desenvolvimento Local
+slug: /provisioning/dev/local
 ---
 
 # Desenvolvimento Local

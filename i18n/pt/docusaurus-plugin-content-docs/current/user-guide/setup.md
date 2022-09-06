@@ -25,7 +25,7 @@ echo 'alias vkpr="rit vkpr"' >> ~/.bashrc  # Se você estiver utilizando outro t
 
 A execução do primeiro comando acima executara um script que instalará as seguintes ferramentas utilizadas no VKPR:
 
-- [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl): A Ferramenta de linha de comando, te permite executar comandos em clusters Kubernetes.
+- [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl): O Kubectl   te permite executar comandos em clusters Kubernetes.
 - [helm](https://helm.sh/docs/intro/install/): Helm te ajuda a gerenciar aplicações Kubernetes.
 - [k3d](https://k3d.io/v4.4.8/): k3d é um empacotador leve para executar `k3s` (Rancher Lab’s minimal Kubernetes distribution) em docker.
 - [arkade](https://github.com/alexellis/arkade): arkade fornece um marketplace portátil para baixar CLIs e instalar helm charts.
@@ -54,5 +54,5 @@ Sua estrutura é dividida da seguinte forma:
 |_ bin          # Diretório de binários da aplicação
 |__ tmp         # Diretório de armazenamento temporário da aplicação
 |___ kubeconfig # Diretório de configurações do cluster da aplicação
-|____ src       # Diretório de código VKPR
+|____ config    # Diretório de configurações locais do VKPR
 ```

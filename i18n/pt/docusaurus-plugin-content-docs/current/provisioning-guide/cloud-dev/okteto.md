@@ -1,12 +1,17 @@
-## Instalando Kong no Okteto com VKPR:
+---
+sidebar_position: 2
+sidebar_label: Okteto
+title: Okteto
+slug: /provisioning/dev/cloud/okteto
+---
 
+## Instalando Kong no Okteto com VKPR
 
 O VKPR também possui um ambiente de desenvolvimento em nuvem para teste de provisionamento, esse ambiente é o [Okteto](https://www.okteto.com/). 
 
 O Okteto é um projeto de código aberto que fornece uma experiência de desenvolvimento em nuvem para aplicações em execução no Kubernetes de forma gratuita. O VKPR usa o Okteto para mudar o contexto kubernetes local para o contexto do Cloud Okteto e assim simular o provisionamento em núvem. O Okteto possui algumas restrições em seu uso e por essa razão não é recomendado o seu uso em produção.
 
-
-### Usando o contexto do Okteto:
+### Usando o contexto do Okteto
 
 Precisaremos mudar nosso provider padrão para o Okteto, para isso insira no `vkpr.yaml` o provider okteto:
 
@@ -28,7 +33,7 @@ Formula was successfully built!
  ✓  Updated kubernetes context 'cloud_okteto_com/your-namespace' in '[/home/user/.kube/config]'
 ```
 
-### Instalando Kong:
+### Instalando Kong
 
 Para efetuar a instalação da API Gatway `Kong` utilizaremos o `vkpr kong install`, a execução deste comando iniciará a árvore de decisões que nos questionará sobre algumas especificações, para instalar o Kong no okteto cloud precisaremos utilizar o domínio `cloud.okteto.net` tal como no exemplo abaixo:
 
@@ -44,6 +49,10 @@ Formula was successfully built!
 ? Dry-run ?  false
 ```
 
+:::note Tip
+Você também pode utilizar a flag `--default`
+:::
+
 Os seguintes endpoints serão gerados no Okteto Cloud:
 
 ```
@@ -57,7 +66,6 @@ Você pode consultar esses endpoints visitando o [Cloud Okteto!](https://cloud.o
 
 ![Okteto Cloud UI](/img/cloud-dev/okteto.png)
 
-#### Ver também
 :::info
  Para saber mais sobre a instalação do Kong, clique [aqui](/docs/commands/kong/install).
 :::

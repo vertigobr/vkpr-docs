@@ -2,7 +2,7 @@
 sidebar_position: 3
 sidebar_label: Provisioning
 title: Provisioning
-slug: /provisioning
+slug: /deploy
 ---
 
 # Provisioning
@@ -47,8 +47,8 @@ Formula was successfully built!
 ? Type the Whoami domain: [? for help] (localhost) test.vkpr.net
 
 ? Secure ?  [Use arrows to move, type to filter, ? for more help]
-> false
-  true
+  false
+> true
 
 ? Do you will use SSL?  [Use arrows to move, type to filter, ? for more help]
 > false

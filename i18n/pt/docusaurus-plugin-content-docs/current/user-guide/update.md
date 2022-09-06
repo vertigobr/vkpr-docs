@@ -1,5 +1,8 @@
 ---
 sidebar_position: 4
+sidebar_label: Atualizando
+title: Atualizando
+slug: /upgrade
 ---
 
 # Atualizar CLI do VKPR

@@ -2,7 +2,7 @@
 sidebar_position: 3
 sidebar_label: Provisionando
 title: Provisionando
-slug: /provisioning
+slug: /deploy
 ---
 
 # Provisionando
