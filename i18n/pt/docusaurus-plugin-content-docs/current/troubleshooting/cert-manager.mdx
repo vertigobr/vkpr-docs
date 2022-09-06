@@ -1,0 +1,108 @@
+---
+sidebar_position: 1
+sidebar_label: Cert-Manager
+title: cert-manager
+---
+
+# Erros mais comuns usando o cert-manager
+
+A maioria dos erros que ocorrem no cert-manager geralmente são identificados nos objetos que ele cria, ou seja, `Order` e `Challenge`.
+
+## Erros com credenciais
+
+Você deve verificar se as credenciais usadas no cert-manager estão corretas.
+Verifique também se o domínio que você está referenciando para criar o `certificado` pertence à conta de credencial.
+
+```jsx title="➜ kubectl describe challenge whoami-cert-f8qns-2445062599-737753945"
+...
+Status:
+  Reason:        Error presenting challenge: failed to change Route 53 record set: InvalidClientTokenId: The security token included in the request is invalid.duplicate-certificate-limit/
+  State:         errored
+Events:
+  Type     Reason        Age                   From          Message
+  ----     ------        ----                  ----          -------
+  Warning  PresentError  1m (x20 over 1d)  cert-manager  Error presenting challenge: failed to change Route 53 record set: InvalidClientTokenId: The security token included in the request is invalid.
+```
+
+### Corrigindo
+
+Recupere a credencial e verifique os valores:
+
+```sh
+kubectl get secret vkpr-YOUR_CLOUD-credential -o=jsonpath="{.data.VALUE}" -n vkpr | base64 --decode
+```
+
+Verifique se o ClusterIssuer está apontando para o servidor Let's Encrypt correto e se as credenciais estão apontando corretamente para a secret da credencial:
+
+```jsx title="➜ kubectl get clusterissuer certmanager-issuer -o=yaml | yq eval ".spec" -"
+...
+acme:
+  email: example@vkpr.com
+  preferredChain: ""
+  privateKeySecretRef:
+    name: letsencrypt-production-key
+  server: https://acme-v02.api.letsencrypt.org/directory
+  solvers:
+    - dns01:
+        route53:
+          accessKeyIDSecretRef:
+            key: access-key
+            name: vkpr-aws-credential
+          hostedZoneID: ...
+          region: us-east-1
+          secretAccessKeySecretRef:
+            key: secret-key
+            name: vkpr-aws-credential
+      selector: {}
+```
+
+## Muitos certificados
+
+Ocorre quando mais de 5 solicitações de certificados são feitas para o mesmo endereço, você deve esperar uma semana para estar solicitando novos certificados para o endereço.
+
+```jsx title="➜ kubectl describe order whoami-cert-mnc9g-2445062599"
+...
+Status:
+  Reason:        Failed to create Order: 429 urn:ietf:params:acme:error:rateLimited: Error creating new order :: too many certificates (5) already issued for this exact set of domains in the last 168 hours: whoami.test.vkpr.com, retry after 2022-09-01T04:46:38Z: see https://letsencrypt.org/docs/duplicate-certificate-limit/
+  State:         errored
+Events:          <none>
+```
+
+## Usando ClusterIssuer errado
+
+Verifique se o ClusterIssuer está escrito corretamente usando a opção de produção VKPR.
+
+<div style={{ textAlign: "center" }}>
+
+![error-1](img/cert-manager/error-browser-certificate.png)
+
+</div>
+
+URL's utilizados para emissão dos certificados:
+
+- `staging environment`: https://acme-staging-v02.api.letsencrypt.org/directory
+- `production environment`: https://acme-v02.api.letsencrypt.org/directory
+
+```jsx title="➜ kubectl get clusterissuer certmanager-issuer -o=yaml | yq eval ".spec" -"
+...
+acme:
+  email: example@vkpr.com
+  preferredChain: ""
+  privateKeySecretRef:
+    name: letsencrypt-production-key
+  server: https://acme-v02.api.letsencrypt.org/directory  ## Using production env
+  solvers:
+    ...
+```
+
+<div style={{ textAlign: "center" }}>
+
+![error-2](img/cert-manager/info-error-certificate.png)
+
+<label style={{ fontSize: "10px", marginTop: "-10px" }}>
+
+  Exibir certificado usando o ambiente de teste
+
+</label>
+
+</div>

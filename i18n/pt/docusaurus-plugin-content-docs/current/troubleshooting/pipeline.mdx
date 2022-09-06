@@ -1,0 +1,41 @@
+---
+sidebar_position: 2
+sidebar_label: Pipelines
+title: Pipelines
+---
+
+# Erros mais comuns ao usar pipelines VKPR
+
+## Pipeline de destroy não concluída ou tempo limite (AWS)
+
+Quando há um desses dois cenários, será possivelmente devido a recursos criados pelos aplicativos instalados que se vincularam ao que foi criado.
+
+Um exemplo é a criação de Load Balancers. Se alguma de nossas stacks foi instalada, ele criará um `ELB` que fará o link com a `VPC e EC2` criada pelo script e quando você excluí-las informará que elas possuem dependências não especificadas em `tfstate`.
+
+### Corrigindo
+
+Existem 3 maneiras de resolver o problema, que são:
+
+1. Você pode estar removendo o aplicativo que acabou criando os recursos na nuvem, para que seja destruído junto com a aplicação
+2. Atualizando e importando o terraform state e destruindo-os
+3. Destruindo toda a infraestrutura disponível na nuvem
+
+## Erro ao criar as sub-redes (AWS)
+
+Em alguns deploys, há um problema ao tentar carregar as sub-redes nas regiões.
+
+![subnet-error](img/pipeline/error-subnets.png)
+
+### Corrigindo
+
+Para prosseguir corretamente com a instalação se houver algum problema, primeiro execute o comando destroy para limpar todos os recursos que foram criados anteriormente.
+
+Em seguida, altere o arquivo `config/defaults.yml` da ramificação que acionou o pipeline. Adicionando manualmente as zonas de disponibilidade que podem ser usadas para criar sub-redes (pelo menos duas zonas)
+
+```yaml
+---
+aws_availability_zones:
+  - us-east-1a
+  - us-east-1b
+  - us-east-1c
+```
