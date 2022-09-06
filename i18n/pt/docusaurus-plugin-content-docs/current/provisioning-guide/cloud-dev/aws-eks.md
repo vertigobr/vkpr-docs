@@ -1,5 +1,3 @@
-
-
 ## Provisionando com AWS EKS
 
 O VKPR possui uma série de comandos para provisionamento local e configuração de sua aplicação, porém você também pode instalar todas as suas aplicações diretamente no cluster de seu provedor na nuvem através do VKPR.
@@ -12,7 +10,6 @@ Primeiro precisamos executar a fórmula `vkpr aws eks init` responsável por ini
 
 ```sh
 $ vkpr aws eks init
-
 Formula was successfully built!
 ? Project location: user
 ? EKS cluster name: eks-sample
@@ -64,7 +61,6 @@ Assim ja poderemos iniciar a pipeline de deploy ou executar o comando `vkpr aws 
 
 ```sh
 $ vkpr aws eks deploy
-
 Formula was successfully built!
 Deploy job started successfully
 ```
@@ -80,22 +76,8 @@ Outro comando que o VKPR disponibiliza é o de destruição do cluster provision
 
 ```sh
 $ vkpr aws eks deploy
-
 Formula was successfully built!
 Destroy job started successfully
 ```
 
 ![Pipeline completa](/img/cloud-dev/pipeline-deploy.png)
-
-
-
-
-
-
-
-
-
-
-
-
-

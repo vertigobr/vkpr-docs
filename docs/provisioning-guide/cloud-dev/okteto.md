@@ -1,5 +1,4 @@
-
-## Installing Kong on Okteto with VKPR:
+## Installing Kong on Okteto with VKPR
 
 
 VKPR also has a cloud development environment for testing provisioning, this environment is [Okteto](https://www.okteto.com/).
@@ -22,7 +21,6 @@ In order to install Kong in the Okteto context namespace, we will run `vkpr okte
 
 ```sh
 $ vkpr okteto init
-
 Formula was successfully built!
  ✓  Using context your-namespace @ cloud.okteto.com
  ✓  Namespace 'your-namespace' selected
@@ -36,7 +34,6 @@ To install the `Kong` Gatway API we will use `vkpr kong install`, executing this
 
 ```sh
 vkpr kong install
-
 Formula was successfully built!
 ? Type the Kong domain:  cloud.okteto.net
 ? Secure ?  false
@@ -50,11 +47,11 @@ Formula was successfully built!
 The following endpoints will be generated in okteto cloud:
 
 ```
-https://kong-kong-admin-<your-namespace>.cloud.okteto.net/
-https://kong-kong-manager-<your-namespace>.cloud.okteto.net/
-https://kong-kong-portal-<your-namespace>cloud.okteto.net/
-https://kong-kong-portalapi-<your-namespace>.cloud.okteto.net/
-https://kong-kong-proxy-<your-namespace>.cloud.okteto.net/
+https://kong-kong-admin-your-namespace.cloud.okteto.net/
+https://kong-kong-manager-your-namespace.cloud.okteto.net/
+https://kong-kong-portal-your-namespacecloud.okteto.net/
+https://kong-kong-portalapi-your-namespace.cloud.okteto.net/
+https://kong-kong-proxy-your-namespace.cloud.okteto.net/
 ```
 You can query these endpoints by visiting [Cloud Okteto!](https://cloud.okteto.com/)
 

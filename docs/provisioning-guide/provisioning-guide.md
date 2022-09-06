@@ -1,5 +1,7 @@
 ---
 sidebar_position: 1
+sidebar_label: Provisioning guide
+title: Provisioning guide
 ---
 
 # Provisioning basics
@@ -22,7 +24,12 @@ To see local development commands, click [here](/docs/commands/infra/start)
 
 Cloud provisioning is provided in order to build your entire infrastructure in your cloud through a GitOps approach. Written in `Terraform` with pipelines` Gitlab`, any changes you want to make to the cluster, there will be a config file as the source of truth. Changing it will reflect all changes in your cloud.
 
-Read more on [Cloud Development](/docs/provisioning-guide/cloud-dev/aws-eks)
+### Cloud production clusters
+
+Creating a production-ready managed k8s cluster requires too many specifics from the cloud vendor itself.
+VKPR has an opinionated take on several configs and enforces a GitOps approach on infrastructure provisioning.
+
+Read more on [Cloud Development](docs/provisioning-guide/cloud-dev/)
 :::info Formula
 To see cloud development commands, click [here](/docs/commands/aws/eks/init)
 :::

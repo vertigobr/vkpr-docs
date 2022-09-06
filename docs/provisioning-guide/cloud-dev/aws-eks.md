@@ -1,5 +1,7 @@
 ---
 sidebar_position: 3
+sidebar_label: AWS EKS
+title: AWS EKS
 ---
 
 # Provisioning with AWS EKS
@@ -10,7 +12,7 @@ Using CI/CD tools, we create Terraform modules for provisioning Elastic Kubernet
 
 These modules are responsible for communicating VKPR with our repository and running pipelines for provisioning with terraform.
 
-## How it works?
+## How it works ?
 
 After your application is locally provisioned and configured, you can install all your applications directly on your provider's cloud cluster with VKPR.
 
@@ -22,7 +24,6 @@ First we need to run the `vkpr aws eks init` formula responsible for initializin
 
 ```sh
 $ vkpr aws eks init
-
 Formula was successfully built!
 ? Project location: user
 ? EKS cluster name: eks-sample
@@ -73,7 +74,6 @@ So we can start the deployment pipeline or execute the `vkpr aws eks deploy` com
 
 ```sh
 $ vkpr aws eks deploy
-
 Formula was successfully built!
 Deploy job started successfully
 ```
@@ -89,20 +89,8 @@ Another command that VKPR makes available is to destroy the cluster provisioned 
 
 ```sh
 $ vkpr aws eks deploy
-
 Formula was successfully built!
 Destroy job started successfully
 ```
 
 ![Complete pipeline](/img/cloud-dev/pipeline-deploy.png)
-
-
-
-
-
-
-
-
-
-
-
