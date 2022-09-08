@@ -5,17 +5,9 @@ title: AWS EKS
 slug: /provisioning/dev/cloud/aws
 ---
 
-# Provisioning with AWS EKS
+## Provisioning with AWS EKS
 
 VKPR has a series of commands for local provisioning and configuring your application, but you can also install all your applications directly on your provider's cloud cluster through VKPR.
-
-Using CI/CD tools, we create Terraform modules for provisioning Elastic Kubernetes Service (EKS) and Digitalocean in AWS, in addition to all their dependencies.
-
-These modules are responsible for communicating VKPR with our repository and running pipelines for provisioning with terraform.
-
-## How it works ?
-
-After your application is locally provisioned and configured, you can install all your applications directly on your provider's cloud cluster with VKPR.
 
 Using one of the VKPR applications, AWS EKS, we can run the command that will be responsible for creating a fork of our repository with all the necessary dependencies for provisioning, a branch containing the name of our cluster will be created containing the information requested in the execution of the command responsible for provisioning.
 

@@ -5,8 +5,8 @@ title: Okteto
 slug: /provisioning/dev/cloud/okteto
 ---
 
-# Provisioning with Okteto
-## Installing Kong on Okteto with VKPR
+## Provisioning with Okteto
+### Installing Kong on Okteto with VKPR
 
 VKPR also has a cloud development environment for testing provisioning, this environment is [Okteto](https://www.okteto.com/).
 
