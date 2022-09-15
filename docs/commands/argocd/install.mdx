@@ -64,6 +64,9 @@ The following arguments are supported:
   - `crt` - Specify the certificate path.
   - `key` - Specify the key path.
   - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
+- `addons`
+  - `notifications` - (Optional) Continuous monitoring and notifying users of application changes.
+  - `rollouts` - (Optional) Kubernetes controller and a set of CRDs that provide advanced deployment capabilities.
 - `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution
