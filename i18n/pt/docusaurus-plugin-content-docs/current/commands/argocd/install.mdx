@@ -64,6 +64,9 @@ Os seguintes valores são suportados:
   - `crt` - Específica o caminho do certificado.
   - `key` - Específica o caminho do chave.
   - `secretName` - (Opcional) Específica uma secret TLS a qual conterá os valores do crt e key descritos.
+- `addons`
+  - `notifications` - (Optional) Monitoramento continuo e notifica os usuários sobre alterações na aplicação.
+  - `rollouts` - (Optional) Controlador Kubernetes e um conjunto de CRDs que fornecem recursos avançados de implantação.
 - `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
 
 :::caution Cuidado
