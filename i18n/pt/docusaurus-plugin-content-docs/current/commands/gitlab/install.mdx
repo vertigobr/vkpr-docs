@@ -1,0 +1,81 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR gitlab install
+title: VKPR gitlab install
+---
+
+# VKPR gitlab install
+
+## Descrição
+
+Instalar gitlab.
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr gitlab install [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr gitlab install --default
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default   Use para preencher automaticamente as entradas com valores padrões
+  --dry_run   Simula uma instalação
+  --domain    Define o endereço da aplicação
+  --secure    Utilizar HTTPS na aplicação
+  --HA        Define que aplicação terá HA
+  --ssl       Define que a aplicação utilizará certificado próprio
+  --crt_file  Específica o caminho do .crt do gitlab
+  --key_file  Específica o caminho do .key do gitlab
+```
+### Arquivo de configuração
+
+#### Globals
+
+Os seguintes valores são suportados pelo globals:
+
+- `domain` - (Obrigatório) Define o endereço da aplicação. O valor padrão é `localhost`.
+- `secure` - (Obrigatório) Define que a aplicação será acessada externamente por HTTPS. O valor padrão é `false`.
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `gitlab`.
+- `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
+
+#### Local
+
+The following arguments are supported:
+
+- `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `argocd`.
+- `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
+- `HA` - (Opcional) Define que a aplicação será instalada em HA. O valor padrão é `false`.
+- `metrics` - (Opcional) Define que a aplicação irá expor as suas métricas. O valor padrão é `false`.
+- `ssl`
+  - `enabled` - (Opcional) Define que a aplicação utilizará certificado próprio. O valor padrão é `false`.
+  - `crt` - Específica o caminho do certificado.
+  - `key` - Específica o caminho do chave.
+  - `secretName` - (Opcional) Específica uma secret TLS a qual conterá os valores do crt e key descritos.
+- `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
+
+:::caution Cuidado
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobrescritos definidos pelo VKPR.
+Use-o quando souber o que está fazendo!
+:::
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+---
+
+## Veja também
+
+- [VKPR gitlab parameter add](/docs/commands/gitlab/parameter/add) - Adicionar parâmetro gitlab CI/CD.
