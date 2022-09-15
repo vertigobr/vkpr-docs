@@ -22,7 +22,7 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Powered by Richie',
+    title: 'Powered by Ritchie',
     Svg: require('../../static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>

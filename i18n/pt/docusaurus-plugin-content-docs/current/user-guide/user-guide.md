@@ -9,7 +9,7 @@ slug: /basics
 
 Adotar o Kubernetes é uma missão desafiadora para empresas de qualquer tamanho - tem uma curva de aprendizado íngreme e profissionais qualificados são muito difíceis de encontrar. Embora as ofertas de Kubernetes gerenciadas pelos fornecedores de nuvem sejam um grande passo em uma boa direção, ainda é difícil encontrar a melhor maneira de provisioná-las e mantê-las.
 
-Uma vez provisionado, é ainda mais difícil passar de um cluster básico para um pronto para produção: quais ferramentas e configurações são necessárias para monitoramento, segurança, registro em log ou backup? Como posso automatizar a configuração deles de maneira simples e repetível?
+Uma vez provisionado, é ainda mais difícil passar de um cluster básico para um pronto para produção: Quais ferramentas e configurações são necessárias para monitoramento, segurança, registro em log ou backup? Como posso automatizar a configuração deles de maneira simples e repetível?
 
 ## O que é VKPR
 
@@ -29,7 +29,7 @@ Coisas que você pode fazer com o VKPR funcionando como uma ferramenta de desenv
 
 - Provisione clusters locais do Kubernetes que podem ser descartados facilmente (usando `k3d`) &#9989;
 - Implantar componentes VKPR localmente &#9989;
-- Execute um registro privado local do Docker *e* um espelho de registro local (cache de pull de imagem para kubernetes) &#9989;
+- Execute um registro privado local do Docker e um espelho de registro local (cache de pull de imagem para kubernetes) &#9989;
 
 Coisas que você pode fazer com o VKPR funcionando como uma ferramenta de desenvolvimento remoto:
 
