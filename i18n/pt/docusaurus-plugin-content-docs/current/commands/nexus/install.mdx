@@ -1,0 +1,101 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR nexus install
+title: VKPR nexus install
+---
+
+# VKPR nexus install
+
+## Description
+
+Instala o nexus no cluster. Para mais informações sobre o nexus, clique [aqui](https://help.sonatype.com/repomanager3).
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr nexus install [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr nexus install --default
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default   Use para preencher automaticamente as entradas com valores padrões
+  --dry_run   Simula uma instalação
+  --domain    Define o endereço da aplicação
+  --secure    Utilizar HTTPS na aplicação
+  --password  Define a senha Root do Nexus
+  --ssl       Define que a aplicação utilizará certificado próprio
+  --crt_file  Específica o caminho do .crt do nexus
+  --key_file  Específica o caminho do .key do nexus
+```
+
+### Arquivo de configuração
+
+#### Globals
+
+Os seguintes valores são suportados pelo globals:
+Valores válidos:
+
+- `domain` - (Obrigatório) Define o endereço da aplicação. O valor padrão é `localhost`.
+- `secure` - (Obrigatório) Define que a aplicação será acessada externamente por HTTPS. O valor padrão é `false`.
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
+
+#### Local
+
+Os seguintes valores são suportados:
+
+- `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `ingressClassName` - (Opcional) Define qual o ingressController que será utilizado para expor a aplicação. O valor padrão é `nginx`.
+- `rootPassword` - (Opcional) Define a senha Root do Nexus. O valor padrão é `vkpr123`.
+- `persistence` - (Opcional) Específica se o dados da aplicação será guardado em volumes. O valor padrão é `false`.
+- `metrics` - (Opcional) Define que a aplicação irá expor as suas métricas. O valor padrão é `false`.
+- `ssl`
+  - `enabled` - (Opcional) Define que a aplicação utilizará certificado próprio. O valor padrão é `false`.
+  - `crt` - Específica o caminho do certificado.
+  - `key` - Específica o caminho do chave.
+  - `secretName` - (Opcional) Específica uma secret TLS a qual conterá os valores do crt e key descritos.
+- `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
+
+:::caution Cuidado
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobrescritos definidos pelo VKPR.
+Use-o quando souber o que está fazendo!
+:::
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `ingressClassName` - **VKPR_ENV_NEXUS_INGRESS_CLASS_NAME**
+- `namespace` - **VKPR_ENV_NEXUS_NAMESPACE**
+- `rootPassword` - **VKPR_ENV_NEXUS_ROOT_PASSWORD**
+- `persistence` - **VKPR_ENV_NEXUS_PERSISTENCE**
+- `metrics` - **VKPR_ENV_NEXUS_METRICS**
+- `ssl`
+  - `enabled` - **VKPR_ENV_NEXUS_SSL**
+  - `crt` - **VKPR_ENV_NEXUS_CERTIFICATE**
+  - `key` - **VKPR_ENV_NEXUS_KEY**
+  - `secretName` - **VKPR_ENV_NEXUS_SSL_SECRET**
+
+---
+
+:::info Sobre o comando
+`Versão do Chart`: 4.14.0 <br/>
+`Versão da aplicação`: v3.41.1 <br/>
+`Helm Chart`: [stevehipwell/nexus3](https://artifacthub.io/packages/helm/stevehipwell/nexus3) <br/>
+:::
+
+## Veja também
+
+- [VKPR nexus remove](/docs/commands/nexus/remove) - Desinstala o nexus do cluster.
