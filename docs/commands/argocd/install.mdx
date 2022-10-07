@@ -64,6 +64,15 @@ The following arguments are supported:
   - `crt` - Specify the certificate path.
   - `key` - Specify the key path.
   - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
+- `addons`
+  - `notifications` 
+    - `enabled` - (Optional) Install [Argo Notifications](https://argocd-notifications.readthedocs.io/en/stable/) in the cluster.
+  - `rollouts` 
+    - `enabled` - (Optional) Install [Argo Rollouts](https://argoproj.github.io/argo-rollouts/) in the cluster.
+  - `events` 
+    - `enabled` - (Optional) Install [Argo Events](https://argoproj.github.io/argo-events/) in the cluster.
+  - `workflows` 
+    - `enabled` (Optional) Install [Argo Workflows](https://argoproj.github.io/argo-workflows/) in the cluster.
 - `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution
@@ -84,6 +93,15 @@ The following variables are supported:
   - `crt` - **VKPR_ENV_ARGOCD_SSL_CERTIFICATE**
   - `key` - **VKPR_ENV_ARGOCD_SSL_KEY**
   - `secretName` - **VKPR_ENV_ARGOCD_SSL_SECRET**
+- `addons`
+  - `notifications` 
+    - `enabled` - **VKPR_ENV_ARGOCD_ADDONS_NOTIFICATIONS**
+  - `rollouts` 
+    - `enabled` - **VKPR_ENV_ARGOCD_ADDONS_ROLLOUTS**
+  - `events` 
+    - `enabled` - **VKPR_ENV_ARGOCD_ADDONS_EVENTS**
+  - `workflows` 
+    - `enabled` **VKPR_ENV_ARGOCD_ADDONS_WORKFLOWS**
 
 ---
 
@@ -91,6 +109,18 @@ The following variables are supported:
 `Chart Version`: 4.6.3 <br/>
 `Application Version`: v2.3.4 <br/>
 `Helm Chart`: [argo/argo-cd](https://artifacthub.io/packages/helm/argo/argo-cd) <br/>
+---
+`Chart Version`: 2.20.0 <br/>
+`Application Version`: v1.2.2 <br/>
+`Helm Chart`: [argo/argo-rollouts](https://artifacthub.io/packages/helm/argo/argo-rollouts) <br/>
+---
+`Chart Version`: 2.0.5 <br/>
+`Application Version`: v1.7.2 <br/>
+`Helm Chart`: [argo/argo-events](https://artifacthub.io/packages/helm/argo/argo-events) <br/>
+---
+`Chart Version`: 0.19.6 <br/>
+`Application Version`: v3.4.0 <br/>
+`Helm Chart`: [argo/argo-workflows](https://artifacthub.io/packages/helm/argo/argo-workflows) <br/>
 :::
 
 ## See Also

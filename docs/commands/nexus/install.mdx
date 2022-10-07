@@ -1,27 +1,27 @@
 ---
 sidebar_position: 1
-sidebar_label: VKPR jaeger install
-title: VKPR jaeger install
+sidebar_label: VKPR nexus install
+title: VKPR nexus install
 ---
 
-# VKPR jaeger install
+# VKPR nexus install
 
 ## Description
 
-Install jaeger into cluster. For more information about jaeger, click [here](https://www.jaegertracing.io/).
+Install nexus into cluster. For more information about nexus, click [here](https://help.sonatype.com/repomanager3).
 
 ## Commands
 
 Interactive inputs:
 
 ```bash
-  vkpr jaeger install [flags]
+  vkpr nexus install [flags]
 ```
 
 Non-interactive without setting values or using `VKPR Values`:
 
 ```bash
-  vkpr jaeger install --default
+  vkpr nexus install --default
 ```
 
 ## Argument Reference
@@ -33,9 +33,10 @@ Non-interactive without setting values or using `VKPR Values`:
   --dry_run   Simulate an install
   --domain    Set the application address
   --secure    Using HTTPS in the application
+  --password  Specifies the Nexus Root Password
   --ssl       Defines that the application will use its own certificate
-  --crt_file  Specifies the jaeger .crt file path
-  --key_file  Specifies the jaeger .key file path
+  --crt_file  Specifies the nexus .crt file path
+  --key_file  Specifies the nexus .key file path
 ```
 
 ### Values File
@@ -56,6 +57,7 @@ The following arguments are supported:
 - `enabled` - (Optional) Enables the installation if performed with the command [vkpr apply](/docs/commands/apply).
 - `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
 - `ingressClassname` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `rootPassword` - (Optional) Define the Nexus Root Password. The default is `vkpr123`.
 - `persistence` - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
 - `metrics` - (Optional) Specifies if the application will expose your metrics. The default is `false`.
 - `ssl`
@@ -74,24 +76,25 @@ Use it when you know what you're doing
 
 The following variables are supported:
 
-- `ingressClassName` - **VKPR_ENV_JAEGER_INGRESS_CLASS_NAME**
-- `namespace` - **VKPR_ENV_JAEGER_NAMESPACE**
-- `persistence` - **VKPR_ENV_JAEGER_PERSISTENCE**
-- `metrics` - **VKPR_ENV_JAEGER_METRICS**
+- `ingressClassName` - **VKPR_ENV_NEXUS_INGRESS_CLASS_NAME**
+- `namespace` - **VKPR_ENV_NEXUS_NAMESPACE**
+- `rootPassword` - **VKPR_ENV_NEXUS_ROOT_PASSWORD**
+- `persistence` - **VKPR_ENV_NEXUS_PERSISTENCE**
+- `metrics` - **VKPR_ENV_NEXUS_METRICS**
 - `ssl`
-  - `enabled` - **VKPR_ENV_JAEGER_SSL**
-  - `crt` - **VKPR_ENV_JAEGER_CERTIFICATE**
-  - `key` - **VKPR_ENV_JAEGER_KEY**
-  - `secretName` - **VKPR_ENV_JAEGER_SSL_SECRET**
+  - `enabled` - **VKPR_ENV_NEXUS_SSL**
+  - `crt` - **VKPR_ENV_NEXUS_CERTIFICATE**
+  - `key` - **VKPR_ENV_NEXUS_KEY**
+  - `secretName` - **VKPR_ENV_NEXUS_SSL_SECRET**
 
 ---
 
 :::info About the Formula
-`Chart Version`: 0.56.5 <br/>
-`Application Version`: v1.30.0 <br/>
-`Helm Chart`: [jaegertracing/jaeger](https://artifacthub.io/packages/helm/jaegertracing/jaeger) <br/>
+`Chart Version`: 4.14.0 <br/>
+`Application Version`: v3.41.1 <br/>
+`Helm Chart`: [stevehipwell/nexus3](https://artifacthub.io/packages/helm/stevehipwell/nexus3) <br/>
 :::
 
 ## See Also
 
-- [VKPR jaeger remove](/docs/commands/jaeger/remove) - Uninstall jaeger from the cluster.
+- [VKPR nexus remove](/docs/commands/nexus/remove) - Uninstall nexus from the cluster.
