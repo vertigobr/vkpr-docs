@@ -1,0 +1,39 @@
+---
+sidebar_position: 4
+sidebar_label: Kong (WIP)
+title: Kong (WIP)
+---
+
+# Most common errors using Kong (WIP)
+
+## Free Kong with Hybrid Kong Mode.
+
+A very common error happens when installing kong where the decision tree gives us some options when starting the installation process.
+
+When `vkpr kong install` is started, if we select the `hybrid` option when asked about `Kong Mode:` we will need to enter the path of a valid Kong enterprise license, because if Kong is installed without a valid license, the installation process will time out and stop.
+
+```sh
+$ vkpr kong install
+? Type the Kong domain: localhost
+? Secure ? false
+? Kong Mode: (Hybrid only available in Kong Enterprise) hybrid
+? Select the plane to install control
+? Type the full path to the license: null
+? Type the RBAC Admin Password. Has no effect on hybrid data plane installations: vkpr123
+? HA ? false
+? Dry-run ? false
+==============================
+VKPR Kong Install Routine
+Domain: localhost
+.
+.
+.
+secret/kong-enterprise-superuser-password labeled
+Installing kong...
+Release "kong" does not exist. Installing it now.
+Error: release kong failed, and has been uninstalled due to atomic being set: timed out waiting for the condition
+```
+
+### Solving
+
+Enter a valid enterprise license or select `dbless` or `standard` when asked about `Kong Mode`.
