@@ -1,0 +1,88 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR redis install
+title: VKPR redis install
+---
+
+# VKPR redis install
+
+## Description
+
+Instala o Redis no cluster. Para mais informações sobre o Redis, clique [aqui](https://www.redis.io/).
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr redis install [flags]
+```
+
+Comando não interativo ou utilizando o `VKPR Values`:
+
+```bash
+  vkpr redis install --default
+```
+
+## Referência de valores
+
+### Flags
+
+```sh
+  --default        Use para preencher automaticamente as entradas com valores padrões
+  --dry_run        Simula uma instalação
+  --architecture   Especifíca a topologia do Cluster de Redis
+```
+
+### Arquivo de configuração
+
+#### Globals
+
+Os seguintes valores são suportados pelo globals:
+
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+
+#### Local
+
+Os seguintes valores são suportados:
+
+- `enabled` - (Opcional) Habilita a instalação se realizada com o comando [vkpr apply](/docs/commands/apply).
+- `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
+- `architecture` - (Opcional) Define qual a topologia da aplicação será utilizada. O valor padrão é `standalone`.
+- `metrics` - (Opcional) Define que a aplicação irá expor as suas métricas. O valor padrão é `false`.
+- `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
+
+:::caution Cuidado
+Utilizar o helmArgs pode fazer com que a aplicação não se comporte como esperado ou ter valores sobrescritos definidos pelo VKPR.
+Use-o quando souber o que está fazendo!
+:::
+
+### Valores Env
+
+As seguintes variáveis são suportadas:
+
+- `namespace` - **VKPR_ENV_REDIS_NAMESPACE**
+- `architecture` - **VKPR_ENV_REDIS_ARCHITECTURE**
+- `metrics` - **VKPR_ENV_REDIS_METRICS**
+
+## Configurando credenciais do provedor
+
+**CUIDADO: A configuração manual de credenciais substituirá as credenciais já salvas na memória**
+
+#### Redis
+
+```bash
+  rit set credential --provider="redis" --fields="password" --values="your-access-password"
+```
+
+---
+
+:::info Sobre o comando
+`Versão do Chart`: 17.3.2 <br/>
+`Versão da aplicação`: v7.0.5 <br/>
+`Helm Chart`: [bitnami/redis](https://artifacthub.io/packages/helm/bitnami/redis) <br/>
+:::
+
+## Veja também
+
+- [VKPR redis remove](/docs/commands/redis/remove) - Desinstala o redis do cluster.
