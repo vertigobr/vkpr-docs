@@ -1,0 +1,39 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR info dump
+title: VKPR info dump
+---
+
+# VKPR info dump
+
+## Description
+
+Retrieve the logs of the desired applications as well as the description of the resources created by the applications within the cluster:
+
+## Command
+
+Interactive inputs:
+
+```bash
+$ vkpr info dump
+
+Formula was successfully built!
+? Type the application name: kong
+? Path for the logs: /home/user/folder 
+==============================
+VKPR Info Dump Routine
+Application Name: kong
+Application Path: /home/user/folder
+Application Namespace: vkpr
+==============================
+Starting log extraction process...
+
+```
+
+## How it work?
+
+
+This command performs a series of state checks on the desired application and extracts its main information within the cluster.
+After extracting the files are stored in a folder and compressed into a single zip file  in the specified directory.
+
+`vkpr info dump` is able to identify the namespace where the application is installed.
