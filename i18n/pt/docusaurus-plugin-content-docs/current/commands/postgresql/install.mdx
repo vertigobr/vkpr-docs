@@ -50,6 +50,7 @@ Os seguintes valores são suportados:
 - `namespace` - (Opcional) Define o namespace o qual a aplicação será instalada. O valor padrão é `vkpr`.
 - `HA` - (Opcional) Define que a aplicação será instalada em HA. O valor padrão é `false`.
 - `metrics` - (Opcional) Define que a aplicação irá expor as suas métricas. O valor padrão é `false`.
+- `existingClaim` - (Opcional) Escpecífica uma PVC existente para associar ao Postgresql.
 - `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
 
 :::caution Cuidado
@@ -64,6 +65,7 @@ As seguintes variáveis são suportadas:
 - `namespace` - **VKPR_ENV_POSTGRESQL_NAMESPACE**
 - `metrics` - **VKPR_ENV_POSTGRESQL_METRICS**
 - `HA` - **VKPR_ENV_POSTGRESQL_HA**
+- `existingClaim` - **VKPR_ENV_POSTGRESQL_EXISTING_CLAIM**
 
 ## Configurando credenciais do provedor
 
