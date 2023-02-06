@@ -70,6 +70,9 @@ The following arguments are supported:
 - `alertManager`
   - `enabled` - (Required) Provides Endpoint for application access. The default is `false`.
   - `HA` - (Optional) Specifies if the application will have High Availability. The default is `false`.
+  - `persistence`  
+    - `enabled` - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
+    - `size` - (Optional) Specifies the volume size to be provisioned. The default is `2Gi`.
   - `ssl`
     - `enabled` - (Optional) Enable the manual certificate into ingress. The default is `false`.
     - `crt` - Specify the certificate path.
@@ -77,7 +80,9 @@ The following arguments are supported:
     - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
 - `grafana`
   - `adminPassword` - (Required) Specify the grafana admin password. The default is `vkpr123`.
-  - `persistence` - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
+  - `persistence`  
+    - `enabled` - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
+    - `size` - (Optional) Specifies the volume size to be provisioned. The default is `8Gi`.
   - `ssl`
     - `enabled` - (Optional) Enable the manual certificate into ingress. The default is `false`.
     - `crt` - Specify the certificate path.
@@ -85,7 +90,9 @@ The following arguments are supported:
     - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
 - `prometheus`
   - `enabled` - (Required) Provides Endpoint for application access. The default is `false`.
-  - `persistence` - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
+  - `persistence`  
+    - `enabled` - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
+    - `size` - (Optional) Specifies the volume size to be provisioned. The default is `8Gi`.
   - `ssl`
     - `enabled` - (Optional) Enable the manual certificate into ingress. The default is `false`.
     - `crt` - Specify the certificate path.
