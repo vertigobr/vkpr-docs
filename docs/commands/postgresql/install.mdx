@@ -50,6 +50,8 @@ The following arguments are supported:
 - `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
 - `HA` - (Required) Specifies if the application will have High Availability. The default is `false`.
 - `metrics` - (Optional) Specifies if the application will expose your metrics. The default is `false`.
+- `existingClaim` - (Optional) Specifies a existing PVC to associate to Postgresql.
+- `persistanceSize` - (Optional) Specifies the volume size that will be used for the application to store its content. The default is `8Gi`
 - `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution
@@ -64,6 +66,7 @@ The following variables are supported:
 - `namespace` - **VKPR_ENV_POSTGRESQL_NAMESPACE**
 - `metrics` - **VKPR_ENV_POSTGRESQL_METRICS**
 - `HA` - **VKPR_ENV_POSTGRESQL_HA**
+- `existingClaim` - **VKPR_ENV_POSTGRESQL_EXISTING_CLAIM**
 
 ### Setting Provider credentials
 

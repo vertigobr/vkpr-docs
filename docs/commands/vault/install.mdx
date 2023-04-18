@@ -70,6 +70,9 @@ The following arguments are supported:
   - `crt` - Specify the certificate path.
   - `key` - Specify the key path.
   - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
+- `existingClaim` - (Optional) Specifies a existing PVC to associate to Vault.
+  - `data` - Mount from Vault data
+  - `audit` - (Optional) Mount from Vault Audit
 - `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
 
 :::caution
@@ -91,6 +94,9 @@ The following variables are supported:
   - `crt` - **VKPR_ENV_VAULT_CERTIFICATE**
   - `key` - **VKPR_ENV_VAULT_KEY**
   - `secretName` - **VKPR_ENV_VAULT_SSL_SECRET**
+- `existingClaim` 
+  - `data` - **VKPR_ENV_VAULT_EXISTING_CLAIM_DATA**
+  - `audit` - **VKPR_ENV_VAULT_EXISTING_CLAIM_AUDIT**
 
 ## Setting Provider credentials
 

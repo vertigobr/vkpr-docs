@@ -70,6 +70,9 @@ Os seguintes valores são suportados:
   - `crt` - Específica o caminho do certificado.
   - `key` - Específica o caminho do chave.
   - `secretName` - (Opcional) Específica uma secret TLS a qual conterá os valores do crt e key descritos.
+- `existingClaim` - (Opcional) Escpecífica uma PVC existente para associar ao Vault.
+  - `data` - Monta o contéudo do Vault data
+  - `audit` - (Opcional) Monta o contéudo do Vault Audit
 - `helmArgs` - (Opcional) Opção utilizada para definir valores próprios do chart não suportados pelo comando.
 
 :::caution Cuidado
@@ -91,6 +94,9 @@ As seguintes variáveis são suportadas:
   - `crt` - **VKPR_ENV_VAULT_CERTIFICATE**
   - `key` - **VKPR_ENV_VAULT_KEY**
   - `secretName` - **VKPR_ENV_VAULT_SSL_SECRET**
+- `existingClaim` 
+  - `data` - **VKPR_ENV_VAULT_EXISTING_CLAIM_DATA**
+  - `audit` - **VKPR_ENV_VAULT_EXISTING_CLAIM_AUDIT**
 
 ## Configurando credenciais do provedor
 
