@@ -17,6 +17,12 @@ Kube-prometheus-stack é um pacote de aplicações de monitoramento, contendo:
 - [Grafana](https://grafana.com/grafana/)
 - Kubernetes Exporters
 
+Esta fórmula também instala o Loki junto ao prometheus-stack unificando metricas e logs em uma unica stack. Para mais informações sobre o Loki clique [aqui](/docs/commands/loki/install).
+
+:::caution Info
+Se o VKPR não encontrar nenhum instancia do Loki dentro do cluster, ele irá [instalar](/docs/commands/loki/install) um para utilizar juntamente com o prometheus-stack.
+:::
+
 ## Comando
 
 Comando interativo:
@@ -70,6 +76,9 @@ Os seguintes valores são suportados:
 - `alertManager`
   - `enabled` - (Obrigatório) Disponibiliza Endpoint para acesso da aplicação. O valor padrão é `false`.
   - `HA` - (Opcional) Define que a aplicação será instalada em HA. O valor padrão é `false`.
+  - `persistence`  
+    - `enabled` - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
+    - `size` - (Optional) Specifies the volume size to be provisioned. The default is `2Gi`.
   - `ssl`
     - `enabled` - (Opcional) Define que a aplicação utilizará certificado próprio. O valor padrão é `false`.
     - `crt` - Específica o caminho do certificado.
@@ -77,7 +86,9 @@ Os seguintes valores são suportados:
     - `secretName` - (Opcional) Específica uma secret TLS a qual conterá os valores do crt e key descritos.
 - `grafana`
   - `adminPassword` - (Obrigatório) Específica a senha do admin do Grafana. O valor padrão é `vkpr123`.
-  - `persistence` - (Opcional) Específica se o dados da aplicação será guardado em volumes. O valor padrão é `false`.
+  - `persistence`  
+    - `enabled` - (Opcional) Especifica se o conteúdo do aplicativo será armazenado em um volume. O valor padrão é `false`.
+    - `size` - (Opcional) Especifica o tamanho do volume a ser provisionado. O padrão é `8Gi`.
   - `ssl`
     - `enabled` - (Opcional) Define que a aplicação utilizará certificado próprio. O valor padrão é `false`.
     - `crt` - Específica o caminho do certificado.
@@ -85,7 +96,9 @@ Os seguintes valores são suportados:
     - `secretName` - (Opcional) Específica uma secret TLS a qual conterá os valores do crt e key descritos.
 - `prometheus`
   - `enabled` - (Obrigatório) Disponibiliza Endpoint para acesso da aplicação. The default is `false`.
-  - `persistence` - (Opcional) Específica se o dados da aplicação será guardado em volumes. O valor padrão é `false`.
+  - `persistence`  
+    - `enabled` - (Opcional) Especifica se o conteúdo do aplicativo será armazenado em um volume. O valor padrão é `false`.
+    - `size` - (Opcional) Especifica o tamanho do volume a ser provisionado. O padrão é `8Gi`.
   - `ssl`
     - `enabled` - (Opcional) Define que a aplicação utilizará certificado próprio. O valor padrão é `false`.
     - `crt` - Específica o caminho do certificado.
