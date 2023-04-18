@@ -17,6 +17,12 @@ Kube-prometheus-stack é um pacote de aplicações de monitoramento, contendo:
 - [Grafana](https://grafana.com/grafana/)
 - Kubernetes Exporters
 
+Esta fórmula também instala o Loki junto ao prometheus-stack unificando metricas e logs em uma unica stack. Para mais informações sobre o Loki clique [aqui](/docs/commands/loki/install).
+
+:::caution Info
+Se o VKPR não encontrar nenhum instancia do Loki dentro do cluster, ele irá [instalar](/docs/commands/loki/install) um para utilizar juntamente com o prometheus-stack.
+:::
+
 ## Comando
 
 Comando interativo:
