@@ -1,0 +1,44 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR metric-server install aws
+title: VKPR metric-server install aws
+---
+
+# VKPR metric-server install aws
+
+## Description
+
+Install metric-server into AWS cluster. For more information about metric-server, click [here](https://docs.aws.amazon.com/eks/latest/userguide/metrics-server.html).
+
+## Commands
+
+Non-interactive inputs:
+
+```bash
+  vkpr metric-server install aws
+```
+
+#### Example:
+```bash
+$ vkpr metric-server install aws
+Formula was successfully built!
+==============================
+VKPR metric-server Install AWS Routine
+==============================
+Installing metric-server CRDS beforehand...                                                                     
+...
+```
+
+**CAUTION: Setting credentials manually will override the credentials already saved in memory**
+
+### AWS
+
+```bash
+  rit set credential --provider="aws" --fields="accesskeyid,secretaccesskey,region" --values="your-accesskey,your-secretaccess,your-region"
+```
+
+---
+
+## See Also
+
+- [VKPR metric-server remove](/docs/commands/metric-server/remove) - Uninstall metric-server from the cluster.
