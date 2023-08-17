@@ -21,7 +21,7 @@ Com o Kubeconfig já associado ao seu contexto, você executará o seguinte coma
 ### Instalando nginx-ingress
 
 ```txt
-➜ vkpr ingress install
+➜ vkpr nginx install
 Formula was successfully built!
 
 ? Do you will use SSL?  [Use arrows to move, type to filter, ? for more help]
@@ -33,7 +33,7 @@ Formula was successfully built!
   true
 
 ==============================
-VKPR Ingress Install Routine
+vkpr nginx Install Routine
 ==============================
 ....
 ```
