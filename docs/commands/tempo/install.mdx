@@ -1,0 +1,97 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR tempo install
+title: VKPR tempo install
+---
+
+# VKPR tempo install
+
+## Description
+
+Install tempo into cluster. For more information about tempo, click [here](https://grafana.com/oss/tempo/).
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr tempo install [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr tempo install --default
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --default   Use to automatically fill inputs with default values
+  --dry_run   Simulate an install
+  --domain    Set the application address
+  --secure    Using HTTPS in the application
+  --ssl       Defines that the application will use its own certificate
+  --crt_file  Specifies the tempo .crt file path
+  --key_file  Specifies the tempo .key file path
+```
+
+### Values File
+
+#### Globals
+
+The following arguments are supported by the globals:
+
+- `domain` - (Required) Define the domain used by the application. The default is `localhost`.
+- `secure` - (Required) Specifies if the services from the application will expose HTTPS ports inside the cluster. The default is `false`.
+- `ingressClassname` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+
+#### Local
+
+The following arguments are supported:
+
+- `enabled` - (Optional) Enables the installation if performed with the command [vkpr apply](/docs/commands/apply).
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+- `ingressClassname` - (Optional) Define which ingress controller will expose the application. The default is `nginx`.
+- `persistence` - (Optional) Specifies if the content from the application will be storage in a volume. The default is `false`.
+- `metrics` - (Optional) Specifies if the application will expose your metrics. The default is `false`.
+- `ssl`
+  - `enabled` - (Optional) Enable the manual certificate into ingress. The default is `false`.
+  - `crt` - Specify the certificate path.
+  - `key` - Specify the key path.
+  - `secretName` - (Optional) Specifies if the content from the application will be storage in a volume.
+- `helmArgs` - (Optional) Used when you need to change some value or add a new value to the helm values used by the formula.
+
+:::caution
+Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
+Use it when you know what you're doing
+:::
+
+### Environment values
+
+The following variables are supported:
+
+- `ingressClassName` - **VKPR_ENV_TEMPO_INGRESS_CLASS_NAME**
+- `namespace` - **VKPR_ENV_TEMPO_NAMESPACE**
+- `persistence` - **VKPR_ENV_TEMPO_PERSISTENCE**
+- `metrics` - **VKPR_ENV_TEMPO_METRICS**
+- `ssl`
+  - `enabled` - **VKPR_ENV_TEMPO_SSL**
+  - `crt` - **VKPR_ENV_TEMPO_CERTIFICATE**
+  - `key` - **VKPR_ENV_TEMPO_KEY**
+  - `secretName` - **VKPR_ENV_TEMPO_SSL_SECRET**
+
+---
+
+:::info About the Formula
+`Chart Version`: 1.5.0 <br/>
+`Application Version`: v2.2.0 <br/>
+`Helm Chart`: [grafana/tempo](https://artifacthub.io/packages/helm/grafana/tempo) <br/>
+:::
+
+## See Also
+
+- [VKPR tempo remove](/docs/commands/tempo/remove) - Uninstall tempo from the cluster.

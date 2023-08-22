@@ -1,0 +1,65 @@
+---
+sidebar_position: 1
+sidebar_label: VKPR otel install
+title: VKPR otel install
+---
+
+# VKPR otel install
+
+## Description
+
+Install opentelemetry into cluster. For more information about opentelemetry, click [here](https://opentelemetry.io/docs/).
+
+## Commands
+
+Interactive inputs:
+
+```bash
+  vkpr otel install [flags]
+```
+
+Non-interactive without setting values or using `VKPR Values`:
+
+```bash
+  vkpr otel install --default
+```
+
+## Argument Reference
+
+### Flags
+
+```sh
+  --autoinstrumentation   Use to auto-instrument application traces
+  --dry_run   Simulate an install
+```
+
+### Values File
+
+#### Local
+
+The following arguments are supported:
+
+- `namespace` - (Optional) Define where the application will be provisioned. The default is `vkpr`.
+
+:::caution
+Using helmArgs the application may behave in a way that VKPR may not be used in the best way it was designed.
+Use it when you know what you're doing
+:::
+
+### Environment values
+
+The following variables are supported:
+
+- `namespace` - **VKPR_ENV_otel_NAMESPACE**
+
+---
+
+:::info About the Formula
+`Chart Version`: 0.24.0 <br/>
+`Application Version`: v0.70.0 <br/>
+`Helm Chart`: [opentelemetry-helm/opentelemetry-operator](https://artifacthub.io/packages/helm/opentelemetry-helm/opentelemetry-operator) <br/>
+:::
+
+## See Also
+
+- [VKPR otel remove](/docs/commands/opentelemetry/remove) - Uninstall otel from the cluster.
