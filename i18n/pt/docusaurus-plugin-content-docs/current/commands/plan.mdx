@@ -1,0 +1,31 @@
+---
+sidebar_position: 21
+sidebar_label: VKPR plan
+title: VKPR plan
+---
+
+# VKPR plan
+
+## Descrição
+
+O VKPR plan é um método mais simples de validar a instalação e possíveis atualizações de aplicativos que você deseja instalar com o VKPR. Com um arquivo yaml informando os valores que as aplicações irão utilizar, será gerado um preview de todos os artefatos Kubernetes que serão gerados e serão exibidos em um terminal interativo para visualização.
+
+## Comando
+
+Comando interativo:
+
+```bash
+  vkpr plan [flags]
+```
+
+Comando não interativo:
+
+```bash
+  vkpr plan --path_to_file="/path/to/vkpr.yaml"
+```
+
+---
+
+## Veja também
+
+- [VKPR init](/docs/commands/init) - Inicializa o VKPR.

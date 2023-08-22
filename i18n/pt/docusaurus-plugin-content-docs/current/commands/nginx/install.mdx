@@ -1,10 +1,10 @@
 ---
 sidebar_position: 1
-sidebar_label: VKPR ingress install
-title: VKPR ingress install
+sidebar_label: VKPR nginx install
+title: VKPR nginx install
 ---
 
-# VKPR ingress install
+# VKPR nginx install
 
 ## Description
 
@@ -15,13 +15,13 @@ Instala o nGINX IngressController no cluster. Para mais informações sobre o nG
 Comando interativo:
 
 ```bash
-  vkpr ingress install [flags]
+  vkpr nginx install [flags]
 ```
 
 Comando não interativo ou utilizando o `VKPR Values`:
 
 ```bash
-  vkpr ingress install --default
+  vkpr nginx install --default
 ```
 
 ## Referência de valores
@@ -78,11 +78,11 @@ As seguintes variáveis são suportadas:
 ---
 
 :::info Sobre o comando
-`Versão do Chart`: 4.0.13 <br/>
-`Versão da aplicação`: v1.1.0 <br/>
+`Versão do Chart`: 4.7.0 <br/>
+`Versão da aplicação`: v1.8.0 <br/>
 `Helm Chart`: [helm/nginx-ingress](https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx) <br/>
 :::
 
 ## Veja também
 
-- [VKPR ingress remove](/docs/commands/ingress/remove) - Desinstala o ingress do cluster.
+- [vkpr nginx remove](/docs/commands/nginx/remove) - Desinstala o ingress do cluster.

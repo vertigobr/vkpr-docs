@@ -48,7 +48,7 @@ Para instalar alguma aplicação usando VKPR, usaremos `whoami` como exemplo.
 Para isso, implementaremos um ingressController e o próprio whoami:
 
 ```shell
-vkpr ingress install --default
+vkpr nginx install --default
 vkpr whoami install --default
 ```
 
@@ -77,5 +77,5 @@ vkpr infra down
 Cada um dos comandos do VKPR é chamado de fórmula (implementada usando Ritchie).
 
 - `vkpr infra up` inicia um cluster kubernetes local usando [k3d](https://k3d.io/).
-- `vkpr ingress install` implanta um ingressController nginx, neste caso exposto ao localhost nas portas 8000 (http) e 8001 (https).
+- `vkpr nginx install` implanta um ingressController nginx, neste caso exposto ao localhost nas portas 8000 (http) e 8001 (https).
 - `vkpr whoami install` implanta uma aplicação de amostra.
