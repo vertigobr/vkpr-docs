@@ -1,10 +1,10 @@
 ---
 sidebar_position: 1
-sidebar_label: VKPR ingress install
-title: VKPR ingress install
+sidebar_label: VKPR nginx install
+title: VKPR nginx install
 ---
 
-# VKPR ingress install
+# VKPR nginx install
 
 ## Description
 
@@ -15,13 +15,13 @@ Install nginx-ingress controller into cluster. For more information about nginx-
 Interactive inputs:
 
 ```bash
-  vkpr ingress install [flags]
+  vkpr nginx install [flags]
 ```
 
 Non-interactive without setting values or using `VKPR Values`:
 
 ```bash
-  vkpr ingress install --default
+  vkpr nginx install --default
 ```
 
 ## Argument Reference
@@ -78,11 +78,11 @@ The following variables are supported:
 ---
 
 :::info About the Formula
-`Chart Version`: 4.0.13 <br/>
-`Application Version`: v1.1.0 <br/>
+`Chart Version`: 4.7.0 <br/>
+`Application Version`: v1.8.0 <br/>
 `Helm Chart`: [helm/nginx-ingress](https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx) <br/>
 :::
 
 ## See Also
 
-- [VKPR ingress remove](/docs/commands/ingress/remove) - Uninstall ingress from the cluster.
+- [VKPR nginx remove](/docs/commands/nginx/remove) - Uninstall ingress from the cluster.
